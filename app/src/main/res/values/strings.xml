@@ -1,0 +1,525 @@
+<resources>
+    <string name="app_name">CV Builder - Passio</string>
+    <string name="attach_kr">%s Kr</string>
+    <string name="car_date_filter">1234567890/</string>
+    <string name="preferred_positions">Preferred Positions</string>
+
+    <string-array name="LanguageSpeaking">
+        <item>Basic communication</item>
+        <item>Intermediate</item>
+        <item>Advanced</item>
+        <item>Fluent</item>
+        <item>Native Speaker</item>
+    </string-array>
+
+    <string-array name="AllPrefrences">
+        <item>Marketing Specialist</item>
+        <item>Marketing Manager</item>
+        <item>Marketing Director</item>
+        <item>Graphic Designer</item>
+        <item>Marketing Research Analyst</item>
+        <item>Marketing Communications Manager</item>
+        <item>Marketing Consultant</item>
+        <item>Product Manager</item>
+        <item>Public Relations</item>
+        <item>Social Media Assistant</item>
+        <item>Brand Manager</item>
+        <item>SEO Manager</item>
+        <item>Content Marketing Manager</item>
+        <item>Copywriter</item>
+        <item>Media Buyer</item>
+        <item>Digital Marketing Manager</item>
+        <item>eCommerce Marketing Specialist</item>
+        <item>Brand Strategist</item>
+        <item>Vice President of Marketing</item>
+        <item>Media Relations Coordinator</item>
+        <item>Administrative Assistant</item>
+        <item>Receptionist</item>
+        <item>Office Manager</item>
+        <item>Auditing Clerk</item>
+        <item>Bookkeeper</item>
+        <item>Account Executive</item>
+        <item>Branch Manager</item>
+        <item>Business Manager</item>
+        <item>Quality Control Coordinator</item>
+        <item>Administrative Manager</item>
+        <item>Chief Executive Officer</item>
+        <item>Business Analyst</item>
+        <item>Risk Manager</item>
+        <item>Human Resources</item>
+        <item>Office Assistant</item>
+        <item>Secretary</item>
+        <item>Office Clerk</item>
+        <item>File Clerk</item>
+        <item>Account Collector</item>
+        <item>Administrative Specialist</item>
+        <item>Executive Assistant</item>
+        <item>Program Administrator</item>
+        <item>Program Manager</item>
+        <item>Administrative Analyst</item>
+        <item>Data Entry</item>
+        <item>CEO—Chief Executive Officer</item>
+        <item>COO—Chief Operating Officer</item>
+        <item>CFO—Chief Financial Officer</item>
+        <item>CIO—Chief Information Officer</item>
+        <item>CTO—Chief Technology Officer</item>
+        <item>CMO—Chief Marketing Officer</item>
+        <item>CHRO—Chief Human Resources Officer</item>
+        <item>CDO—Chief Data Officer</item>
+        <item>CPO—Chief Product Officer</item>
+        <item>CCO—Chief Customer Officer</item>
+        <item>Team Leader</item>
+        <item>Manager</item>
+        <item>Assistant Manager</item>
+        <item>Executive</item>
+        <item>Director</item>
+        <item>Coordinator</item>
+        <item>Administrator</item>
+        <item>Controller</item>
+        <item>Officer</item>
+        <item>Organizer</item>
+        <item>Supervisor</item>
+        <item>Superintendent</item>
+        <item>Head</item>
+        <item>Overseer</item>
+        <item>Chief</item>
+        <item>Foreman</item>
+        <item>Controller</item>
+        <item>Principal</item>
+        <item>President</item>
+        <item>Lead</item>
+        <item>Computer Scientist</item>
+        <item>IT Professional</item>
+        <item>UX Designer &amp; UI Developer</item>
+        <item>SQL Developer</item>
+        <item>Web Designer</item>
+        <item>Web Developer</item>
+        <item>Help Desk Worker/Desktop Support</item>
+        <item>Software Engineer</item>
+        <item>Data Entry</item>
+        <item>DevOps Engineer</item>
+        <item>Computer Programmer</item>
+        <item>Network Administrator</item>
+        <item>Information Security Analyst</item>
+        <item>Artificial Intelligence Engineer</item>
+        <item>Cloud Architect</item>
+        <item>IT Manager</item>
+        <item>Technical Specialist</item>
+        <item>Application Developer</item>
+        <item>Chief Technology Officer (CTO)</item>
+        <item>Chief Information Officer (CIO)</item>
+        <item>Sales Associate</item>
+        <item>Sales Representative</item>
+        <item>Sales Manager</item>
+        <item>Retail Worker</item>
+        <item>Store Manager</item>
+        <item>Sales Representative</item>
+        <item>Sales Manager</item>
+        <item>Real Estate Broker</item>
+        <item>Sales Associate</item>
+        <item>Cashier</item>
+        <item>Store Manager</item>
+        <item>Account Executive</item>
+        <item>Account Manager</item>
+        <item>Area Sales Manager</item>
+        <item>Direct Salesperson</item>
+        <item>Director of Inside Sales</item>
+        <item>Outside Sales Manager</item>
+        <item>Sales Analyst</item>
+        <item>Market Development Manager</item>
+        <item>B2B Sales Specialist</item>
+        <item>Sales Engineer</item>
+        <item>Merchandising Associate</item>
+        <item>Construction Worker</item>
+        <item>Taper</item>
+        <item>Plumber</item>
+        <item>Heavy Equipment Operator</item>
+        <item>Vehicle or Equipment Cleaner</item>
+        <item>Carpenter</item>
+        <item>Electrician</item>
+        <item>Painter</item>
+        <item>Welder</item>
+        <item>Handyman</item>
+        <item>Boilermaker</item>
+        <item>Crane Operator</item>
+        <item>Building Inspector</item>
+        <item>Pipefitter</item>
+        <item>Sheet Metal Worker</item>
+        <item>Iron Worker</item>
+        <item>Mason</item>
+        <item>Roofer</item>
+        <item>Solar Photovoltaic Installer</item>
+        <item>Well Driller</item>
+        <item>Office Manager</item>
+        <item>Receptionist</item>
+        <item>Virtual Assistant</item>
+        <item>Customer Service</item>
+        <item>Customer Support</item>
+        <item>Concierge</item>
+        <item>Help Desk</item>
+        <item>Customer Service Manager</item>
+        <item>Technical Support Specialist</item>
+        <item>Account Representative</item>
+        <item>Client Service Specialist</item>
+        <item>Customer Care Associate</item>
+        <item>Operations Manager</item>
+        <item>Operations Assistant</item>
+        <item>Operations Coordinator</item>
+        <item>Operations Analyst</item>
+        <item>Operations Director</item>
+        <item>Vice President of Operations</item>
+        <item>Operations Professional</item>
+        <item>Scrum Master</item>
+        <item>Continuous Improvement Lead</item>
+        <item>Continuous Improvement Consultant</item>
+        <item>Credit Authorizer</item>
+        <item>Benefits Manager</item>
+        <item>Credit Counselor</item>
+        <item>Accountant</item>
+        <item>Bookkeeper</item>
+        <item>Accounting Analyst</item>
+        <item>Accounting Director</item>
+        <item>Accounts Payable/Receivable Clerk</item>
+        <item>Auditor</item>
+        <item>Budget Analyst</item>
+        <item>Controller</item>
+        <item>Financial Analyst</item>
+        <item>Finance Manager</item>
+        <item>Economist</item>
+        <item>Payroll Manager</item>
+        <item>Payroll Clerk</item>
+        <item>Financial Planner</item>
+        <item>Financial Services Representative</item>
+        <item>Finance Director</item>
+        <item>Commercial Loan Officer</item>
+        <item>Engineer</item>
+        <item>Mechanical Engineer</item>
+        <item>Civil Engineer</item>
+        <item>Electrical Engineer</item>
+        <item>Assistant Engineer</item>
+        <item>Chemical Engineer</item>
+        <item>Chief Engineer</item>
+        <item>Drafter</item>
+        <item>Engineering Technician</item>
+        <item>Geological Engineer</item>
+        <item>Biological Engineer</item>
+        <item>Maintenance Engineer</item>
+        <item>Mining Engineer</item>
+        <item>Nuclear Engineer</item>
+        <item>Petroleum Engineer</item>
+        <item>Plant Engineer</item>
+        <item>Production Engineer</item>
+        <item>Quality Engineer</item>
+        <item>Safety Engineer</item>
+        <item>Sales Engineer</item>
+        <item>Chief People Officer</item>
+        <item>VP of Miscellaneous Stuff</item>
+        <item>Chief Robot Whisperer</item>
+        <item>Director of First Impressions</item>
+        <item>Culture Operations Manager</item>
+        <item>Director of Ethical Hacking</item>
+        <item>Software Ninjaneer</item>
+        <item>Director of Bean Counting</item>
+        <item>Digital Overlord</item>
+        <item>Director of Storytelling</item>
+        <item>Researcher</item>
+        <item>Research Assistant</item>
+        <item>Data Analyst</item>
+        <item>Business Analyst</item>
+        <item>Financial Analyst</item>
+        <item>Biostatistician</item>
+        <item>Title Researcher</item>
+        <item>Market Researcher</item>
+        <item>Title Analyst</item>
+        <item>Medical Researcher</item>
+        <item>Mentor</item>
+        <item>Tutor/Online Tutor</item>
+        <item>Teacher</item>
+        <item>Teaching Assistant</item>
+        <item>Substitute Teacher</item>
+        <item>Preschool Teacher</item>
+        <item>Test Scorer</item>
+        <item>Online ESL Instructor</item>
+        <item>Professor</item>
+        <item>Assistant Professor</item>
+        <item>Graphic Designer</item>
+        <item>Artist</item>
+        <item>Interior Designer</item>
+        <item>Video Editor</item>
+        <item>Video or Film Producer</item>
+        <item>Playwright</item>
+        <item>Musician</item>
+        <item>Novelist/Writer</item>
+        <item>Computer Animator</item>
+        <item>Photographer</item>
+        <item>Camera Operator</item>
+        <item>Sound Engineer</item>
+        <item>Motion Picture Director</item>
+        <item>Actor</item>
+        <item>Music Producer</item>
+        <item>Director of Photography</item>
+        <item>Nurse</item>
+        <item>Travel Nurse</item>
+        <item>Nurse Practitioner</item>
+        <item>Doctor</item>
+        <item>Caregiver</item>
+        <item>CNA</item>
+        <item>Physical Therapist</item>
+        <item>Pharmacist</item>
+        <item>Pharmacy Assistant</item>
+        <item>Medical Administrator</item>
+        <item>Medical Laboratory Tech</item>
+        <item>Physical Therapy Assistant</item>
+        <item>Massage Therapy</item>
+        <item>Dental Hygienist</item>
+        <item>Orderly</item>
+        <item>Personal Trainer</item>
+        <item>Massage Therapy</item>
+        <item>Medical Laboratory Tech</item>
+        <item>Phlebotomist</item>
+        <item>Medical Transcriptionist</item>
+        <item>Telework Nurse/Doctor</item>
+        <item>Reiki Practitioner</item>
+        <item>Housekeeper</item>
+        <item>Flight Attendant</item>
+        <item>Travel Agent</item>
+        <item>Hotel Front Door Greeter</item>
+        <item>Bellhop</item>
+        <item>Cruise Director</item>
+        <item>Entertainment Specialist</item>
+        <item>Hotel Manager</item>
+        <item>Front Desk Associate</item>
+        <item>Front Desk Manager</item>
+        <item>Concierge</item>
+        <item>Group Sales</item>
+        <item>Event Planner</item>
+        <item>Porter</item>
+        <item>Spa Manager</item>
+        <item>Wedding Coordinator</item>
+        <item>Cruise Ship Attendant</item>
+        <item>Casino Host</item>
+        <item>Hotel Receptionist</item>
+        <item>Reservationist</item>
+        <item>Events Manager</item>
+        <item>Meeting Planner</item>
+        <item>Lodging Manager</item>
+        <item>Director of Maintenance</item>
+        <item>Valet</item>
+        <item>Waiter/Waitress</item>
+        <item>Server</item>
+        <item>Chef</item>
+        <item>Fast Food Worker</item>
+        <item>Barista</item>
+        <item>Line Cook</item>
+        <item>Cafeteria Worker</item>
+        <item>Restaurant Manager</item>
+        <item>Wait Staff Manager</item>
+        <item>Bus Person</item>
+        <item>Restaurant Chain Executive</item>
+        <item>Political Scientist</item>
+        <item>Chemist</item>
+        <item>Conservation Scientist</item>
+        <item>Sociologist</item>
+        <item>Biologist</item>
+        <item>Geologist</item>
+        <item>Physicist</item>
+        <item>Astronomer</item>
+        <item>Atmospheric Scientist</item>
+        <item>Molecular Scientist</item>
+        <item>Call Center Representative</item>
+        <item>Customer Service</item>
+        <item>Telemarketer</item>
+        <item>Telephone Operator</item>
+        <item>Phone Survey Conductor</item>
+        <item>Dispatcher for Trucks or Taxis</item>
+        <item>Customer Support Representative</item>
+        <item>Over the Phone Interpreter</item>
+        <item>Phone Sales Specialist</item>
+        <item>Mortgage Loan Processor</item>
+        <item>Counselor</item>
+        <item>Mental Health Counselor</item>
+        <item>Addiction Counselor</item>
+        <item>School Counselor</item>
+        <item>Speech Pathologist</item>
+        <item>Guidance Counselor</item>
+        <item>Social Worker</item>
+        <item>Therapist</item>
+        <item>Life Coach</item>
+        <item>Couples Counselor</item>
+        <item>Beautician</item>
+        <item>Hair Stylist</item>
+        <item>Nail Technician</item>
+        <item>Cosmetologist</item>
+        <item>Salon Manager</item>
+        <item>Makeup Artist</item>
+        <item>Esthetician</item>
+        <item>Skin Care Specialist</item>
+        <item>Manicurist</item>
+        <item>Barber</item>
+        <item>Journalist</item>
+        <item>Copy Editor</item>
+        <item>Editor/Proofreader</item>
+        <item>Content Creator</item>
+        <item>Speechwriter</item>
+        <item>Communications Director</item>
+        <item>Screenwriter</item>
+        <item>Technical Writer</item>
+        <item>Columnist</item>
+        <item>Public Relations Specialist</item>
+        <item>Proposal Writer</item>
+        <item>Content Strategist</item>
+        <item>Grant Writer</item>
+        <item>Video Game Writer</item>
+        <item>Translator</item>
+        <item>Film Critic</item>
+        <item>Copywriter</item>
+        <item>Travel Writer</item>
+        <item>Social Media Specialist</item>
+        <item>Ghostwriter</item>
+        <item>Truck Driver</item>
+        <item>Heavy Equipment Operator</item>
+        <item>Welding</item>
+        <item>Physical Therapy Assistant</item>
+        <item>Housekeeper</item>
+        <item>Landscaping Worker</item>
+        <item>Landscaping Assistant</item>
+        <item>Mover</item>
+        <item>Animal Breeder</item>
+        <item>Veterinary Assistant</item>
+        <item>Farm Worker</item>
+        <item>Animal Shelter Worker</item>
+        <item>Dog Walker / Pet Sitter</item>
+        <item>Zoologist</item>
+        <item>Animal Trainer</item>
+        <item>Service Dog Trainer</item>
+        <item>Animal Shelter Manager</item>
+        <item>Animal Control Officer</item>
+        <item>Delivery Driver</item>
+        <item>School Bus Driver</item>
+        <item>Truck Driver</item>
+        <item>Tow Truck Operator</item>
+        <item>UPS Driver</item>
+        <item>Mail Carrier</item>
+        <item>Recyclables Collector</item>
+        <item>Courier</item>
+        <item>Bus Driver</item>
+        <item>Cab Driver</item>
+        <item>Office Volunteer</item>
+        <item>Animal Shelter Volunteer</item>
+        <item>Hospital Volunteer</item>
+        <item>Youth Volunteer</item>
+        <item>Food Kitchen Worker</item>
+        <item>Homeless Shelter Worker</item>
+        <item>Conservation Volunteer</item>
+        <item>Meals on Wheels Driver</item>
+        <item>Habitat for Humanity Builder</item>
+        <item>Emergency Relief Worker</item>
+        <item>Red Cross Volunteer</item>
+        <item>Community Food Project Worker</item>
+        <item>Women’s Shelter Jobs</item>
+        <item>Suicide Hotline Volunteer</item>
+        <item>School Volunteer</item>
+        <item>Community Volunteer Jobs</item>
+        <item>Sports Volunteer</item>
+        <item>Church Volunteer</item>
+        <item>Archivist</item>
+        <item>Actuary</item>
+        <item>Architect</item>
+        <item>Personal Assistant</item>
+        <item>Entrepreneur</item>
+        <item>Security Guard</item>
+        <item>Mechanic</item>
+        <item>Recruiter</item>
+        <item>Mathematician</item>
+        <item>Locksmith</item>
+        <item>Management Consultant</item>
+        <item>Shelf Stocker</item>
+        <item>Caretaker or House Sitter</item>
+        <item>Library Assistant</item>
+        <item>Translator</item>
+        <item>HVAC Technician</item>
+        <item>Attorney</item>
+        <item>Paralegal</item>
+        <item>Executive Assistant</item>
+        <item>Personal Assistant</item>
+        <item>Bank Teller</item>
+        <item>Parking Attendant</item>
+        <item>Machinery Operator</item>
+        <item>Manufacturing Assembler</item>
+        <item>Funeral Attendant</item>
+        <item>Assistant Golf Professional</item>
+        <item>Yoga Instructor</item>
+    </string-array>
+
+
+    <string name="cv_builder">CV Builder</string>
+    <string name="build_your_cv">Build your CV</string>
+    <string name="about_you_heading">About You:</string>
+    <string name="about_you">About you *</string>
+    <string name="first_name">First Name *</string>
+    <string name="last_name">Last Name *</string>
+    <string name="email">Email *</string>
+    <string name="phone_number">Phone Number *</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="remort_site_text">Would you prefer on site work or remote?</string>
+    <string name="office">Office</string>
+    <string name="remote">Remote</string>
+    <string name="flexible">Flexible</string>
+    <string name="when_you_are_available">When are you Available from?</string>
+    <string name="relocate">Are you willing to relocate?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="what_are_your_preferred_possitions">What are your preferred positions?</string>
+    <string name="upload_a_picture">Upload a picture</string>
+    <string name="your_picture_will_appera">Your picture will appear on the CV, look professional!</string>
+    <string name="your_linked_in">Your LinkedIn</string>
+    <string name="linked_in_user_name">Enter your LinkedIn username to help people find you.</string>
+    <string name="your_sites">Your Sites</string>
+    <string name="add_a_maximum_of_2_links">Add a maximum of 2 links</string>
+    <string name="paste_any_related_links">Paste any relevant links such as your website or portfolio</string>
+    <string name="your_competencies">Your Competencies</string>
+    <string name="your_skills">Your Skills *</string>
+    <string name="add_5_skills_to_highlight">Add 5 skills to highlight</string>
+    <string name="evaluate_your_skills">Evaluate your skill *</string>
+    <string name="weak_excellent">(1= weak, 5= excellent)</string>
+    <string name="your_traits">Your Traits *</string>
+    <string name="add_5_traits_to_highlight">Add 5 traits to highlight</string>
+    <string name="evaluate_your_trait">Evaluate your Trait *</string>
+    <string name="what_langauges_do_you_speak">What languages do you speak? *</string>
+    <string name="add_a_maximum_of_5">Add a maximum of 5</string>
+    <string name="how_proficient_are_you">How proficient are you in it? *</string>
+    <string name="choose_a_profiiciency">Choose a Proficiency…</string>
+    <string name="work_experiance">Work Experience</string>
+    <string name="add_a_maximum_pf_3">Add a maximum of 3 experiences</string>
+    <string name="company">Company</string>
+    <string name="position">Position</string>
+    <string name="duration">Duration *</string>
+    <string name="to">to</string>
+    <string name="education">Education*</string>
+    <string name="add_a_maximum_2">Add a maximum of 2 qualifications</string>
+    <string name="institution">Institution *</string>
+    <string name="degree">Degree *</string>
+    <string name="preview">Preview</string>
+    <string name="core_competencies">Core Competencies:</string>
+    <string name="skills">Skills</string>
+    <string name="personality_traits">Personality Traits</string>
+    <string name="location">Location:</string>
+    <string name="countrry">Country</string>
+    <string name="preferred_work_place">Preferred work place:</string>
+    <string name="willing_to_relocate">Willing to relocate:</string>
+    <string name="avaible_from">Available from:</string>
+    <string name="profile">PROFILE</string>
+    <string name="preferred_position">Preferred Positions:</string>
+    <string name="langauges">Languages*</string>
+    <string name="get_a_copy">Get a Copy!</string>
+    <string name="job_titles">Job Titles</string>
+
+    <string name="privacy_policy_link">I agree to the <a href="http://buildcv.passio.work/privacy-policy">GDPR and Data Policy</a> </string>
+
+    <string name="banner_ad" translatable="false">ca-app-pub-7394253111529621/1441361644</string>
+    <string name="Interstitial_ad" translatable="false">ca-app-pub-7394253111529621/6310544947</string>
+    <string name="rewarded_ad" translatable="false">ca-app-pub-7394253111529621/8745136599</string>
+    <string name="rewared_in" translatable="false">ca-app-pub-7394253111529621/4861731904</string>
+    <string name="app_id" translatable="false">ca-app-pub-7394253111529621~5380606651</string>
+</resources>

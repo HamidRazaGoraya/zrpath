@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/tea</color>
+    <color name="colorPrimaryDark">@color/tea</color>
+    <color name="colorAccent">@color/selected_red</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_Two">#F1F1F1</color>
+    <color name="mainBlack">#4a4a4a</color>
+    <color name="bluey_grey">#989da4</color>
+    <color name="tea">#6db98f</color>
+    <color name="selected_red">#EB887F</color>
+</resources>
