@@ -308,7 +308,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/keyboard_arrow_up/baseline_keyboard_arrow_up_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/local_phone/baseline_local_phone_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -318,8 +318,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_baseline_keyboard_arrow_up_24" />
+                            <entry key="color" value="8c020f" />
+                            <entry key="outputName" value="ic_baseline_local_phone_24" />
                             <entry key="sourceFile" value="C:\Users\Hamid\Documents\calendar-day.svg" />
                           </map>
                         </option>

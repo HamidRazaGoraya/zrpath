@@ -6,6 +6,7 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.hamid.template.R
 import com.hamid.template.ui.dashboard.MainActivity
+import com.hamid.template.ui.loginAndRegister.RegisterActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,9 +17,9 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler(Looper.getMainLooper()).postDelayed({
-                 startActivity(MainActivity.getIntent(this))
+                 startActivity(RegisterActivity.getIntent(this))
             finishAffinity()
-        }, 500)
+        }, 100)
     }
 
 

@@ -36,6 +36,30 @@
         <entry key="..\:/Templates_Android/app/src/main/res/layout/website_link_recycle.xml" value="0.5" />
         <entry key="..\:/Templates_Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19" />
         <entry key="..\:/Templates_Android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.19" />
+        <entry key="..\:/zipath/app/src/main/res/drawable-v24/ic_rectangle_input_transparent.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_arc_image.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_language_24.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_calendar_day.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_camera.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_camera_icon.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_edit.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_rectangle_input_not_selected.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_rectangle_input_selected.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/share_request_color.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/share_request_switch.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
+        <entry key="..\:/zipath/app/src/main/res/layout/activity_onboarding.xml" value="0.19947916666666668" />
+        <entry key="..\:/zipath/app/src/main/res/layout/activity_registration.xml" value="0.19947916666666668" />
+        <entry key="..\:/zipath/app/src/main/res/layout/activity_splash.xml" value="0.19947916666666668" />
+        <entry key="..\:/zipath/app/src/main/res/layout/add_user_details.xml" value="0.19947916666666668" />
+        <entry key="..\:/zipath/app/src/main/res/layout/dialog_loading.xml" value="0.1" />
+        <entry key="..\:/zipath/app/src/main/res/layout/login_fragment.xml" value="0.25" />
+        <entry key="..\:/zipath/app/src/main/res/layout/login_screen.xml" value="0.19947916666666668" />
+        <entry key="..\:/zipath/app/src/main/res/layout/register_fragment.xml" value="0.19947916666666668" />
       </map>
     </option>
   </component>
