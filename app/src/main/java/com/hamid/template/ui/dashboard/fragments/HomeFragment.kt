@@ -1,4 +1,4 @@
-package com.hamid.template.ui.onboarding.fragments
+package com.hamid.template.ui.dashboard.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.hamid.template.base.BaseFragment
 import com.hamid.template.databinding.AddUserDetailsBinding
+import com.hamid.template.databinding.FragmentHomeBinding
 import com.hamid.template.databinding.RegisterFragmentBinding
 import com.hamid.template.ui.dashboard.MainVM
 import com.hamid.template.ui.loginAndRegister.RegisterVM
@@ -17,9 +18,9 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class FillUserDetails : BaseFragment<AddUserDetailsBinding, OnBoardingVM>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding, MainVM>() {
 
-    override val viewModel: OnBoardingVM by activityViewModels()
+    override val viewModel: MainVM by activityViewModels()
 
     @Inject
     lateinit var sharedPreferenceManager: SharedPreferenceManager
@@ -28,8 +29,8 @@ class FillUserDetails : BaseFragment<AddUserDetailsBinding, OnBoardingVM>() {
     override fun setBinding(
         layoutInflater: LayoutInflater,
         container: ViewGroup?
-    ): AddUserDetailsBinding {
-        return AddUserDetailsBinding.inflate(layoutInflater, container, false)
+    ): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(layoutInflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,9 +39,7 @@ class FillUserDetails : BaseFragment<AddUserDetailsBinding, OnBoardingVM>() {
     }
 
     private fun setOnClickEvents() {
-        binding.nextButton.setOnClickListener {
-            viewModel.moveToDashboard()
-        }
+
     }
 
     override fun onResume() {

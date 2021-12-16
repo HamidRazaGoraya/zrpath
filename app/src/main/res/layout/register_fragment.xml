@@ -6,14 +6,7 @@
     android:layout_height="match_parent">
 
 
-    <ImageView
-        android:padding="@dimen/_10sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/backButton"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
-        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/imageTop"
         android:layout_width="wrap_content"
@@ -27,21 +20,12 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.20" />
 
-    <ImageView
-        android:src="@drawable/favicon"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/image_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTop" />
-
-    <androidx.core.widget.NestedScrollView
+     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
         app:layout_constraintTop_toTopOf="@+id/image_bottom">
 
         <LinearLayout
@@ -50,7 +34,12 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:gravity="center"
             android:orientation="vertical">
-
+            <TextView
+                android:layout_marginVertical="@dimen/_10sdp"
+                style="@style/SubHeadinText"
+                android:text="Create new acount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="@dimen/_70sdp"
                 android:layout_height="@dimen/_70sdp"
@@ -146,4 +135,38 @@
                 android:text="Register" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/favicon"
+        app:layout_constraintBottom_toTopOf="@+id/image_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/endGuide"
+        app:layout_constraintStart_toStartOf="@+id/startGuide"
+        app:layout_constraintTop_toTopOf="@+id/imageTop" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:padding="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@+id/imageTop"
+        app:layout_constraintEnd_toStartOf="@+id/startGuide"
+        app:layout_constraintStart_toStartOf="@+id/startGuide"
+        app:layout_constraintTop_toTopOf="@+id/imageTop"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
 </androidx.constraintlayout.widget.ConstraintLayout>

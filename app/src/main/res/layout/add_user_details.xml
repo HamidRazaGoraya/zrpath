@@ -149,7 +149,7 @@
             <Button
                 android:layout_marginTop="@dimen/_10sdp"
                 style="@style/actionButton"
-                android:id="@+id/LogInButton"
+                android:id="@+id/nextButton"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50sdp"
                 android:layout_gravity="center"

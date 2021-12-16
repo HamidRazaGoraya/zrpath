@@ -43,6 +43,9 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
         binding.LogInButton.setOnClickListener {
             viewModel.moveToUserDetailsFill()
         }
+        binding.forgotPassword.setOnClickListener {
+            viewModel.moveToForgotPassword()
+        }
     }
 
     override fun onResume() {

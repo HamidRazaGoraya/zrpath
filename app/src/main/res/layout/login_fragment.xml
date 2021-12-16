@@ -18,25 +18,24 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.20" />
 
-    <ImageView
-        android:src="@drawable/favicon"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/image_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageTop" />
+
 
     <LinearLayout
+        android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintVertical_bias="0.4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/endGuide"
+        app:layout_constraintStart_toStartOf="@id/startGuide"
         app:layout_constraintTop_toTopOf="@+id/image_bottom" >
-
+        <TextView
+            android:layout_marginVertical="@dimen/_10sdp"
+            style="@style/SubHeadinText"
+            android:text="Login to your account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
@@ -89,10 +88,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:text="Don't have account?"
+                android:text="Don't have account?  "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <Button
+                android:padding="0dp"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 style="?android:attr/borderlessButtonStyle"
@@ -103,4 +103,28 @@
                 android:text="Create a new account" />
         </LinearLayout>
     </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@drawable/favicon"
+        app:layout_constraintBottom_toTopOf="@+id/image_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/endGuide"
+        app:layout_constraintStart_toStartOf="@+id/startGuide"
+        app:layout_constraintTop_toTopOf="@+id/imageTop" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/startGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
 </androidx.constraintlayout.widget.ConstraintLayout>

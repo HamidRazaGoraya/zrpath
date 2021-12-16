@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.activity.viewModels
 import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityMainBinding
+import com.hamid.template.ui.dashboard.fragments.HomeFragment
 import com.hamid.template.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -43,8 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
 
     @Override
     override fun initiate() {
-
-
+        supportFragmentManager.beginTransaction().add(binding.dashBoardNav.id,HomeFragment(),"Home").commit()
     }
 
     override fun ShowLoading() {

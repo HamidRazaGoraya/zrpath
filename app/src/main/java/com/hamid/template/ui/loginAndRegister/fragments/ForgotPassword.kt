@@ -1,4 +1,4 @@
-package com.hamid.template.ui.onboarding.fragments
+package com.hamid.template.ui.loginAndRegister.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,20 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.hamid.template.base.BaseFragment
-import com.hamid.template.databinding.AddUserDetailsBinding
+import com.hamid.template.databinding.ForgotPasswordFragmentBinding
 import com.hamid.template.databinding.RegisterFragmentBinding
 import com.hamid.template.ui.dashboard.MainVM
 import com.hamid.template.ui.loginAndRegister.RegisterVM
-import com.hamid.template.ui.onboarding.OnBoardingVM
 import com.hamid.template.utils.SharedPreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class FillUserDetails : BaseFragment<AddUserDetailsBinding, OnBoardingVM>() {
+class ForgotPassword : BaseFragment<ForgotPasswordFragmentBinding, RegisterVM>() {
 
-    override val viewModel: OnBoardingVM by activityViewModels()
+    override val viewModel: RegisterVM by activityViewModels()
 
     @Inject
     lateinit var sharedPreferenceManager: SharedPreferenceManager
@@ -28,18 +27,22 @@ class FillUserDetails : BaseFragment<AddUserDetailsBinding, OnBoardingVM>() {
     override fun setBinding(
         layoutInflater: LayoutInflater,
         container: ViewGroup?
-    ): AddUserDetailsBinding {
-        return AddUserDetailsBinding.inflate(layoutInflater, container, false)
+    ): ForgotPasswordFragmentBinding {
+        return ForgotPasswordFragmentBinding.inflate(layoutInflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setOnClickEvents()
+       setClickListerners()
     }
 
-    private fun setOnClickEvents() {
-        binding.nextButton.setOnClickListener {
-            viewModel.moveToDashboard()
+    private fun setClickListerners() {
+        binding.sendResetLink.setOnClickListener {
+            showSnackBar("Reset Link sent check email")
+            viewModel.onLoginClick()
+        }
+        binding.backButton.setOnClickListener {
+            viewModel.onLoginClick()
         }
     }
 

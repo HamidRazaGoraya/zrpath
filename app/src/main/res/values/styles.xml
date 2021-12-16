@@ -11,7 +11,15 @@
 
     </style>
 
-
+    <style name="SubHeadinText">
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textSize">@dimen/_16sdp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+    <style name="ManuItem">
+        <item name="android:textSize">@dimen/_12sdp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
     <style name="actionButton">
         <item name="android:textSize">@dimen/_16sdp</item>
         <item name="android:layout_height">@dimen/_50sdp</item>

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityRegistrationBinding
+import com.hamid.template.ui.loginAndRegister.fragments.ForgotPassword
 import com.hamid.template.ui.loginAndRegister.fragments.LoginFragment
 import com.hamid.template.ui.loginAndRegister.fragments.RegisterFragment
 import com.hamid.template.ui.onboarding.OnBoardingActivity
@@ -24,6 +25,7 @@ class RegisterActivity : BaseActivity<ActivityRegistrationBinding, RegisterVM>()
 
     private val registerFragment:RegisterFragment= RegisterFragment()
     private val loginFragment:LoginFragment= LoginFragment()
+    private val forgotPassword:ForgotPassword= ForgotPassword()
     private lateinit var currentFrament: Fragment
     private lateinit var fragmentManager: FragmentManager
     companion object {
@@ -64,7 +66,12 @@ class RegisterActivity : BaseActivity<ActivityRegistrationBinding, RegisterVM>()
         if (oldFragment != null) {
             fragmentManager.beginTransaction().remove(oldFragment).commit()
         }
+        oldFragment = fragmentManager.findFragmentByTag("forgotPassword")
+        if (oldFragment != null) {
+            fragmentManager.beginTransaction().remove(oldFragment).commit()
+        }
         currentFrament=loginFragment
+        fragmentManager.beginTransaction().add(binding.contentFrame.id,forgotPassword,"forgotPassword").hide(forgotPassword).commit()
         fragmentManager.beginTransaction().add(binding.contentFrame.id,registerFragment,"registerFragment").hide(registerFragment).commit()
         fragmentManager.beginTransaction().add(binding.contentFrame.id,loginFragment,"loginFragment").commit()
     }
@@ -108,6 +115,11 @@ class RegisterActivity : BaseActivity<ActivityRegistrationBinding, RegisterVM>()
     override fun moveToUserDetailsFill() {
         startActivity(OnBoardingActivity.getIntent(this))
         finishAffinity()
+    }
+
+    override fun moveToForgotPassword() {
+        fragmentManager.beginTransaction().hide(currentFrament).show(forgotPassword).commit()
+        currentFrament=forgotPassword
     }
 
 

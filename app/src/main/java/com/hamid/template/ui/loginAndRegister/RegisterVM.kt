@@ -22,5 +22,6 @@ constructor(
     fun onRegisterClick() = viewInteractor?.performRegister()
     fun onLoginClick()=viewInteractor?.performLogin()
     fun moveToUserDetailsFill()=viewInteractor?.moveToUserDetailsFill()
+    fun moveToForgotPassword()=viewInteractor?.moveToForgotPassword()
 
 }

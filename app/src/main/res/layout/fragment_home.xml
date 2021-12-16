@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:id="@+id/constraintLayout"
+     android:layout_width="0dp"
+     android:layout_height="0dp"
+     android:background="@color/primary_two"
+     app:layout_constraintBottom_toTopOf="@+id/topBarBottom"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.0"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent"
+     app:layout_constraintVertical_bias="1.0">
+
+  <com.google.android.material.card.MaterialCardView
+      app:layout_constraintHorizontal_bias="0.0"
+      android:id="@+id/materialCardView"
+      android:layout_width="@dimen/_70sdp"
+      android:layout_height="@dimen/_70sdp"
+      android:layout_gravity="center"
+      app:cardCornerRadius="@dimen/_70sdp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/profileImageEnd"
+      app:layout_constraintStart_toStartOf="@+id/profileImageStart"
+      app:layout_constraintTop_toTopOf="parent">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/profile_empty_image" />
+
+    <View
+        android:id="@+id/editProfile"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:background="#A6000000"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imgProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="@dimen/_5sdp"
+        android:src="@drawable/ic_camera_icon"
+        app:layout_constraintBottom_toBottomOf="@+id/imgProfile"
+        app:layout_constraintEnd_toEndOf="@+id/editProfile"
+        app:layout_constraintStart_toStartOf="@+id/editProfile"
+        app:layout_constraintTop_toTopOf="@id/editProfile" />
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </com.google.android.material.card.MaterialCardView>
+
+  <TextView
+      android:id="@+id/userName"
+      style="@style/ManuItem"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="My Profile"
+      android:textSize="@dimen/_16sdp"
+      app:layout_constraintEnd_toStartOf="@+id/profileImageEnd"
+      app:layout_constraintStart_toStartOf="@+id/profileImageStart"
+      app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+
+  <com.google.android.material.textfield.TextInputLayout
+      style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/_10sdp"
+      android:layout_weight="1"
+      android:hint="Trip"
+      android:textColor="@color/white"
+      android:textColorHint="@color/white"
+      app:endIconTint="@color/white"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="@+id/tripStart"
+      app:layout_constraintTop_toTopOf="parent">
+
+   <AutoCompleteTextView
+       android:id="@+id/userGroups"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:backgroundTint="@color/colorPrimary"
+       android:drawableTint="@color/white"
+       android:gravity="center"
+       android:inputType="none"
+       android:singleLine="true"
+       android:textColor="@color/white"
+       android:textColorHint="@color/white" />
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/tripStart"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.50" />
+
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/profileImageStart"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.05" />
+
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/profileImageEnd"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.35" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+
+ <androidx.constraintlayout.widget.Guideline
+     android:id="@+id/topBarBottom"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     app:layout_constraintGuide_percent="0.30" />
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:layout_width="0dp"
+     android:layout_height="0dp"
+     android:layout_marginTop="@dimen/_20sdp"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="@+id/topBarBottom">
+
+  <LinearLayout
+      android:id="@+id/patientButton"
+      android:focusable="true"
+      android:clickable="true"
+      android:foreground="?attr/selectableItemBackground"
+      android:gravity="center"
+      app:layout_constraintTop_toTopOf="parent"
+      android:orientation="vertical"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintEnd_toStartOf="@+id/button1"
+      app:layout_constraintStart_toStartOf="parent">
+
+   <ImageView
+       android:padding="@dimen/_10sdp"
+       android:background="@drawable/menu_button_back"
+       android:layout_width="@dimen/_50sdp"
+       android:layout_height="@dimen/_50sdp"
+       android:src="@drawable/ic_baseline_night_shelter_24" />
+   <TextView
+       style="@style/ManuItem"
+       android:text="Patient"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"/>
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/mapsButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:clickable="true"
+      android:focusable="true"
+      android:foreground="?attr/selectableItemBackground"
+      android:gravity="center"
+      android:orientation="vertical"
+      app:layout_constraintEnd_toStartOf="@+id/button2"
+      app:layout_constraintStart_toStartOf="@+id/button1"
+      app:layout_constraintTop_toTopOf="parent">
+
+   <ImageView
+       android:layout_width="@dimen/_50sdp"
+       android:layout_height="@dimen/_50sdp"
+       android:background="@drawable/menu_button_back"
+       android:padding="@dimen/_10sdp"
+       android:src="@drawable/ic_baseline_location_on_24" />
+
+   <TextView
+       style="@style/ManuItem"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Maps" />
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/settingsButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:clickable="true"
+      android:focusable="true"
+      android:foreground="?attr/selectableItemBackground"
+      android:gravity="center"
+      android:orientation="vertical"
+      app:layout_constraintEnd_toStartOf="@+id/button3"
+      app:layout_constraintStart_toStartOf="@+id/button2"
+      app:layout_constraintTop_toTopOf="parent">
+
+   <ImageView
+       android:layout_width="@dimen/_50sdp"
+       android:layout_height="@dimen/_50sdp"
+       android:background="@drawable/menu_button_back"
+       android:padding="@dimen/_10sdp"
+       android:src="@drawable/ic_baseline_settings_24" />
+
+   <TextView
+       style="@style/ManuItem"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Settings" />
+  </LinearLayout>
+
+  <LinearLayout
+      android:id="@+id/helpButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:clickable="true"
+      android:focusable="true"
+      android:foreground="?attr/selectableItemBackground"
+      android:gravity="center"
+      android:orientation="vertical"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="@+id/button3"
+      app:layout_constraintTop_toTopOf="parent">
+
+   <ImageView
+       android:layout_width="@dimen/_50sdp"
+       android:layout_height="@dimen/_50sdp"
+       android:background="@drawable/menu_button_back"
+       android:padding="@dimen/_10sdp"
+       android:src="@drawable/ic_baseline_help_24" />
+
+   <TextView
+       style="@style/ManuItem"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Help" />
+  </LinearLayout>
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/button1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.25" />
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/button2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.50" />
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/button3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.75" />
+ </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
