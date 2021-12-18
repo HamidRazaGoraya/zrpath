@@ -4,5 +4,5 @@ object ApiEndPoint {
 
     const val apiStart = "api/"
 
-    const val GENERATE_CV= apiStart+"cv/generate"
+    const val LoginAPi= apiStart+"Security/Login"
 }

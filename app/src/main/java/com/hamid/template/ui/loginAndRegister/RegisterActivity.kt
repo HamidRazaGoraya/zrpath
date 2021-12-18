@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityRegistrationBinding
+import com.hamid.template.ui.dashboard.MainActivity
 import com.hamid.template.ui.loginAndRegister.fragments.ForgotPassword
 import com.hamid.template.ui.loginAndRegister.fragments.LoginFragment
 import com.hamid.template.ui.loginAndRegister.fragments.RegisterFragment
@@ -89,11 +90,11 @@ class RegisterActivity : BaseActivity<ActivityRegistrationBinding, RegisterVM>()
         currentFrament=loginFragment
     }
 
-    fun showLoading() {
+    override fun showLoading() {
         showLoader()
     }
 
-    fun hideLoading() {
+    override fun hideLoading() {
         hideLoader()
     }
 
@@ -121,6 +122,9 @@ class RegisterActivity : BaseActivity<ActivityRegistrationBinding, RegisterVM>()
         fragmentManager.beginTransaction().hide(currentFrament).show(forgotPassword).commit()
         currentFrament=forgotPassword
     }
-
+    override fun moveToDashboard() {
+        startActivity(MainActivity.getIntent(this))
+        finishAffinity()
+    }
 
 }

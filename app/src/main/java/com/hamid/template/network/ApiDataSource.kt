@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.hamid.template.utils.SharedPreferenceManager
 import com.google.gson.Gson
+import com.hamid.template.ui.loginAndRegister.models.LogInRequest
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -15,7 +16,9 @@ class ApiDataSource @Inject constructor(
     private val sharedPreferenceManager: SharedPreferenceManager,
     private val context: Context
 ) : BaseDataSource(context) {
-
+    suspend fun signInUser(logInRequest: LogInRequest) = getResult {
+        apiServices.signInUser(logInRequest)
+    }
 
 
 }

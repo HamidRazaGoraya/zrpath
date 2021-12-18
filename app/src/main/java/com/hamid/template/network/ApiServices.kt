@@ -1,16 +1,14 @@
 package com.hamid.template.network
 
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import com.hamid.template.ui.loginAndRegister.models.LogInRequest
+import com.hamid.template.ui.loginAndRegister.models.LogInResponse
 import retrofit2.Response
 import retrofit2.http.*
 
 
 interface ApiServices {
-    @Multipart
-    @POST(ApiEndPoint.GENERATE_CV)
-    suspend fun generateCv(
-        @PartMap partMap: Map<String, @JvmSuppressWildcards RequestBody>,
-        @Part file: MultipartBody.Part? = null
-    ): Response<ErrorMessage>
+    @POST(ApiEndPoint.LoginAPi)
+    suspend fun signInUser(
+        @Body logInRequest: LogInRequest
+    ): Response<LogInResponse>
 }

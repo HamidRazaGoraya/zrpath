@@ -11,4 +11,8 @@ interface RegisterContracts : ViewInteractor {
     fun performLogin()
     fun moveToUserDetailsFill()
     fun moveToForgotPassword()
+    fun showLoading()
+    fun hideLoading()
+    fun moveToDashboard()
+
 }
