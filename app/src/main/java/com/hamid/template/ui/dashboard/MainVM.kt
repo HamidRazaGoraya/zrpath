@@ -15,6 +15,7 @@ constructor(
     fun setData(){
         viewInteractor?.initiate()
     }
+    var tripType:String?=null
     fun showSideMenu()=viewInteractor?.showSideMenu()
     fun hideSideMenu()=viewInteractor?.hideSideMenu()
     fun ShowLoading()=viewInteractor?.ShowLoading()

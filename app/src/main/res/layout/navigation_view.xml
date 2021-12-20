@@ -96,7 +96,7 @@
                 <View
                     android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"/>
+                    android:layout_height="@dimen/_1sdp"/>
                 <Button
                     android:gravity="start|center_vertical"
                     android:drawableLeft="@drawable/ic_baseline_night_shelter_24"
@@ -110,7 +110,7 @@
                 <View
                     android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"/>
+                    android:layout_height="@dimen/_1sdp"/>
                 <Button
                     android:gravity="start|center_vertical"
                     android:drawableLeft="@drawable/ic_baseline_location_on_24"
@@ -124,7 +124,7 @@
                 <View
                     android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"/>
+                    android:layout_height="@dimen/_1sdp"/>
                 <Button
                     android:drawableLeft="@drawable/ic_baseline_settings_24"
                     android:gravity="start|center_vertical"
@@ -138,7 +138,7 @@
                 <View
                     android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"/>
+                    android:layout_height="@dimen/_1sdp"/>
                 <Button
                     android:drawableLeft="@drawable/ic_baseline_help_24"
                     android:gravity="start|center_vertical"
@@ -152,7 +152,7 @@
                 <View
                     android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"/>
+                    android:layout_height="@dimen/_1sdp"/>
                 <Button
                     android:drawableLeft="@drawable/ic_baseline_power_settings_new_24"
                     android:gravity="start|center_vertical"

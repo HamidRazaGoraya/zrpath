@@ -20,4 +20,25 @@
      app:layout_constraintTop_toTopOf="parent"
      app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
 
+ <TextView
+     android:textSize="@dimen/_16sdp"
+     android:textColor="@color/colorPrimary"
+     android:padding="@dimen/_5sdp"
+     android:id="@+id/VisitType"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+ <androidx.recyclerview.widget.RecyclerView
+     android:layout_marginHorizontal="@dimen/_5sdp"
+     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+     android:id="@+id/visitRecycle"
+     android:layout_width="0dp"
+     android:layout_height="0dp"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@+id/VisitType" />
 </androidx.constraintlayout.widget.ConstraintLayout>

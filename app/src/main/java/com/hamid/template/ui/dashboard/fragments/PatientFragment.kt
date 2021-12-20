@@ -13,6 +13,8 @@ import com.hamid.template.databinding.FragmentHomeBinding
 import com.hamid.template.databinding.FragmentPatientBinding
 import com.hamid.template.databinding.RegisterFragmentBinding
 import com.hamid.template.ui.dashboard.MainVM
+import com.hamid.template.ui.dashboard.adopters.VisitsAdopter
+import com.hamid.template.ui.dashboard.models.DummyModel
 import com.hamid.template.ui.loginAndRegister.RegisterVM
 import com.hamid.template.ui.onboarding.OnBoardingVM
 import com.hamid.template.utils.SharedPreferenceManager
@@ -28,6 +30,7 @@ class PatientFragment : BaseFragment<FragmentPatientBinding, MainVM>() {
     @Inject
     lateinit var sharedPreferenceManager: SharedPreferenceManager
 
+    lateinit var visitsAdopter: VisitsAdopter
 
     override fun setBinding(
         layoutInflater: LayoutInflater,
@@ -42,9 +45,17 @@ class PatientFragment : BaseFragment<FragmentPatientBinding, MainVM>() {
     }
 
     private fun setOnClickEvents() {
+        binding.VisitType.setText("Trip Direction ${viewModel.tripType}")
         binding.toolbar.setNavigationOnClickListener {
              viewModel.onButtonBackPressed()
         }
+        visitsAdopter= VisitsAdopter(requireContext(), ArrayList())
+        binding.visitRecycle.adapter=visitsAdopter
+        visitsAdopter.insertItems(DummyModel())
+        visitsAdopter.insertItems(DummyModel())
+        visitsAdopter.insertItems(DummyModel())
+        visitsAdopter.insertItems(DummyModel())
+        visitsAdopter.insertItems(DummyModel())
     }
 
 

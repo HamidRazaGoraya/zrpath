@@ -10,18 +10,7 @@
         android:name="com.hamid.template.ui.dashboard.fragments.HomeFragment"
         android:label="home"
         tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_home_to_Patient"
-            app:destination="@id/Patient" />
-        <action
-            android:id="@+id/action_home_to_Settings"
-            app:destination="@id/Settings" />
-        <action
-            android:id="@+id/action_home_to_Maps"
-            app:destination="@id/Maps" />
-        <action
-            android:id="@+id/action_home_to_help"
-            app:destination="@id/help" />
+
     </fragment>
     <fragment
         android:id="@+id/Patient"
@@ -47,4 +36,16 @@
         android:label="HelpFragment"
         tools:layout="@layout/fragment_help">
     </fragment>
+    <action
+        android:id="@+id/action_home_to_Patient"
+        app:destination="@id/Patient" />
+    <action
+        android:id="@+id/action_home_to_Settings"
+        app:destination="@id/Settings" />
+    <action
+        android:id="@+id/action_home_to_Maps"
+        app:destination="@id/Maps" />
+    <action
+        android:id="@+id/action_home_to_help"
+        app:destination="@id/help" />
 </navigation>

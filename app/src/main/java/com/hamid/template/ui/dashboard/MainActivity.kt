@@ -47,6 +47,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
 
     @Override
     override fun initiate() {
+        window.setNavigationBarColor(resources.getColor(R.color.white))
+        window.statusBarColor=resources.getColor(R.color.primary_two)
         val  sidemenu=binding.navigationView
         sidemenu.closeNavigation.setOnClickListener {
             viewModel.hideSideMenu()
@@ -112,7 +114,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
     }
 
     override fun patientClicked() {
+
         viewModel.hideSideMenu()
+        if (viewModel.tripType.isNullOrEmpty()){
+            showSnackBar("Select trip type first")
+            return
+        }
         Navigation.findNavController(this, R.id.fragmentDashboard).navigate(R.id.action_home_to_Patient)
     }
 

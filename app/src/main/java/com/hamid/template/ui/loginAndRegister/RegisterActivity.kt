@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.hamid.template.R
 import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityRegistrationBinding
 import com.hamid.template.ui.dashboard.MainActivity
@@ -58,6 +59,8 @@ class RegisterActivity : BaseActivity<ActivityRegistrationBinding, RegisterVM>()
 
     @Override
     override fun setUpView() {
+        window.setNavigationBarColor(resources.getColor(R.color.white))
+        window.statusBarColor=resources.getColor(R.color.white)
         fragmentManager=supportFragmentManager
         var oldFragment = fragmentManager.findFragmentByTag("loginFragment")
         if (oldFragment != null) {
