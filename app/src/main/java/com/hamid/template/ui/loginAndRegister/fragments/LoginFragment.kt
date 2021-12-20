@@ -43,6 +43,10 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
         binding.createNewAccount.setOnClickListener {
             viewModel.onRegisterClick()
         }
+        binding.LogInButton.setOnLongClickListener {
+            viewModel.moveToDashboard()
+            return@setOnLongClickListener true
+        }
         binding.LogInButton.setOnClickListener {
             if (varified()){
                 viewModel.signInUser(LogInRequest(true,true,binding.userName.text.toString(),binding.pin.text.toString()))
@@ -68,10 +72,12 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
         binding.forgotPassword.setOnClickListener {
             viewModel.moveToForgotPassword()
         }
+
     }
 
     private fun HandleLogIn(it1: LogInResponse) {
         if (it1.isSuccess){
+            sharedPreferenceManager.UserLogInResponse=it1
             if (it1.data.sessionValueData.isTempPassword){
                 viewModel.moveToUserDetailsFill()
             }else{

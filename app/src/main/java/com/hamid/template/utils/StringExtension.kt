@@ -1,7 +1,9 @@
 package com.hamid.template.utils
 
 import android.content.Context
+import com.google.gson.Gson
 import com.hamid.template.R
+import com.hamid.template.ui.loginAndRegister.models.LogInResponse
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -38,4 +40,19 @@ fun String.isValid():Boolean{
     return if (this.isNullOrEmpty()){
         false
     }else this != "null"
+}
+
+
+fun String?.userLogIN():LogInResponse?{
+    if (this.isNullOrEmpty()){
+        return null
+    }
+    return Gson().fromJson(this,LogInResponse::class.java)
+}
+
+fun String?.CheckForNotNull():String{
+    if (this.isNullOrEmpty()){
+        return ""
+    }
+    return this
 }

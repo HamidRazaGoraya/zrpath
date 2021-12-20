@@ -2,6 +2,8 @@ package com.hamid.template.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.hamid.template.ui.loginAndRegister.models.LogInResponse
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,7 +13,7 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext context: C
     private val NAME = "demo"
     private val MODE = Context.MODE_PRIVATE
     private val IS_FIRST_RUN_PREF = Pair("is_first_run", false)
-    private val first_name=Pair("first_name","")
+    private val userLogInResponse=Pair("userLogInResponse","")
     private val last_name=Pair("last_name","")
     private val user_email=Pair("user_email","")
     private val phone_number=Pair("phone_number","")
@@ -34,10 +36,9 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext context: C
         set(value) = prefs.edit {
             it.putBoolean(IS_FIRST_RUN_PREF.first, value)
         }
-    var getFirstName: String?
-        get() = prefs.getString(first_name.first, first_name.second)
-        set(value) = prefs.edit {
-            it.putString(first_name.first, value)
+    var UserLogInResponse: LogInResponse?
+        get() = prefs.getString(userLogInResponse.first, userLogInResponse.second).userLogIN()
+        set(value) = prefs.edit { it.putString(userLogInResponse.first, Gson().toJson(value))
         }
     var getLastName: String?
         get() = prefs.getString(last_name.first, last_name.second)

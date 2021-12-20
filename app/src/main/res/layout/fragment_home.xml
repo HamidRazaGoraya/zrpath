@@ -17,8 +17,27 @@
      app:layout_constraintTop_toTopOf="parent"
      app:layout_constraintVertical_bias="1.0">
 
+  <androidx.appcompat.widget.Toolbar
+      app:menu="@menu/home_menu"
+      android:backgroundTint="@color/primary_two"
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="?attr/colorPrimary"
+      android:minHeight="?attr/actionBarSize"
+      android:theme="?attr/actionBarTheme"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:navigationIcon="@drawable/ic_baseline_menu_24" />
+  <View
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/toolbar"
+      android:background="@color/colorPrimary"
+      android:layout_width="0dp"
+      android:layout_height="@dimen/_1sdp"/>
   <com.google.android.material.card.MaterialCardView
-      app:layout_constraintHorizontal_bias="0.0"
       android:id="@+id/materialCardView"
       android:layout_width="@dimen/_70sdp"
       android:layout_height="@dimen/_70sdp"
@@ -26,8 +45,9 @@
       app:cardCornerRadius="@dimen/_70sdp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toStartOf="@+id/profileImageEnd"
+      app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="@+id/profileImageStart"
-      app:layout_constraintTop_toTopOf="parent">
+      app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
@@ -85,13 +105,13 @@
       android:textColor="@color/white"
       android:textColorHint="@color/white"
       app:endIconTint="@color/white"
-      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintBottom_toBottomOf="@+id/userName"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="@+id/tripStart"
-      app:layout_constraintTop_toTopOf="parent">
+      app:layout_constraintTop_toTopOf="@+id/materialCardView">
 
    <AutoCompleteTextView
-       android:id="@+id/userGroups"
+       android:id="@+id/trips"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:backgroundTint="@color/colorPrimary"
@@ -131,7 +151,7 @@
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
      android:orientation="horizontal"
-     app:layout_constraintGuide_percent="0.30" />
+     app:layout_constraintGuide_percent="0.35" />
 
  <androidx.constraintlayout.widget.ConstraintLayout
      android:layout_width="0dp"

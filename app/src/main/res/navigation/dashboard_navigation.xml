@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_navigation.xml"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.hamid.template.ui.dashboard.fragments.HomeFragment"
+        android:label="home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_Patient"
+            app:destination="@id/Patient" />
+        <action
+            android:id="@+id/action_home_to_Settings"
+            app:destination="@id/Settings" />
+        <action
+            android:id="@+id/action_home_to_Maps"
+            app:destination="@id/Maps" />
+        <action
+            android:id="@+id/action_home_to_help"
+            app:destination="@id/help" />
+    </fragment>
+    <fragment
+        android:id="@+id/Patient"
+        android:name="com.hamid.template.ui.dashboard.fragments.PatientFragment"
+        android:label="patient"
+        tools:layout="@layout/fragment_patient">
+    </fragment>
+    <fragment
+        android:id="@+id/Maps"
+        android:name="com.hamid.template.ui.dashboard.fragments.MapFragment"
+        android:label="MapFragment"
+        tools:layout="@layout/fragment_map">
+    </fragment>
+    <fragment
+        android:id="@+id/Settings"
+        android:name="com.hamid.template.ui.dashboard.fragments.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+    </fragment>
+    <fragment
+        android:id="@+id/help"
+        android:name="com.hamid.template.ui.dashboard.fragments.HelpFragment"
+        android:label="HelpFragment"
+        tools:layout="@layout/fragment_help">
+    </fragment>
+</navigation>

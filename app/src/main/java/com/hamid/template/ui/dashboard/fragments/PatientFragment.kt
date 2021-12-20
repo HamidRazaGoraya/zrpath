@@ -10,6 +10,7 @@ import com.hamid.template.R
 import com.hamid.template.base.BaseFragment
 import com.hamid.template.databinding.AddUserDetailsBinding
 import com.hamid.template.databinding.FragmentHomeBinding
+import com.hamid.template.databinding.FragmentPatientBinding
 import com.hamid.template.databinding.RegisterFragmentBinding
 import com.hamid.template.ui.dashboard.MainVM
 import com.hamid.template.ui.loginAndRegister.RegisterVM
@@ -20,7 +21,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding, MainVM>() {
+class PatientFragment : BaseFragment<FragmentPatientBinding, MainVM>() {
 
     override val viewModel: MainVM by activityViewModels()
 
@@ -31,36 +32,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainVM>() {
     override fun setBinding(
         layoutInflater: LayoutInflater,
         container: ViewGroup?
-    ): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(layoutInflater, container, false)
+    ): FragmentPatientBinding {
+        return FragmentPatientBinding.inflate(layoutInflater, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setOnClickEvents()
+       setOnClickEvents()
     }
 
     private fun setOnClickEvents() {
-        val items = listOf("Up", "Down")
-        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
-        binding.trips.setAdapter(adapter)
-
         binding.toolbar.setNavigationOnClickListener {
-               viewModel.showSideMenu()
-        }
-        binding.patientButton.setOnClickListener {
-            viewModel.patientClicked()
-        }
-        binding.mapsButton.setOnClickListener {
-            viewModel.mapsClicked()
-        }
-        binding.settingsButton.setOnClickListener {
-            viewModel.settingsClicked()
-        }
-        binding.helpButton.setOnClickListener {
-            viewModel.helpClicked()
+             viewModel.onButtonBackPressed()
         }
     }
+
 
     override fun onResume() {
         super.onResume()

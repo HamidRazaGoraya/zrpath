@@ -43,6 +43,10 @@
         <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.156" />
         <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_keyboard_arrow_up_24.xml" value="0.156" />
         <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_language_24.xml" value="0.156" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.1525" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_menu_24.xml" value="0.1525" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.1525" />
+        <entry key="..\:/zipath/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1525" />
         <entry key="..\:/zipath/app/src/main/res/drawable/ic_calendar_day.xml" value="0.156" />
         <entry key="..\:/zipath/app/src/main/res/drawable/ic_camera.xml" value="0.156" />
         <entry key="..\:/zipath/app/src/main/res/drawable/ic_camera_icon.xml" value="0.156" />
@@ -63,11 +67,19 @@
         <entry key="..\:/zipath/app/src/main/res/layout/add_user_details.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/dialog_loading.xml" value="0.1" />
         <entry key="..\:/zipath/app/src/main/res/layout/forgot_password_fragment.xml" value="0.19947916666666668" />
+        <entry key="..\:/zipath/app/src/main/res/layout/fragment_edit_profile.xml" value="0.20416666666666666" />
+        <entry key="..\:/zipath/app/src/main/res/layout/fragment_help.xml" value="0.20416666666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/zipath/app/src/main/res/layout/fragment_map.xml" value="0.20416666666666666" />
+        <entry key="..\:/zipath/app/src/main/res/layout/fragment_notification.xml" value="0.20416666666666666" />
+        <entry key="..\:/zipath/app/src/main/res/layout/fragment_patient.xml" value="0.20416666666666666" />
+        <entry key="..\:/zipath/app/src/main/res/layout/fragment_settings.xml" value="0.20416666666666666" />
+        <entry key="..\:/zipath/app/src/main/res/layout/list_item.xml" value="0.20416666666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/login_fragment.xml" value="0.25" />
         <entry key="..\:/zipath/app/src/main/res/layout/login_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/navigation_view.xml" value="0.4246119733924612" />
         <entry key="..\:/zipath/app/src/main/res/layout/register_fragment.xml" value="0.19947916666666668" />
+        <entry key="..\:/zipath/app/src/main/res/menu/home_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

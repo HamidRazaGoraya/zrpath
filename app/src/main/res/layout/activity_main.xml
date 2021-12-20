@@ -10,6 +10,7 @@
             type="com.hamid.template.ui.dashboard.MainVM" />
     </data>
     <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
@@ -20,18 +21,22 @@
             android:background="@color/white"
             tools:context=".ui.dashboard.MainActivity">
 
-
-
-            <FrameLayout
-                android:id="@+id/dashBoardNav"
-                android:layout_width="0dp"
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentDashboard"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                app:defaultNavHost="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:navGraph="@navigation/dashboard_navigation">
 
-            </FrameLayout>
+            </androidx.fragment.app.FragmentContainerView>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/slider"
