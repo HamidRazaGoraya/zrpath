@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.hamid.template.base.BaseFragment
 import com.hamid.template.databinding.LoginFragmentBinding
-import com.hamid.template.ui.dashboard.MainVM
 import com.hamid.template.ui.loginAndRegister.RegisterVM
-import com.hamid.template.ui.loginAndRegister.models.LogInRequest
-import com.hamid.template.ui.loginAndRegister.models.LogInResponse
-import com.hamid.template.ui.onboarding.OnBoardingActivity
+import com.hamid.template.ui.loginAndRegister.logInRequestModel.LogInRequest
+import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
 import com.hamid.template.utils.Resource
 import com.hamid.template.utils.SharedPreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,7 +47,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
         }
         binding.LogInButton.setOnClickListener {
             if (varified()){
-                viewModel.signInUser(LogInRequest(true,true,binding.userName.text.toString(),binding.pin.text.toString()))
+                viewModel.signInUser(binding.userName.text.toString(),binding.pin.text.toString())
                     .observe(viewLifecycleOwner){
                         when (it.status) {
                             Resource.Status.SUCCESS -> {
@@ -78,13 +76,14 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
     private fun HandleLogIn(it1: LogInResponse) {
         if (it1.isSuccess){
             sharedPreferenceManager.UserLogInResponse=it1
-            if (it1.data.sessionValueData.isTempPassword){
+            sharedPreferenceManager.getToken=it1.data.loginResponse.token
+            if (it1.data.employee.isTempPassword){
                 viewModel.moveToUserDetailsFill()
             }else{
                 viewModel.moveToDashboard()
             }
         }else{
-            it1.message?.let {
+            it1.message.let {
                 showSnackBar(it)
             }
         }

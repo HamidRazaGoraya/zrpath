@@ -55,3 +55,15 @@ fun File.getMediaDuration(context: Context): Long {
 
     return duration?.toLongOrNull() ?: 0
 }
+fun String?.HandleNullToken():String{
+    if (this.isNullOrEmpty()){
+        return "String";
+    }
+    return this
+}
+fun String?.HandleNullkey():String{
+    if (this.isNullOrEmpty()){
+        return "A_657c48d0-915a-4fdc-a3e4-90b1fef38344";
+    }
+    return this
+}

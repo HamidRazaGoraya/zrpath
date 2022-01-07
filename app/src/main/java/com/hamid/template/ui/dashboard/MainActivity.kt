@@ -55,7 +55,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
         }
         viewModel.logInResponse=sharedPreferenceManager.UserLogInResponse
         viewModel.logInResponse?.let {
-            sidemenu.userName.text="${it.data.sessionValueData.firstName.CheckForNotNull()} ${it.data.sessionValueData.lastName.CheckForNotNull()}"
+            sidemenu.userName.text="${it.data.employee.firstName.CheckForNotNull()} ${it.data.employee.lastName.CheckForNotNull()}"
         }
         sidemenu.logOut.setOnClickListener {
             viewModel.hideSideMenu()

@@ -3,7 +3,7 @@ package com.hamid.template.utils
 import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.hamid.template.ui.loginAndRegister.models.LogInResponse
+import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -23,6 +23,10 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext context: C
     private val linked_in=Pair("linked_in","")
     private val bio=Pair("bio","")
     private val webLangauge=Pair("weblanguage","en")
+    private val token=Pair("token","String")
+
+
+
     val prefs = context.getSharedPreferences(NAME, MODE)
 
     private inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
@@ -30,6 +34,12 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext context: C
         operation(editor)
         editor.apply()
     }
+
+    var getToken: String
+        get() = prefs.getString(token.first, token.second).HandleNullToken()
+        set(value) = prefs.edit {
+            it.putString(token.first, value)
+        }
 
     var firstRun: Boolean
         get() = prefs.getBoolean(IS_FIRST_RUN_PREF.first, IS_FIRST_RUN_PREF.second)

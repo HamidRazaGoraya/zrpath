@@ -1,7 +1,7 @@
 package com.hamid.template.network
 
-import com.hamid.template.ui.loginAndRegister.models.LogInRequest
-import com.hamid.template.ui.loginAndRegister.models.LogInResponse
+import com.hamid.template.ui.loginAndRegister.logInRequestModel.LogInRequest
+import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
 import retrofit2.Response
 import retrofit2.http.*
 

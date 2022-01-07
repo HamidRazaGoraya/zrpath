@@ -20,4 +20,19 @@
      app:layout_constraintTop_toTopOf="parent"
      app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
 
+
+ <androidx.constraintlayout.widget.Guideline
+     android:id="@+id/guideline_vertical"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     app:layout_constraintGuide_percent="0.66" />
+
+ <androidx.core.widget.NestedScrollView
+     android:layout_width="0dp"
+     android:layout_height="0dp"
+     app:layout_constraintBottom_toBottomOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="@+id/guideline_vertical" />
 </androidx.constraintlayout.widget.ConstraintLayout>

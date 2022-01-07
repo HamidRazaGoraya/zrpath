@@ -2,7 +2,7 @@ package com.hamid.template.ui.dashboard
 
 import com.hamid.template.base.BaseViewModel
 import com.hamid.template.network.ApiRepository
-import com.hamid.template.ui.loginAndRegister.models.LogInResponse
+import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

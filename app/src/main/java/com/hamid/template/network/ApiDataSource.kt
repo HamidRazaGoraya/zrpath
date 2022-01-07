@@ -1,14 +1,11 @@
 package com.hamid.template.network
 
 import android.content.Context
-import android.util.Log
+import android.os.Build
+import com.hamid.template.ui.loginAndRegister.fragments.LoginFragment
+import com.hamid.template.ui.loginAndRegister.logInRequestModel.LogInRequest
+import com.hamid.template.utils.Constants
 import com.hamid.template.utils.SharedPreferenceManager
-import com.google.gson.Gson
-import com.hamid.template.ui.loginAndRegister.models.LogInRequest
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import javax.inject.Inject
 
 class ApiDataSource @Inject constructor(
@@ -16,8 +13,12 @@ class ApiDataSource @Inject constructor(
     private val sharedPreferenceManager: SharedPreferenceManager,
     private val context: Context
 ) : BaseDataSource(context) {
-    suspend fun signInUser(logInRequest: LogInRequest) = getResult {
-        apiServices.signInUser(logInRequest)
+    var DeviceOSVersion=Build.VERSION.SDK_INT.toString()
+    suspend fun signInUser(userName:String,pasword:String) = getResult {
+
+        val data=LogInRequest.Data(DeviceOSVersion,Constants.DeviceType,Constants.DeviceUDID,true,pasword,userName)
+
+        apiServices.signInUser(LogInRequest(data,Constants.Key,sharedPreferenceManager.getToken))
     }
 
 
