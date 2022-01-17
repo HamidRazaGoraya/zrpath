@@ -28,4 +28,6 @@ constructor(
     fun moveToDashboard()=viewInteractor?.moveToDashboard()
 
     fun signInUser(userName:String,pasword:String) = apiRepository.signInUser(userName,pasword)
+    fun getEmployeeDetails()=apiRepository.getEmployeeDetails()
+
 }

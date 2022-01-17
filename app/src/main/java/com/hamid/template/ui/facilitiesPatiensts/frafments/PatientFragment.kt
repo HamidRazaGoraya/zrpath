@@ -1,4 +1,4 @@
-package com.hamid.template.ui.dashboard.fragments
+package com.hamid.template.ui.facilitiesPatiensts.frafments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +15,7 @@ import com.hamid.template.databinding.RegisterFragmentBinding
 import com.hamid.template.ui.dashboard.MainVM
 import com.hamid.template.ui.dashboard.adopters.VisitsAdopter
 import com.hamid.template.ui.dashboard.models.DummyModel
+import com.hamid.template.ui.facilitiesPatiensts.FacilitiyVM
 import com.hamid.template.ui.loginAndRegister.RegisterVM
 import com.hamid.template.ui.onboarding.OnBoardingVM
 import com.hamid.template.utils.SharedPreferenceManager
@@ -23,9 +24,9 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class PatientFragment : BaseFragment<FragmentPatientBinding, MainVM>() {
+class PatientFragment : BaseFragment<FragmentPatientBinding, FacilitiyVM>() {
 
-    override val viewModel: MainVM by activityViewModels()
+    override val viewModel: FacilitiyVM by activityViewModels()
 
     @Inject
     lateinit var sharedPreferenceManager: SharedPreferenceManager

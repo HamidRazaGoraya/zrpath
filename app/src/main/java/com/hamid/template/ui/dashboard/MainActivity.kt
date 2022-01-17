@@ -10,6 +10,7 @@ import com.hamid.template.R
 import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityMainBinding
 import com.hamid.template.ui.dashboard.fragments.HomeFragment
+import com.hamid.template.ui.facilitiesPatiensts.FacilityActivity
 import com.hamid.template.ui.loginAndRegister.RegisterActivity
 import com.hamid.template.utils.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -113,15 +114,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
         finishAffinity()
     }
 
-    override fun patientClicked() {
 
-        viewModel.hideSideMenu()
-        if (viewModel.tripType.isNullOrEmpty()){
-            showSnackBar("Select trip type first")
-            return
-        }
-        Navigation.findNavController(this, R.id.fragmentDashboard).navigate(R.id.action_home_to_Patient)
-    }
 
     override fun mapsClicked() {
         viewModel.hideSideMenu()
@@ -159,4 +152,18 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
         super.onBackPressed()
     }
 
+    override fun onFacilitySelected(bundle: Bundle) {
+        viewModel.hideSideMenu()
+       startActivity(FacilityActivity.getIntent(this).putExtras(bundle))
+    }
+    override fun patientClicked() {
+
+        viewModel.hideSideMenu()
+        if (viewModel.tripType.isNullOrEmpty()){
+            showSnackBar("Select trip type first")
+            return
+        }
+        Navigation.findNavController(this, R.id.fragmentDashboard).navigate(R.id.action_home_to_facilities)
+
+    }
 }

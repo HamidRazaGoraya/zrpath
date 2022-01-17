@@ -44,6 +44,7 @@
         <activity android:name="com.hamid.template.ui.dashboard.MainActivity" />
         <activity android:name=".ui.loginAndRegister.RegisterActivity" />
         <activity android:name=".ui.onboarding.OnBoardingActivity" />
+        <activity android:name=".ui.facilitiesPatiensts.FacilityActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

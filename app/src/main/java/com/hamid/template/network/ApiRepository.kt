@@ -9,4 +9,10 @@ class ApiRepository @Inject constructor(
     fun signInUser(userName:String,pasword:String) = performGetOperation {
         apiDataSource.signInUser(userName,pasword)
     }
+    fun getEmployeeDetails() = performGetOperation {
+        apiDataSource.getEmployeeDetails()
+    }
+    fun getFacilityDetails(direction:String) = performGetOperation {
+        apiDataSource.getFacilityDetails(direction)
+    }
 }

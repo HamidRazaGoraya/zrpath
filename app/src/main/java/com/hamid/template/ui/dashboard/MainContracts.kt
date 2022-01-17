@@ -1,5 +1,6 @@
 package com.hamid.template.ui.dashboard
 
+import android.os.Bundle
 import com.hamid.template.base.ViewInteractor
 
 
@@ -10,6 +11,7 @@ interface MainContracts : ViewInteractor {
     fun showSideMenu()
     fun hideSideMenu()
     fun logOutClicked()
+    fun onFacilitySelected(bundle: Bundle)
     fun patientClicked()
     fun mapsClicked()
     fun settingsClicked()

@@ -12,12 +12,7 @@
         tools:layout="@layout/fragment_home">
 
     </fragment>
-    <fragment
-        android:id="@+id/Patient"
-        android:name="com.hamid.template.ui.dashboard.fragments.PatientFragment"
-        android:label="patient"
-        tools:layout="@layout/fragment_patient">
-    </fragment>
+
     <fragment
         android:id="@+id/Maps"
         android:name="com.hamid.template.ui.dashboard.fragments.MapFragment"
@@ -36,9 +31,12 @@
         android:label="HelpFragment"
         tools:layout="@layout/fragment_help">
     </fragment>
-    <action
-        android:id="@+id/action_home_to_Patient"
-        app:destination="@id/Patient" />
+    <fragment
+        android:id="@+id/SelectFacility"
+        android:name="com.hamid.template.ui.dashboard.fragments.FacilitiesForTransportation"
+        android:label="SelectFacility"
+        tools:layout="@layout/facilities_fragment">
+    </fragment>
     <action
         android:id="@+id/action_home_to_Settings"
         app:destination="@id/Settings" />
@@ -48,4 +46,7 @@
     <action
         android:id="@+id/action_home_to_help"
         app:destination="@id/help" />
+    <action
+        android:id="@+id/action_home_to_facilities"
+        app:destination="@id/SelectFacility" />
 </navigation>
