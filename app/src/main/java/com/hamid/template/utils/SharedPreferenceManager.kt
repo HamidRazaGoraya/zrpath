@@ -24,6 +24,7 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext context: C
     private val bio=Pair("bio","")
     private val webLangauge=Pair("weblanguage","en")
     private val token=Pair("token","String")
+    private var tripType=Pair("TripType",Constants.Up)
 
 
 
@@ -34,6 +35,12 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext context: C
         operation(editor)
         editor.apply()
     }
+
+    var getTripType: String
+        get() = prefs.getString(tripType.first, tripType.second).HandleNullToken(tripType.second)
+        set(value) = prefs.edit {
+            it.putString(tripType.first, value)
+        }
 
     var getToken: String
         get() = prefs.getString(token.first, token.second).HandleNullToken()

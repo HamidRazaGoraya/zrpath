@@ -16,9 +16,12 @@ import com.hamid.template.databinding.ActivityOnboardingBinding
 import com.hamid.template.databinding.ActivityRegistrationBinding
 import com.hamid.template.ui.dashboard.MainActivity
 import com.hamid.template.ui.dashboard.models.AllFacilitiesModel
+import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.ui.loginAndRegister.fragments.LoginFragment
 import com.hamid.template.ui.loginAndRegister.fragments.RegisterFragment
+import com.hamid.template.ui.mapScreen.ClientMapActivity
 import com.hamid.template.ui.onboarding.fragments.FillUserDetails
+import com.hamid.template.utils.Constants
 import com.hamid.template.utils.SharedPreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -40,8 +43,8 @@ class FacilityActivity : BaseActivity<ActivityFacilityBinding, FacilitiyVM>(), F
         super.onCreate(savedInstanceState)
         binding.viewModel = viewModel
         viewModel.viewInteractor = this
+        viewModel.facility=Gson().fromJson(intent.getStringExtra(Constants.data),AllFacilitiesModel.Data::class.java)
         viewModel.initThings()
-
     }
 
     override val viewModel: FacilitiyVM by viewModels()
@@ -65,14 +68,24 @@ class FacilityActivity : BaseActivity<ActivityFacilityBinding, FacilitiyVM>(), F
     }
 
     override fun onButtonBackPressed() {
-
+              finish()
     }
 
 
+    override fun ShowLoading() {
+        showLoader()
+    }
+
+    override fun HideLoading() {
+        hideLoader()
+    }
 
 
-
-
+    override fun startMapActivity(client: TodayTripResponse.Data.Down.Client) {
+        val bundle=Bundle()
+        bundle.putString(Constants.data,Gson().toJson(client))
+        startActivity(ClientMapActivity.getIntent(this).putExtras(bundle))
+    }
 
 
 

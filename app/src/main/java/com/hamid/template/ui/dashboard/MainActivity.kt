@@ -159,10 +159,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
     override fun patientClicked() {
 
         viewModel.hideSideMenu()
-        if (viewModel.tripType.isNullOrEmpty()){
-            showSnackBar("Select trip type first")
-            return
-        }
         Navigation.findNavController(this, R.id.fragmentDashboard).navigate(R.id.action_home_to_facilities)
 
     }

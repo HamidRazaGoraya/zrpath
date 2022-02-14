@@ -18,7 +18,6 @@ constructor(
         viewInteractor?.initiate()
     }
 
-    var tripType:String?=null
     fun showSideMenu()=viewInteractor?.showSideMenu()
     fun hideSideMenu()=viewInteractor?.hideSideMenu()
     fun ShowLoading()=viewInteractor?.ShowLoading()
@@ -33,5 +32,5 @@ constructor(
     fun searchClicked()=viewInteractor?.searchClicked()
     fun onButtonBackPressed()=viewInteractor?.onButtonBackPressed()
     fun onFacilitySelected(bundle: Bundle)=viewInteractor?.onFacilitySelected(bundle)
-    fun getFacilityDetails(dection:String)=apiRepository.getFacilityDetails(dection)
+    fun getFacilityDetails()=apiRepository.getFacilityDetails()
 }

@@ -3,6 +3,7 @@ package com.hamid.template.ui.facilitiesPatiensts
 import com.hamid.template.base.BaseViewModel
 import com.hamid.template.network.ApiRepository
 import com.hamid.template.ui.dashboard.models.AllFacilitiesModel
+import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -16,8 +17,10 @@ constructor(
         viewInteractor?.setData()
     }
     lateinit var facility: AllFacilitiesModel.Data
-    var tripType:String?=null
     fun showPatientsList()=viewInteractor?.showPatientsList()
     fun onButtonBackPressed()=viewInteractor?.onButtonBackPressed()
-
+    fun getTodayTrips(date:String)=apiRepository.getTodayTrip(date,facility.facilityID)
+    fun ShowLoading()=viewInteractor?.ShowLoading()
+    fun HideLoading()=viewInteractor?.HideLoading()
+    fun startMapActivity(client: TodayTripResponse.Data.Down.Client)=viewInteractor?.startMapActivity(client)
 }

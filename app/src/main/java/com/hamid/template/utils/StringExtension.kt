@@ -56,3 +56,7 @@ fun String?.CheckForNotNull():String{
     }
     return this
 }
+
+fun String?.AddRequired():String{
+    return "*"+this.CheckForNotNull()
+}

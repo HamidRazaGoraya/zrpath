@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.hamid.template.base.BaseApplication"
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -19,9 +19,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCVb6DsNIKvC2hHWA7gDJelO0_MLJae7hI" />
+
         <activity
+            android:name=".ui.mapScreen.ClientMapActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.SplashActivity"
             android:exported="true"
-            android:name="com.hamid.template.ui.SplashActivity"
             android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,19 +47,20 @@
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name="com.hamid.template.ui.dashboard.MainActivity" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ui.dashboard.MainActivity" />
         <activity android:name=".ui.loginAndRegister.RegisterActivity" />
         <activity android:name=".ui.onboarding.OnBoardingActivity" />
         <activity android:name=".ui.facilitiesPatiensts.FacilityActivity" />
+        <activity android:name=".ui.checkList.CheckListActivity" />
+        <activity android:name=".ui.fillForm.FillFormActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
-          android:resource="@array/preloaded_fonts" />
-
+            android:resource="@array/preloaded_fonts" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/app_id"/>
+            android:value="@string/app_id" />
     </application>
 
 </manifest>

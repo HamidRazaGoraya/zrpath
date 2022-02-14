@@ -20,25 +20,104 @@
      app:layout_constraintTop_toTopOf="parent"
      app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
 
- <TextView
-     android:textSize="@dimen/_16sdp"
-     android:textColor="@color/colorPrimary"
-     android:padding="@dimen/_5sdp"
-     android:id="@+id/VisitType"
+ <androidx.constraintlayout.widget.Guideline
+     android:id="@+id/typeStart"
      android:layout_width="wrap_content"
      android:layout_height="wrap_content"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+     android:orientation="vertical"
+     app:layout_constraintGuide_percent="0.35" />
+
+ <androidx.constraintlayout.widget.Guideline
+     android:id="@+id/typeEnd"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     app:layout_constraintGuide_percent="0.05" />
+
+ <com.google.android.material.textfield.TextInputLayout
+     android:id="@+id/textInputLayout"
+     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="@dimen/_10sdp"
+     android:layout_weight="1"
+     android:hint="Trip"
+     android:textColor="@color/white"
+     android:textColorHint="@color/white"
+     app:endIconTint="@color/white"
+     app:layout_constraintEnd_toStartOf="@+id/typeStart"
+     app:layout_constraintStart_toStartOf="@+id/typeEnd"
+     app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+  <AutoCompleteTextView
+      android:id="@+id/trips"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:backgroundTint="@color/colorPrimary"
+      android:drawableTint="@color/white"
+      android:gravity="center"
+      android:inputType="none"
+      android:singleLine="true"
+      android:textColor="@color/white"
+      android:textColorHint="@color/white" />
+
+ </com.google.android.material.textfield.TextInputLayout>
+
+ <androidx.constraintlayout.widget.Guideline
+     android:id="@+id/dateStart"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     app:layout_constraintGuide_percent="0.55" />
+
+ <androidx.constraintlayout.widget.Guideline
+     android:id="@+id/dateEnd"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     app:layout_constraintGuide_percent="0.95" />
+
+ <com.google.android.material.textfield.TextInputLayout
+     android:id="@+id/dateInputLayout"
+     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="@dimen/_10sdp"
+     android:layout_weight="1"
+     android:hint="Date"
+     android:textColor="@color/white"
+     android:textColorHint="@color/white"
+     app:endIconTint="@color/white"
+     app:layout_constraintEnd_toStartOf="@+id/dateEnd"
+     app:layout_constraintStart_toStartOf="@+id/dateStart"
+     app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+  <AutoCompleteTextView
+      android:paddingEnd="0dp"
+      android:paddingStart="0dp"
+      android:id="@+id/SelectedDate"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:backgroundTint="@color/colorPrimary"
+      android:drawableTint="@color/white"
+      android:gravity="center"
+      android:inputType="none"
+      android:singleLine="true"
+      android:textColor="@color/white"
+      android:textColorHint="@color/white" />
+
+ </com.google.android.material.textfield.TextInputLayout>
+
+
 
  <androidx.recyclerview.widget.RecyclerView
-     android:layout_marginHorizontal="@dimen/_5sdp"
-     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
      android:id="@+id/visitRecycle"
      android:layout_width="0dp"
      android:layout_height="0dp"
+     android:layout_marginHorizontal="@dimen/_5sdp"
+     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
      app:layout_constraintBottom_toBottomOf="parent"
      app:layout_constraintEnd_toEndOf="parent"
      app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toBottomOf="@+id/VisitType" />
+     app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

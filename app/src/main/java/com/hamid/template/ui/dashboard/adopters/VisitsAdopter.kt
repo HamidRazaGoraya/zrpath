@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hamid.template.databinding.DummyRecycleBinding
 import com.hamid.template.databinding.RecycleVisitBinding
 import com.hamid.template.ui.dashboard.models.DummyModel
+import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 
-class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<DummyModel>) :
+class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<TodayTripResponse.Data.Down>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mInflater: LayoutInflater = LayoutInflater.from(mContext)
     private var mClickListener: ItemClickListener? = null
@@ -24,9 +25,16 @@ class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<DummyMod
             FillEducation(holder.binding, edcationsList[position], position)
         }
     }
-    private fun FillEducation(binding: RecycleVisitBinding, allOffers: DummyModel, position: Int) {
-
-       }
+    private fun FillEducation(binding: RecycleVisitBinding, allOffers: TodayTripResponse.Data.Down, position: Int) {
+          binding.facilityLocation.setText(allOffers.transportationGroup.location)
+          binding.facilityHouse.setText(allOffers.transportationGroup.facilityName)
+          val arrayList=ArrayList<TodayTripResponse.Data.Down.Client>()
+          arrayList.addAll(allOffers.clientList)
+          val visitsClientsAdopter=VisitsClientsAdopter(mContext,arrayList)
+          binding.AllClients.adapter=visitsClientsAdopter
+          binding.facilityDetails.setText("${allOffers.transportationGroup.staffNames}\n(${allOffers.transportationGroup.facilityName}|${allOffers.transportationGroup.groupLocation})")
+          visitsClientsAdopter.setClickListener(mClickListener)
+    }
 
     override fun getItemViewType(position: Int): Int {
         return super.getItemViewType(position)
@@ -46,11 +54,12 @@ class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<DummyMod
     }
 
     interface ItemClickListener {
-        fun onDeleteClicked(product: DummyModel)
+        fun onClicked(product: TodayTripResponse.Data.Down)
         fun onValueChanged(int: Int)
+        fun onMapLicked(client:TodayTripResponse.Data.Down.Client)
     }
 
-    fun insertItems(buttonsModel: DummyModel) {
+    fun insertItems(buttonsModel: TodayTripResponse.Data.Down) {
         this.edcationsList.add(buttonsModel)
         notifyItemInserted(itemCount - 1)
     }
@@ -61,11 +70,11 @@ class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<DummyMod
         notifyItemRangeRemoved(0, size)
     }
 
-    fun getButtonAt(position: Int): DummyModel {
+    fun getButtonAt(position: Int): TodayTripResponse.Data.Down {
         return edcationsList[position]
     }
 
-    fun UpdateAll(arrayList: ArrayList<DummyModel>) {
+    fun UpdateAll(arrayList: List<TodayTripResponse.Data.Down>) {
         edcationsList.clear()
         edcationsList.addAll(arrayList)
         notifyDataSetChanged()

@@ -7,4 +7,6 @@
     <color name="black">#000000</color>
     <color name="primary_two">#FAD5B0</color>
     <color name="yellow">#FFC107</color>
+    <color name="color_divider">#a7a7a7</color>
+    <color name="color_divider_list">#d4d4d4</color>
 </resources>

@@ -12,7 +12,19 @@ class ApiRepository @Inject constructor(
     fun getEmployeeDetails() = performGetOperation {
         apiDataSource.getEmployeeDetails()
     }
-    fun getFacilityDetails(direction:String) = performGetOperation {
-        apiDataSource.getFacilityDetails(direction)
+    fun getFacilityDetails() = performGetOperation {
+        apiDataSource.getFacilityDetails()
+    }
+    fun getTodayTrip(date:String,facilityId:Int) = performGetOperation {
+        apiDataSource.getTodayTrip(date,facilityId)
+    }
+    fun getUserCheckList(ScheduleID:Int,ReferralID:Int)= performGetOperation {
+        apiDataSource.getUserCheckList(ScheduleID, ReferralID)
+    }
+    fun getDocumentList()= performGetOperation {
+        apiDataSource.getDocumentList()
+    }
+    fun getDocumentUrl(EBFormID:String,ReferralID:Int,SavePreference:Boolean)= performGetOperation {
+        apiDataSource.getDocumentUrl(EBFormID, ReferralID, SavePreference)
     }
 }

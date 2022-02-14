@@ -15,6 +15,7 @@ import com.hamid.template.ui.dashboard.adopters.FacilitiesAdopter
 import com.hamid.template.ui.dashboard.models.AllFacilitiesModel
 import com.hamid.template.ui.loginAndRegister.RegisterVM
 import com.hamid.template.ui.onboarding.OnBoardingVM
+import com.hamid.template.utils.Constants
 import com.hamid.template.utils.Resource
 import com.hamid.template.utils.SharedPreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +53,7 @@ class FacilitiesForTransportation : BaseFragment<FacilitiesFragmentBinding, Main
         facilitiesAdopter.setClickListener(object :FacilitiesAdopter.ItemClickListener{
             override fun onItemClicked(product: AllFacilitiesModel.Data) {
                 val bundle=Bundle()
-                bundle.putString("data",Gson().toJson(product))
+                bundle.putString(Constants.data,Gson().toJson(product))
                 viewModel.onFacilitySelected(bundle)
             }
         })
@@ -60,7 +61,7 @@ class FacilitiesForTransportation : BaseFragment<FacilitiesFragmentBinding, Main
     }
 
     private fun APICall() {
-        viewModel.getFacilityDetails(viewModel.tripType!!).observe(viewLifecycleOwner){
+        viewModel.getFacilityDetails().observe(viewLifecycleOwner){
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     viewModel.HideLoading()

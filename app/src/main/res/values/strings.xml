@@ -522,4 +522,8 @@
     <string name="rewarded_ad" translatable="false">ca-app-pub-7394253111529621/8745136599</string>
     <string name="rewared_in" translatable="false">ca-app-pub-7394253111529621/4861731904</string>
     <string name="app_id" translatable="false">ca-app-pub-7394253111529621~5380606651</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="no_record_found">No Record Found !!!</string>
+    <string name="search_by_form_number_name_or_tags">Search by Form Number, Name or Tags</string>
+    <string name="map_form_with_document">Map Form with Document</string>
 </resources>

@@ -1,8 +1,13 @@
 package com.hamid.template.utils
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.media.MediaMetadataRetriever
 import android.net.Uri
+import android.view.View
+import androidx.core.view.marginTop
+import com.google.android.material.chip.Chip
 import java.io.File
 import java.text.DateFormat
 import java.text.DecimalFormat
@@ -61,9 +66,30 @@ fun String?.HandleNullToken():String{
     }
     return this
 }
+fun String?.HandleNullToken(string: String):String{
+    if (this.isNullOrEmpty()){
+        return string;
+    }
+    return this
+}
 fun String?.HandleNullkey():String{
     if (this.isNullOrEmpty()){
         return "A_657c48d0-915a-4fdc-a3e4-90b1fef38344";
     }
     return this
+}
+
+fun Calendar.getDateValue():String{
+    val format = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+    return format.format(this.time)
+}
+fun Calendar.getDateValueLocal():String{
+    val format = SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+    return format.format(this.time)
+}
+
+fun Chip.getRandomColor() {
+    val rnd = Random()
+    this.setTextColor(Color.parseColor("#ffffff"))
+    this.chipBackgroundColor=ColorStateList.valueOf(Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)))
 }

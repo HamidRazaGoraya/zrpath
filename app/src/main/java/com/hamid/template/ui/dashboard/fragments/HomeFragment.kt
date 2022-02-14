@@ -16,6 +16,7 @@ import com.hamid.template.databinding.RegisterFragmentBinding
 import com.hamid.template.ui.dashboard.MainVM
 import com.hamid.template.ui.loginAndRegister.RegisterVM
 import com.hamid.template.ui.onboarding.OnBoardingVM
+import com.hamid.template.utils.Constants
 import com.hamid.template.utils.SharedPreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -43,16 +44,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainVM>() {
     }
 
     private fun setOnClickEvents() {
-        val items = listOf("Up", "Down")
+        val items = listOf(Constants.Up, Constants.Down)
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, items)
         binding.trips.setAdapter(adapter)
+        binding.trips.setText(sharedPreferenceManager.getTripType,false)
         binding.trips.addTextChangedListener(object :TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                  viewModel.tripType=binding.trips.text.toString()
+                  sharedPreferenceManager.getTripType=binding.trips.text.toString()
             }
 
             override fun afterTextChanged(p0: Editable?) {

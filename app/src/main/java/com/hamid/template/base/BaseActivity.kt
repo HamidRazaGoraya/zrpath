@@ -384,4 +384,12 @@ abstract class BaseActivity<B : ViewBinding, VM : ViewModel> : AppCompatActivity
     interface ShowAd {
         fun displayed(boolean: Boolean)
     }
+
+
+    fun sendFinishBundle(bundle: Bundle){
+        val returnIntent = Intent()
+        returnIntent.putExtras(bundle)
+        setResult(RESULT_OK, returnIntent)
+        finish()
+    }
 }
