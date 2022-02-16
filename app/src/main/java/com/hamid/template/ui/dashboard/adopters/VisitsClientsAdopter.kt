@@ -8,12 +8,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.hamid.template.R
-import com.hamid.template.databinding.DummyRecycleBinding
 import com.hamid.template.databinding.RecycleAllClientBinding
-import com.hamid.template.databinding.RecycleVisitBinding
-import com.hamid.template.ui.dashboard.models.DummyModel
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.utils.getRandomColor
+
 
 class VisitsClientsAdopter(val mContext: Context, val edcationsList: ArrayList<TodayTripResponse.Data.Down.Client>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -40,15 +38,24 @@ class VisitsClientsAdopter(val mContext: Context, val edcationsList: ArrayList<T
         binding.statusName.text=allOffers.scheduleStatusName
           val allFilters=allOffers.transportationFilterName
           val allIds=allOffers.transportationFilterID
-          for (i in allFilters.indices){
-              val chip = Chip(ContextThemeWrapper(mContext,R.style.MaterialComponents_Chip_Thin),null,0)
+        val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+
+        for (i in allFilters.indices){
+              val chip:Chip = inflater.inflate(R.layout.custome_chip, null) as Chip
+              chip.setEnsureMinTouchTargetSize(false)
               chip.text=allFilters[i]
               chip.labelFor=allIds[i]
               chip.getRandomColor()
               binding.chipsInput.addView(chip)
           }
-        binding.map.setOnClickListener {
-            mClickListener?.onMapLicked(allOffers)
+        binding.missingForms.setOnClickListener {
+            mClickListener?.onMissingClicked(allOffers)
+        }
+        binding.pickUp.setOnClickListener {
+            mClickListener?.onPickUpClicked(allOffers)
+        }
+        binding.DropOf.setOnClickListener {
+            mClickListener?.onDropOfClicked(allOffers)
         }
        }
 

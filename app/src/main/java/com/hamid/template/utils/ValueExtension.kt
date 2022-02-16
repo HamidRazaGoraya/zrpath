@@ -5,8 +5,6 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.media.MediaMetadataRetriever
 import android.net.Uri
-import android.view.View
-import androidx.core.view.marginTop
 import com.google.android.material.chip.Chip
 import java.io.File
 import java.text.DateFormat
@@ -89,7 +87,6 @@ fun Calendar.getDateValueLocal():String{
 }
 
 fun Chip.getRandomColor() {
-    val rnd = Random()
     this.setTextColor(Color.parseColor("#ffffff"))
-    this.chipBackgroundColor=ColorStateList.valueOf(Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256)))
+    this.chipBackgroundColor= ColorStateList.valueOf((Math.random() * 16777215).toInt() or (0xFF shl 24))
 }

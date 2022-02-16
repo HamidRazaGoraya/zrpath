@@ -10,17 +10,10 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import com.hamid.template.R
 import com.hamid.template.base.BaseFragment
-import com.hamid.template.databinding.AddUserDetailsBinding
-import com.hamid.template.databinding.FragmentHomeBinding
 import com.hamid.template.databinding.FragmentPatientBinding
-import com.hamid.template.databinding.RegisterFragmentBinding
-import com.hamid.template.ui.dashboard.MainVM
 import com.hamid.template.ui.dashboard.adopters.VisitsAdopter
-import com.hamid.template.ui.dashboard.models.DummyModel
 import com.hamid.template.ui.facilitiesPatiensts.FacilitiyVM
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
-import com.hamid.template.ui.loginAndRegister.RegisterVM
-import com.hamid.template.ui.onboarding.OnBoardingVM
 import com.hamid.template.utils.*
 import com.hamid.template.utils.dialogs.CalenderDatePicker
 import dagger.hilt.android.AndroidEntryPoint
@@ -87,9 +80,23 @@ class PatientFragment : BaseFragment<FragmentPatientBinding, FacilitiyVM>() {
 
             }
 
-            override fun onMapLicked(client: TodayTripResponse.Data.Down.Client) {
-                viewModel.startMapActivity(client)
+            override fun onPickUpClicked(client: TodayTripResponse.Data.Down.Client) {
+                   showSnackBar("Call check list")
             }
+
+            override fun onDropOfClicked(client: TodayTripResponse.Data.Down.Client) {
+                showSnackBar("Call check list")
+            }
+
+            override fun onMissingClicked(client: TodayTripResponse.Data.Down.Client) {
+                if (viewModel.responseDocumentList!=null){
+                    viewModel.showSelectFormDialog(viewModel.responseDocumentList!!,client)
+                }else{
+                    viewModel.ShowLoading()
+                    viewModel.getFormsList(true,client)
+                }
+            }
+
         })
         binding.SelectedDate.setOnClickListener {
             CalenderDatePicker(object :CalenderDatePicker.OnSelected{

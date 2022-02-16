@@ -56,7 +56,9 @@ class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<TodayTri
     interface ItemClickListener {
         fun onClicked(product: TodayTripResponse.Data.Down)
         fun onValueChanged(int: Int)
-        fun onMapLicked(client:TodayTripResponse.Data.Down.Client)
+        fun onPickUpClicked(client:TodayTripResponse.Data.Down.Client)
+        fun onDropOfClicked(client:TodayTripResponse.Data.Down.Client)
+        fun onMissingClicked(client:TodayTripResponse.Data.Down.Client)
     }
 
     fun insertItems(buttonsModel: TodayTripResponse.Data.Down) {

@@ -45,7 +45,7 @@ public class AllFormsList extends DialogFragment {
         binding.close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("forms", String.valueOf(careTypeList.size()));
+               dismiss();
             }
         });
 

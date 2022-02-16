@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
  <androidx.appcompat.widget.Toolbar
-     app:title="Parient"
+     app:title="Patients"
      app:titleTextColor="@color/colorPrimary"
      android:backgroundTint="@color/primary_two"
      android:id="@+id/toolbar"
@@ -42,24 +42,25 @@
      android:layout_marginTop="@dimen/_10sdp"
      android:layout_weight="1"
      android:hint="Trip"
-     android:textColor="@color/white"
-     android:textColorHint="@color/white"
-     app:endIconTint="@color/white"
+     android:textColor="@color/custom_strok"
+     android:textColorHint="@color/custom_strok"
+     app:endIconTint="@color/custom_strok"
      app:layout_constraintEnd_toStartOf="@+id/typeStart"
      app:layout_constraintStart_toStartOf="@+id/typeEnd"
      app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
   <AutoCompleteTextView
+      android:textSize="@dimen/_10sdp"
       android:id="@+id/trips"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:backgroundTint="@color/colorPrimary"
-      android:drawableTint="@color/white"
+      android:drawableTint="@color/custom_strok"
       android:gravity="center"
       android:inputType="none"
       android:singleLine="true"
-      android:textColor="@color/white"
-      android:textColorHint="@color/white" />
+      android:textColor="@color/custom_strok"
+      android:textColorHint="@color/custom_strok" />
 
  </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,6 +94,7 @@
      app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
   <AutoCompleteTextView
+      android:textSize="@dimen/_10sdp"
       android:paddingEnd="0dp"
       android:paddingStart="0dp"
       android:id="@+id/SelectedDate"

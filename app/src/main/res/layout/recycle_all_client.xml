@@ -112,10 +112,28 @@
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/parents"
                 android:paddingStart="@dimen/_5sdp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:textAllCaps="false"
+                android:id="@+id/statusName"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:background="@drawable/corner_simple"
+                android:textSize="@dimen/_10sdp"
+                android:padding="0dp"
+                android:text="Confirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
@@ -152,46 +170,57 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/colorPrimary"
-                android:text="Facility"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="wrap_content"/>
-            <Button
-                android:paddingStart="@dimen/_5sdp"
-                android:paddingEnd="@dimen/_5sdp"
-                android:textAllCaps="false"
-                android:id="@+id/statusName"
-                android:layout_marginHorizontal="@dimen/_5sdp"
-                android:backgroundTint="#2E7D32"
-                android:textSize="@dimen/_10sdp"
-                android:padding="0dp"
-                android:text="Confirm"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"/>
-            <View
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="1dp"/>
-            <Button
-                android:id="@+id/map"
-                android:textColor="@color/colorPrimary"
-                android:drawableLeft="@drawable/ic_baseline_location_on_24"
-                android:text="Map"
-                android:backgroundTint="@color/primary_two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chips_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
+
+
         </com.google.android.material.chip.ChipGroup>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:textSize="@dimen/_10sdp"
+                android:id="@+id/pickUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primary_two"
+                android:text="Pick Up"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:textSize="@dimen/_10sdp"
+                android:id="@+id/DropOf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primary_two"
+                android:text="Drop of"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toStartOf="@+id/missingForms"
+                app:layout_constraintStart_toEndOf="@+id/pickUp"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:textSize="@dimen/_10sdp"
+                android:id="@+id/missingForms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/primary_two"
+                android:text="Missing forms"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </LinearLayout>
 </LinearLayout>
