@@ -3,6 +3,7 @@ package com.hamid.template.ui.facilitiesPatiensts.models
 
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose
+import com.hamid.template.ui.mapScreen.models.ResponseTripDetails
 
 data class TodayTripResponse(
     @SerializedName("Code")
@@ -38,7 +39,11 @@ data class TodayTripResponse(
             val transportationGroup: TransportationGroup,
             @SerializedName("TransportationGroupID")
             @Expose
-            val transportationGroupID: Any? // null
+            val transportationGroupID: Any?, // null
+            @Expose
+            var TripState:Int=0,
+            @Expose
+            var responseTripDetails: ResponseTripDetails?=null
         ) {
             data class Client(
                 @SerializedName("ReferralID")
@@ -145,6 +150,9 @@ data class TodayTripResponse(
                 val zipCode: String // 85297
             )
             data class TransportationGroup(
+                @SerializedName("GroupTripStatus")
+                @Expose
+                val GroupTripStatus:String,
                 @SerializedName("ReferralID")
                 @Expose
                 val ReferralID:Int,
@@ -162,7 +170,7 @@ data class TodayTripResponse(
                 val city: String, // Gilbert
                 @SerializedName("FacilityColorScheme")
                 @Expose
-                val facilityColorScheme: String, // #dee81e
+                val facilityColorScheme: String?, // #dee81e
                 @SerializedName("FacilityID")
                 @Expose
                 val facilityID: Int, // 1

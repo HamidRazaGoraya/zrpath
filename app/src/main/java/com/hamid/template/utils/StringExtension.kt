@@ -7,6 +7,7 @@ import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 fun String.addImageUrl():String{
     return Constants.IMAGE_URL + this
@@ -16,9 +17,8 @@ fun String.getDateOfConsulatation():String{
     val date: Date? = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(this)
     return SimpleDateFormat("EEEE, dd MMM yyyy", Locale.getDefault()).format(date!!)
 }
-fun String.getDateOfReport():String{
-    val date: Date? = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", Locale.getDefault()).parse(this)
-    return SimpleDateFormat("EEEE, dd MMM yyyy", Locale.getDefault()).format(date!!)
+fun String.getLocalTime():String{
+    return this
 }
 fun String.getDateOfNotes():String{
     val date: Date? = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", Locale.getDefault()).parse(this)
@@ -58,5 +58,25 @@ fun String?.CheckForNotNull():String{
 }
 
 fun String?.AddRequired():String{
-    return "*"+this.CheckForNotNull()
+    return "${this.CheckForNotNull()} *"
+}
+
+fun String?.GetImageName():String{
+    if (this.isNullOrEmpty()){
+        return ""
+    }
+    return this.get(0).toString().uppercase()
+}
+
+fun String?.toArrayList():ArrayList<String>{
+
+    if (this.isNullOrEmpty()){
+        return ArrayList()
+    }
+    val list=ArrayList<String>()
+    val splitList=this.split(",")
+    for (element in splitList){
+        list.add(element)
+    }
+    return list
 }

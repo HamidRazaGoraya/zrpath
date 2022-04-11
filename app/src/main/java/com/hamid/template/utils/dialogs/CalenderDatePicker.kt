@@ -17,6 +17,7 @@ class CalenderDatePicker(private val onSelected: OnSelected, private val calenda
         // Get the layout inflater
         val inflater = requireActivity().layoutInflater
         val binding = CalenderDatePickerBinding.inflate(inflater)
+        binding.calendar.minDate=Calendar.getInstance().timeInMillis
         binding.calendar.date = calendar.timeInMillis
         binding.deleteDate.setOnClickListener {
             dismiss()

@@ -2,15 +2,23 @@ package com.hamid.template.ui.dashboard.adopters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import com.hamid.template.databinding.DummyRecycleBinding
 import com.hamid.template.databinding.RecycleVisitBinding
-import com.hamid.template.ui.dashboard.models.DummyModel
+import com.hamid.template.ui.facilitiesPatiensts.FacilitiyVM
+import com.hamid.template.ui.facilitiesPatiensts.models.RequestTransportDetails
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
+import com.hamid.template.utils.Resource
+import com.hamid.template.utils.SharedPreferenceManager
+import com.hamid.template.utils.makeGone
+import com.hamid.template.utils.makeVisible
 
-class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<TodayTripResponse.Data.Down>) :
+class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<TodayTripResponse.Data.Down>,val mapVM: FacilitiyVM,var sharedPreferenceManager: SharedPreferenceManager,var lifecycleOwner: LifecycleOwner) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mInflater: LayoutInflater = LayoutInflater.from(mContext)
     private var mClickListener: ItemClickListener? = null
@@ -30,10 +38,28 @@ class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<TodayTri
           binding.facilityHouse.setText(allOffers.transportationGroup.facilityName)
           val arrayList=ArrayList<TodayTripResponse.Data.Down.Client>()
           arrayList.addAll(allOffers.clientList)
-          val visitsClientsAdopter=VisitsClientsAdopter(mContext,arrayList)
-          binding.AllClients.adapter=visitsClientsAdopter
+
           binding.facilityDetails.setText("${allOffers.transportationGroup.staffNames}\n(${allOffers.transportationGroup.facilityName}|${allOffers.transportationGroup.groupLocation})")
-          visitsClientsAdopter.setClickListener(mClickListener)
+
+        val tripStatus=allOffers.transportationGroup.GroupTripStatus
+        when(tripStatus){
+            "Trip not started"->{
+                tripStartView(binding,allOffers.transportationGroup)
+            }
+            "Trip not start"->{
+                tripStartView(binding,allOffers.transportationGroup)
+            }
+            "Trip Started"->{
+                tripEndView(binding,allOffers.transportationGroup)
+            }
+            else->{
+                tripCompletedView(binding)
+            }
+        }
+        binding.tripDetails.setOnClickListener {
+            mClickListener?.showToDayTripDetails(allOffers,position)
+        }
+
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -54,11 +80,14 @@ class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<TodayTri
     }
 
     interface ItemClickListener {
+        fun showToDayTripDetails(group:TodayTripResponse.Data.Down,position: Int)
         fun onClicked(product: TodayTripResponse.Data.Down)
         fun onValueChanged(int: Int)
-        fun onPickUpClicked(client:TodayTripResponse.Data.Down.Client)
-        fun onDropOfClicked(client:TodayTripResponse.Data.Down.Client)
-        fun onMissingClicked(client:TodayTripResponse.Data.Down.Client)
+        fun onPickUpClicked(client:TodayTripResponse.Data.Down.Client,position: Int)
+        fun onDropOfClicked(client:TodayTripResponse.Data.Down.Client,position: Int)
+        fun onMissingClicked(client:TodayTripResponse.Data.Down.Client,position: Int)
+        fun onStartTripClicked(group:TodayTripResponse.Data.Down.TransportationGroup)
+        fun onEndTripClicked(group:TodayTripResponse.Data.Down.TransportationGroup)
     }
 
     fun insertItems(buttonsModel: TodayTripResponse.Data.Down) {
@@ -83,5 +112,29 @@ class VisitsAdopter(val mContext: Context, val edcationsList: ArrayList<TodayTri
     }
 
 
+
+
+
+    fun tripStartView(binding: RecycleVisitBinding,group:TodayTripResponse.Data.Down.TransportationGroup){
+        binding.startStop.isEnabled=true
+        binding.startStop.text="Start trip"
+        binding.tripDetails.makeGone()
+        binding.startStop.setOnClickListener {
+            mClickListener?.onStartTripClicked(group)
+        }
+    }
+    fun tripEndView(binding: RecycleVisitBinding,group:TodayTripResponse.Data.Down.TransportationGroup){
+        binding.startStop.isEnabled=true
+        binding.startStop.text="End trip"
+        binding.tripDetails.makeVisible()
+        binding.startStop.setOnClickListener {
+            mClickListener?.onEndTripClicked(group)
+        }
+    }
+    fun tripCompletedView(binding: RecycleVisitBinding){
+        binding.startStop.isEnabled=false
+        binding.startStop.text="Completed"
+        binding.tripDetails.makeVisible()
+    }
 
 }

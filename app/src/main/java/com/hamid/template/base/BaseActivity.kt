@@ -33,6 +33,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
+import com.hamid.template.ui.loginAndRegister.RegisterActivity
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -132,8 +133,16 @@ abstract class BaseActivity<B : ViewBinding, VM : ViewModel> : AppCompatActivity
             finish()
         }
     }
-    fun showSnackBar(message: String) {
+    fun showSnackBar(message: String?) {
+        if (message.isNullOrEmpty()){
+            return
+        }
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+        if (message.contains("Session expired")){
+            startActivity(RegisterActivity.getIntent(this))
+            finishAffinity()
+        }
+
     }
 
     fun showNoConnectionDialog(context: Context): AlertDialog {

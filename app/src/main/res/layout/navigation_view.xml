@@ -112,6 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"/>
                 <Button
+                    android:visibility="gone"
                     android:gravity="start|center_vertical"
                     android:drawableLeft="@drawable/ic_baseline_location_on_24"
                     android:textAllCaps="false"
@@ -122,10 +123,12 @@
                     android:layout_height="wrap_content"
                     android:text="Map" />
                 <View
+                    android:visibility="gone"
                     android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"/>
                 <Button
+                    android:visibility="gone"
                     android:drawableLeft="@drawable/ic_baseline_settings_24"
                     android:gravity="start|center_vertical"
                     android:textAllCaps="false"
@@ -136,6 +139,7 @@
                     android:layout_height="wrap_content"
                     android:text="Settings" />
                 <View
+                    android:visibility="gone"
                     android:background="@color/colorPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1sdp"/>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:custom="http://schemas.android.com/tools"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/_10sdp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:padding="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/ic_baseline_directions_transit_24"
+            app:tint="@color/colorPrimary" />
+        <TextView
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:layout_gravity="center"
+            android:text="Trip not started"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/Heading"
+            android:gravity="center"
+            android:text="For patient pick up group visit should be started first"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/subHeading"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:text=""
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/ActionButton"
+            android:layout_marginBottom="@dimen/_20sdp"
+            style="@style/dialog_button"
+            android:text="Go to Trip list"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

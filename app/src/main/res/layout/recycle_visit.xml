@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
+<com.google.android.material.card.MaterialCardView xmlns:tools="http://schemas.android.com/tools"
     app:cardBackgroundColor="@color/colorPrimary"
     android:layout_marginTop="@dimen/_10sdp"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -39,14 +39,25 @@
 
         <TextView
             android:id="@+id/facilityDetails"
-            android:layout_marginHorizontal="@dimen/_5sdp"
-            android:textColor="@color/white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+            app:layout_constraintEnd_toStartOf="@+id/startStop"
             app:layout_constraintStart_toEndOf="@+id/homeButton"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:textAllCaps="false"
+            android:backgroundTint="#7CB342"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/startStop"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:text="Start Trip"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:paddingStart="@dimen/_5sdp"
@@ -75,6 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:textSize="@dimen/_8sdp"
                 android:id="@+id/facilityHouse"
                 android:paddingStart="@dimen/_5sdp"
                 android:layout_width="wrap_content"
@@ -96,6 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:textSize="@dimen/_8sdp"
                 android:id="@+id/facilityLocation"
                 android:paddingStart="@dimen/_5sdp"
                 android:layout_width="wrap_content"
@@ -111,11 +124,24 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/AllClients"
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/tripDetails"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:text="Trip details"
+            android:backgroundTint="@color/primary_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
 </LinearLayout>
 
 

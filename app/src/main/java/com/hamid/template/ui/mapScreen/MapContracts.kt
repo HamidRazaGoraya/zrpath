@@ -1,8 +1,11 @@
 package com.hamid.template.ui.mapScreen
 
+import android.location.Location
+import com.google.android.gms.maps.GoogleMap
 import com.hamid.template.base.ViewInteractor
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.ui.mapScreen.models.ResponseDocumentList
+import com.hamid.template.ui.mapScreen.models.ResponseTripDetails
 
 
 interface MapContracts : ViewInteractor {
@@ -10,10 +13,18 @@ interface MapContracts : ViewInteractor {
     fun onButtonBackPressed()
     fun ShowLoading()
     fun HideLoading()
-    fun fillUserDetails(client: TodayTripResponse.Data.Down.Client)
-    fun checkForCheckList()
-    fun onCheckListClicked()
-    fun getFormsList(clicked:Boolean)
-    fun showSelectFormDialog(documentList: ResponseDocumentList)
-    fun apiCallForUrl(form:ResponseDocumentList.DataItem)
+    fun checkForLocationPermission()
+    fun checkForLocationService()
+    fun moveCameraAt(location: Location,map:GoogleMap)
+    fun startMap(location: Location?)
+    fun getLastKnownLocation()
+    fun permissionMissing()
+    fun startLocationUpdate()
+    fun stopLocationUpdate()
+    fun setUpStartGroupTrip()
+    fun setUpEndGroupTrip()
+    fun saveAndExit()
+
+    fun childPickUp()
+    fun childDrop()
 }

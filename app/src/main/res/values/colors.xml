@@ -9,4 +9,9 @@
     <color name="yellow">#FFC107</color>
     <color name="color_divider">#a7a7a7</color>
     <color name="color_divider_list">#d4d4d4</color>
+    <color name="color_green">#43A047</color>
+    <color name="color_red">#E53935</color>
+    <color name="listBackLight">#E0F2F1</color>
+    <color name="listBackDark">#F48FB1</color>
+    <color name="text_color_dialog_header">#282828</color>
 </resources>

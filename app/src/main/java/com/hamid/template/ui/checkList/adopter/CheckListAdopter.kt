@@ -8,14 +8,14 @@ import com.hamid.template.databinding.RecycleCheckBoxBinding
 import com.hamid.template.ui.checkList.viewHolder.CheckListViewHolder
 import com.hamid.template.ui.mapScreen.models.UserCheckListResponse
 
-class CheckListAdopter : RecyclerView.Adapter<CheckListViewHolder>() {
+class CheckListAdopter(val ClickListner: myClickListner) : RecyclerView.Adapter<CheckListViewHolder>() {
 
     private lateinit var binding: RecycleCheckBoxBinding
 
-    var data: MutableList<UserCheckListResponse.Data.Check>? = arrayListOf()
+    var data: MutableList<UserCheckListResponse.Data.CheckListItem>? = arrayListOf()
 
 
-    fun updateItems(newItems: List<UserCheckListResponse.Data.Check>?) {
+    fun updateItems(newItems: List<UserCheckListResponse.Data.CheckListItem>?) {
         val oldItems = ArrayList(this.data!!)
         this.data!!.clear()
         if (newItems != null) {
@@ -43,16 +43,23 @@ class CheckListAdopter : RecyclerView.Adapter<CheckListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CheckListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         binding = RecycleCheckBoxBinding.inflate(inflater, parent, false)
-        return CheckListViewHolder(binding)
+        return CheckListViewHolder(binding,ClickListner)
     }
 
     override fun onBindViewHolder(holder: CheckListViewHolder, position: Int) {
+        holder.setIsRecyclable(false)
         data?.get(position)?.let {
-            holder.setData(it)
+            holder.setData(it,position)
         }
     }
 
 
     override fun getItemCount(): Int = (data?.size) ?: 0
 
+
+    interface myClickListner{
+        fun onChecked(check:UserCheckListResponse.Data.CheckListItem)
+        fun onUnChecked(checK:UserCheckListResponse.Data.CheckListItem)
+        fun onFormClicked(checK:UserCheckListResponse.Data.CheckListItem)
+    }
 }

@@ -1,10 +1,12 @@
 package com.hamid.template.utils
 
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
@@ -15,7 +17,9 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
+import com.hamid.template.R
 
 fun View.setShowCondition(boolean: Boolean) {
     if (boolean){
@@ -165,4 +169,27 @@ fun CheckBox.makeLinks(vararg links: Pair<String, View.OnClickListener>) {
     this.movementMethod =
         LinkMovementMethod.getInstance() // without LinkMovementMethod, link can not click
     this.setText(spannableString, TextView.BufferType.SPANNABLE)
+}
+
+fun TextView.ShowEmptyDot(){
+    this.text="---- -----"
+}
+
+fun MaterialCardView.setLocalEnable(boolean: Boolean){
+    this.isEnabled=boolean
+    if (boolean){
+        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.getColor(R.color.white)))
+    }else{
+        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.getColor(R.color.color_divider)))
+    }
+}
+fun MaterialCardView.setCheckListColor(boolean: Boolean){
+    Log.i("here",boolean.toString()+"hamid")
+    if (boolean){
+        Log.i("here",boolean.toString()+"hamid2")
+        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.getColor(R.color.listBackDark)))
+    }else{
+        Log.i("here",boolean.toString()+"hamid3")
+        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.getColor(R.color.listBackLight)))
+    }
 }

@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
 import com.hamid.template.utils.autoCleared
 import com.google.android.material.snackbar.Snackbar
+import com.hamid.template.ui.loginAndRegister.RegisterActivity
 
 abstract class BaseFragment<B : ViewBinding, VM : ViewModel> : Fragment() {
 
@@ -73,8 +75,17 @@ abstract class BaseFragment<B : ViewBinding, VM : ViewModel> : Fragment() {
 
     }
 
-    fun showSnackBar(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+    fun showSnackBar(message: String?) {
+
+        if (message.isNullOrEmpty()){
+            return
+        }
+        Log.i("logError",message)
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+        if (message.contains("Session expired") || message.equals("null")){
+            startActivity(RegisterActivity.getIntent(requireContext()))
+            requireActivity().finishAffinity()
+        }
     }
 
     open fun checkPermission(): Boolean {

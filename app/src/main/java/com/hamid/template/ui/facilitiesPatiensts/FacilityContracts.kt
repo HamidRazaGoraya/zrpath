@@ -16,4 +16,5 @@ interface FacilityContracts : ViewInteractor {
     fun getFormsList(clicked:Boolean, client: TodayTripResponse.Data.Down.Client)
     fun showSelectFormDialog(documentList: ResponseDocumentList, client: TodayTripResponse.Data.Down.Client)
     fun apiCallForUrl(form: ResponseDocumentList.DataItem, client: TodayTripResponse.Data.Down.Client)
+    fun moveToTodayTrips(group: TodayTripResponse.Data.Down)
 }

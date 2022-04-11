@@ -35,16 +35,52 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginHorizontal="@dimen/_10sdp"
             android:id="@+id/checkRecycle"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            tools:listitem="@layout/recycle_check_box" />
 
 
+        <Button
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/completeCheckList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3498DB"
+            android:text="Complete checklist"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:visibility="visible"
+            app:cornerRadius="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="@+id/checkRecycle"
+            app:layout_constraintStart_toStartOf="@+id/checkRecycle"
+            app:layout_constraintTop_toBottomOf="@+id/checkRecycle" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/NoDataFound"
+            android:visibility="gone"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+            <TextView
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="No Check List Found"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

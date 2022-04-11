@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
+import com.google.gson.Gson
 import com.hamid.template.R
 import com.hamid.template.base.BaseFragment
 import com.hamid.template.databinding.AddUserDetailsBinding
@@ -17,6 +18,7 @@ import com.hamid.template.ui.dashboard.MainVM
 import com.hamid.template.ui.loginAndRegister.RegisterVM
 import com.hamid.template.ui.onboarding.OnBoardingVM
 import com.hamid.template.utils.Constants
+import com.hamid.template.utils.Resource
 import com.hamid.template.utils.SharedPreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -41,6 +43,32 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainVM>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnClickEvents()
+        viewModel.getDashboard().observe(viewLifecycleOwner){
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    viewModel.HideLoading()
+                    it.data?.let {
+                        if (!it.isSuccess)   {
+                            showSnackBar(it.message+"3")
+                        }
+                    }
+                }
+                Resource.Status.ERROR -> {
+
+                    viewModel.HideLoading()
+
+                    if (it.data==null){
+                        showSnackBar(Gson().toJson(it.data))
+                    }else{
+                        it.message?.let { it1 -> showSnackBar(it1) }
+                    }
+
+                }
+                Resource.Status.LOADING -> {
+                    viewModel.ShowLoading()
+                }
+            }
+        }
     }
 
     private fun setOnClickEvents() {
@@ -55,6 +83,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainVM>() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                   sharedPreferenceManager.getTripType=binding.trips.text.toString()
+                 binding.trips.clearFocus()
             }
 
             override fun afterTextChanged(p0: Editable?) {
@@ -68,8 +97,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainVM>() {
         binding.patientButton.setOnClickListener {
             viewModel.patientClicked()
         }
-        binding.mapsButton.setOnClickListener {
-            viewModel.mapsClicked()
+        binding.todayTrips.setOnClickListener {
+            viewModel.moveToTodayTrip()
         }
         binding.settingsButton.setOnClickListener {
             viewModel.settingsClicked()

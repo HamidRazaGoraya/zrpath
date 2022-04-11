@@ -19,4 +19,6 @@ interface MainContracts : ViewInteractor {
     fun notificationClicked()
     fun searchClicked()
     fun onButtonBackPressed()
+    fun moveToTodayTrip()
+
 }

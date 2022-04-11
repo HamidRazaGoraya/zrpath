@@ -1,0 +1,21 @@
+package com.hamid.template.ui.facilitiesPatiensts.models
+
+import com.google.gson.annotations.SerializedName
+
+data class RequestDeleteCheck(
+
+	@field:SerializedName("Token")
+	val token: String,
+
+	@field:SerializedName("Data")
+	val data: Data,
+
+	@field:SerializedName("Key")
+	val key: String
+){
+	data class Data(
+
+		@field:SerializedName("TransportVisitNoteID")
+		val transportVisitNoteID: Int
+	)
+}

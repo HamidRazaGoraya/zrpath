@@ -43,12 +43,12 @@
             app:startIconDrawable="@drawable/ic_baseline_perm_identity_24"
             app:startIconTint="@color/colorAccent">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/userName"
                 android:inputType="textPersonName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="User Name" />
+                android:hint="  User Name" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -64,7 +64,7 @@
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password / Pin" />
+                android:hint="Password " />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -73,6 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Switch
+                android:layout_marginTop="@dimen/_5sdp"
                 android:id="@+id/SaveLogIn"
                 android:checked="true"
                 android:text="Save Login"
@@ -84,6 +85,7 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"/>
             <Button
+                android:visibility="gone"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimary"
                 style="?android:attr/borderlessButtonStyle"
@@ -104,6 +106,7 @@
             android:layout_gravity="center"
             android:text="Login" />
         <LinearLayout
+            android:visibility="gone"
             android:layout_margin="@dimen/_10sdp"
             android:gravity="center"
             android:layout_gravity="center"

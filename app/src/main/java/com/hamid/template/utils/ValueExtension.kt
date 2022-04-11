@@ -3,10 +3,18 @@ package com.hamid.template.utils
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.media.MediaMetadataRetriever
 import android.net.Uri
+import android.util.Log
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
+import com.google.gson.Gson
+import com.hamid.template.ui.todayTripsList.models.RequestReferralList
 import java.io.File
+import java.lang.reflect.Type
+import java.sql.Types
 import java.text.DateFormat
 import java.text.DecimalFormat
 import java.text.ParseException
@@ -90,3 +98,38 @@ fun Chip.getRandomColor() {
     this.setTextColor(Color.parseColor("#ffffff"))
     this.chipBackgroundColor= ColorStateList.valueOf((Math.random() * 16777215).toInt() or (0xFF shl 24))
 }
+
+fun Boolean.isPickUpString():String{
+    if (this){
+        return "Up"
+    }
+    return "Down"
+}
+
+
+fun String?.checkNull():String{
+    Log.i("OutPosition","${this}")
+    if (this.isNullOrEmpty()){
+        return ""
+    }
+    return this
+}
+
+fun ImageView.getRandomColor() {
+    val gd = GradientDrawable()
+    gd.setColor((Math.random() * 16777215).toInt() or (0xFF shl 24))
+    gd.cornerRadius = 200f
+
+    Glide.with(this.context).load(gd).into(this)
+
+}
+
+fun ImageView.setRandomTint() {
+    this.imageTintList= ColorStateList.valueOf((Math.random() * 16777215).toInt() or (0xFF shl 24))
+}
+
+
+fun Any.toJsonString():String{
+    return Gson().toJson(this)
+}
+

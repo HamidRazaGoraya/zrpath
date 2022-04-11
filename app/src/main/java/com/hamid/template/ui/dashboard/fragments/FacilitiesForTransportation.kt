@@ -32,10 +32,7 @@ class FacilitiesForTransportation : BaseFragment<FacilitiesFragmentBinding, Main
 
     lateinit var facilitiesAdopter: FacilitiesAdopter
 
-    override fun setBinding(
-        layoutInflater: LayoutInflater,
-        container: ViewGroup?
-    ): FacilitiesFragmentBinding {
+    override fun setBinding(layoutInflater: LayoutInflater, container: ViewGroup?): FacilitiesFragmentBinding {
         return FacilitiesFragmentBinding.inflate(layoutInflater, container, false)
     }
 

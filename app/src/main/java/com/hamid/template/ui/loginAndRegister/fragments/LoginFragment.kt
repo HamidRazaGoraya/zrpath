@@ -1,15 +1,19 @@
 package com.hamid.template.ui.loginAndRegister.fragments
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.fragment.app.activityViewModels
 import com.hamid.template.base.BaseFragment
 import com.hamid.template.databinding.LoginFragmentBinding
 import com.hamid.template.ui.loginAndRegister.RegisterVM
+import com.hamid.template.ui.loginAndRegister.adopter.LoginAutoCompleteAdapter
 import com.hamid.template.ui.loginAndRegister.logInRequestModel.LogInRequest
 import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
+import com.hamid.template.ui.loginAndRegister.model.Savepassowrd
 import com.hamid.template.utils.Resource
 import com.hamid.template.utils.SharedPreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,6 +28,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
     @Inject
     lateinit var sharedPreferenceManager: SharedPreferenceManager
 
+    lateinit var arrayList: ArrayList<Savepassowrd.Passwords>
 
     override fun setBinding(
         layoutInflater: LayoutInflater,
@@ -38,6 +43,19 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
     }
 
     private fun setUpListners() {
+        arrayList= ArrayList()
+        Thread{
+            arrayList.addAll(sharedPreferenceManager.getSavedPassword())
+            requireActivity().runOnUiThread {
+                val adapter = LoginAutoCompleteAdapter(requireContext(), R.layout.simple_dropdown_item_1line, R.id.text2, arrayList)
+                binding.userName.setAdapter(adapter)
+                binding.userName.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
+                    binding.pin.setText(
+                        arrayList[position].password
+                    )
+                }
+            }
+        }.start()
         binding.createNewAccount.setOnClickListener {
             viewModel.onRegisterClick()
         }
@@ -47,7 +65,14 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
         }
         binding.LogInButton.setOnClickListener {
             if (varified()){
-                viewModel.signInUser(binding.userName.text.toString(),binding.pin.text.toString())
+                val email=binding.userName.text.toString()
+                val pin=binding.pin.text.toString()
+                if (binding.SaveLogIn.isChecked){
+                    Thread{
+                        sharedPreferenceManager.savePassword(email,pin)
+                    }.start()
+                }
+                viewModel.signInUser(email,pin)
                     .observe(viewLifecycleOwner){
                         when (it.status) {
                             Resource.Status.SUCCESS -> {

@@ -7,13 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.activityViewModels
+import com.google.gson.Gson
 import com.hamid.template.R
 import com.hamid.template.base.BaseFragment
 import com.hamid.template.databinding.FragmentPatientBinding
+import com.hamid.template.ui.checkList.CheckListActivity
 import com.hamid.template.ui.dashboard.adopters.VisitsAdopter
 import com.hamid.template.ui.facilitiesPatiensts.FacilitiyVM
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
+import com.hamid.template.ui.mapScreen.ClientMapActivity
 import com.hamid.template.utils.*
 import com.hamid.template.utils.dialogs.CalenderDatePicker
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,6 +63,7 @@ class PatientFragment : BaseFragment<FragmentPatientBinding, FacilitiyVM>() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 sharedPreferenceManager.getTripType=binding.trips.text.toString()
+                binding.trips.clearFocus()
                 getAllTrips()
             }
 
@@ -69,9 +74,13 @@ class PatientFragment : BaseFragment<FragmentPatientBinding, FacilitiyVM>() {
         binding.toolbar.setNavigationOnClickListener {
              viewModel.onButtonBackPressed()
         }
-        visitsAdopter= VisitsAdopter(requireContext(), ArrayList())
+        visitsAdopter= VisitsAdopter(requireContext(), ArrayList(),viewModel,sharedPreferenceManager,viewLifecycleOwner)
         binding.visitRecycle.adapter=visitsAdopter
         visitsAdopter.setClickListener(object :VisitsAdopter.ItemClickListener{
+            override fun showToDayTripDetails(group: TodayTripResponse.Data.Down, position: Int) {
+                viewModel.moveToTodayTrips(group)
+            }
+
             override fun onClicked(product: TodayTripResponse.Data.Down) {
 
             }
@@ -80,15 +89,53 @@ class PatientFragment : BaseFragment<FragmentPatientBinding, FacilitiyVM>() {
 
             }
 
-            override fun onPickUpClicked(client: TodayTripResponse.Data.Down.Client) {
-                   showSnackBar("Call check list")
+
+
+            override fun onPickUpClicked(client: TodayTripResponse.Data.Down.Client,position: Int) {
+                val visitDetails=visitsAdopter.edcationsList.get(position).responseTripDetails
+                if (visitDetails==null){
+                    showSnackBar("Start trip first")
+                    return
+                }
+                if (visitDetails.data==null){
+                    showSnackBar("Start trip first")
+                    return
+                }
+                val bundle=Bundle()
+                bundle.putString(Constants.data,Gson().toJson(client))
+                bundle.putString(Constants.visitDetails,Gson().toJson(visitDetails))
+                bundle.putBoolean(Constants.isPickUp,true)
+                checkListActivityRexponse.launch(CheckListActivity.getIntent(requireContext()).putExtras(bundle))
+
             }
 
-            override fun onDropOfClicked(client: TodayTripResponse.Data.Down.Client) {
-                showSnackBar("Call check list")
+            override fun onDropOfClicked(client: TodayTripResponse.Data.Down.Client,position: Int) {
+                val visitDetails=visitsAdopter.edcationsList.get(position).responseTripDetails
+                if (visitDetails==null){
+                    showSnackBar("Start trip first")
+                    return
+                }
+                if (visitDetails.data==null){
+                    showSnackBar("Start trip first")
+                    return
+                }
+                val bundle=Bundle()
+                bundle.putString(Constants.data,Gson().toJson(client))
+                bundle.putString(Constants.visitDetails,Gson().toJson(visitDetails))
+                bundle.putBoolean(Constants.isPickUp,false)
+                checkListActivityRexponse.launch(CheckListActivity.getIntent(requireContext()).putExtras(bundle))
             }
 
-            override fun onMissingClicked(client: TodayTripResponse.Data.Down.Client) {
+            override fun onMissingClicked(client: TodayTripResponse.Data.Down.Client,position: Int) {
+                val visitDetails=visitsAdopter.edcationsList.get(position).responseTripDetails
+                if (visitDetails==null){
+                    showSnackBar("Start trip first")
+                    return
+                }
+                if (visitDetails.data==null){
+                    showSnackBar("Start trip first")
+                    return
+                }
                 if (viewModel.responseDocumentList!=null){
                     viewModel.showSelectFormDialog(viewModel.responseDocumentList!!,client)
                 }else{
@@ -97,6 +144,19 @@ class PatientFragment : BaseFragment<FragmentPatientBinding, FacilitiyVM>() {
                 }
             }
 
+            override fun onStartTripClicked(group: TodayTripResponse.Data.Down.TransportationGroup) {
+                val bundle=Bundle()
+                bundle.putString(Constants.data,Gson().toJson(group))
+                bundle.putBoolean(Constants.startTrip,true)
+                mapActivityRexponse.launch(ClientMapActivity.getIntent(requireContext()).putExtras(bundle))
+            }
+
+            override fun onEndTripClicked(group: TodayTripResponse.Data.Down.TransportationGroup) {
+                val bundle=Bundle()
+                bundle.putString(Constants.data,Gson().toJson(group))
+                bundle.putBoolean(Constants.startTrip,false)
+                mapActivityRexponse.launch(ClientMapActivity.getIntent(requireContext()).putExtras(bundle))
+            }
         })
         binding.SelectedDate.setOnClickListener {
             CalenderDatePicker(object :CalenderDatePicker.OnSelected{
@@ -140,6 +200,13 @@ class PatientFragment : BaseFragment<FragmentPatientBinding, FacilitiyVM>() {
 
     override fun onResume() {
         super.onResume()
+    }
+
+    var checkListActivityRexponse= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+
+    }
+    var mapActivityRexponse= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+             getAllTrips()
     }
 
 }

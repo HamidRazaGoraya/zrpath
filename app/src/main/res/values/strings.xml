@@ -526,4 +526,10 @@
     <string name="no_record_found">No Record Found !!!</string>
     <string name="search_by_form_number_name_or_tags">Search by Form Number, Name or Tags</string>
     <string name="map_form_with_document">Map Form with Document</string>
+    <string name="please_sign_to_submit">Please sign to Submit</string>
+    <string name="you_can_upload">You can upload images, pdf, documents and text files.</string>
+    <string name="btn_upload_img">Upload Images</string>
+    <string name="err_upload_images">Please upload images.</string>
+    <string name="str_cs_dialog_camera">Take a photo</string>
+    <string name="str_cs_dialog_gallery">Pick from gallery</string>
 </resources>

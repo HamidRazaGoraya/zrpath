@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.hamid.template.ui.todayTripDetails.TodayTripDetailsVM" />
+    </data>
+
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+      android:id="@+id/swipe"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <androidx.core.widget.NestedScrollView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+          <androidx.constraintlayout.widget.ConstraintLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:animateLayoutChanges="true"
+              tools:context=".ui.register.RegisterActivity">
+
+
+              <androidx.appcompat.widget.Toolbar
+                  app:title="In Progress"
+                  app:titleTextColor="@color/colorPrimary"
+                  android:backgroundTint="@color/primary_two"
+                  android:id="@+id/toolbar"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:background="?attr/colorPrimary"
+                  android:minHeight="?attr/actionBarSize"
+                  android:theme="?attr/actionBarTheme"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
+              <androidx.constraintlayout.widget.Guideline
+                  android:id="@+id/startGuide"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  app:layout_constraintGuide_percent="0.10" />
+              <androidx.constraintlayout.widget.Guideline
+                  android:id="@+id/endGuide"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  app:layout_constraintGuide_percent="0.90" />
+
+
+
+              <LinearLayout
+                  android:id="@+id/userDetails"
+                  android:orientation="vertical"
+                  app:layout_constraintTop_toBottomOf="@id/toolbar"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+
+
+                  <LinearLayout
+                      android:layout_gravity="end"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginEnd="@dimen/_10sdp"
+                      android:layout_marginStart="@dimen/scale_2dp"
+                      android:orientation="horizontal"
+                      android:padding="@dimen/_10sdp">
+
+                      <LinearLayout
+                          android:layout_width="@dimen/_65sdp"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical">
+
+                          <TextView
+                              android:id="@+id/tv_service"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:text="Service"
+                              android:textColor="@color/colorPrimary"
+                              android:textSize="@dimen/_10sdp" />
+
+                          <TextView
+                              android:id="@+id/tv_start_time"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/scale_2dp"
+                              android:layout_marginBottom="@dimen/scale_2dp"
+                              android:text="Start time"
+                              android:textColor="@color/black"
+                              android:textSize="@dimen/_10sdp" />
+
+                          <TextView
+                              android:id="@+id/tv_end_time"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="End Time"
+                              android:textColor="@color/black"
+                              android:textSize="@dimen/_10sdp"
+                              android:visibility="visible" />
+
+                      </LinearLayout>
+
+                      <LinearLayout
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:orientation="vertical">
+
+                          <TextView
+                              android:visibility="invisible"
+                              android:id="@+id/tv_care_type"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:textColor="@color/colorPrimary"
+                              android:textSize="@dimen/_10sdp"
+                              tools:text="Jason Brody" />
+
+                          <TextView
+                              android:id="@+id/tv_start_time_value"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:layout_marginTop="@dimen/scale_2dp"
+                              android:layout_marginBottom="@dimen/scale_2dp"
+                              android:text="---- -----"
+                              android:textColor="@color/black"
+                              android:textSize="@dimen/_10sdp" />
+
+                          <TextView
+                              android:id="@+id/tv_end_time_value"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="---- -----"
+                              android:textColor="@color/black"
+                              android:textSize="@dimen/_10sdp"
+                              android:visibility="visible" />
+
+                      </LinearLayout>
+
+                  </LinearLayout>
+
+                  <include
+                      android:id="@+id/client_details"
+                      layout="@layout/client_details"/>
+              </LinearLayout>
+
+
+              <LinearLayout
+                  android:visibility="visible"
+                  android:id="@+id/GroupVisitTrue"
+                  android:layout_marginTop="@dimen/_30sdp"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:orientation="vertical"
+                  app:layout_constraintEnd_toStartOf="@+id/endGuide"
+                  app:layout_constraintStart_toStartOf="@+id/startGuide"
+                  app:layout_constraintTop_toBottomOf="@+id/userDetails">
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:visibility="visible">
+
+
+
+
+                      <com.repsly.library.timelineview.TimelineView
+                          android:id="@+id/pickUpTimeLine"
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          app:lineColor="@color/color_red"
+                          app:lineOrientation="vertical"
+                          app:lineSize="4dp"
+                          app:markerActive="false"
+                          app:markerActiveColor="@color/color_green"
+                          app:markerActiveStrokeWidth="8dp"
+                          app:markerColor="@color/color_red"
+                          app:markerSize="20dp"
+                          app:markerStrokeWidth="2dp"
+                          app:markerTextColor="@android:color/white"
+                          app:markerTextSize="10sp" />
+
+                      <com.google.android.material.card.MaterialCardView
+                          android:layout_weight="1"
+                          android:id="@+id/pickUpClicked"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center_vertical"
+                          android:clickable="true"
+                          android:foreground="?android:attr/selectableItemBackground"
+                          android:visibility="visible"
+                          app:cardBackgroundColor="@color/white"
+                          app:cardElevation="2dp"
+                          app:cardMaxElevation="2dp"
+                          app:cardUseCompatPadding="true"
+                          app:contentPadding="1dp">
+
+                          <androidx.constraintlayout.widget.ConstraintLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center"
+                              android:gravity="center"
+                              android:orientation="vertical">
+
+
+                              <androidx.appcompat.widget.AppCompatTextView
+                                  android:layout_width="0dp"
+                                  android:layout_height="wrap_content"
+                                  android:layout_centerInParent="true"
+                                  android:layout_gravity="center_vertical"
+                                  android:layout_marginStart="@dimen/_4sdp"
+                                  android:layout_marginTop="@dimen/_12sdp"
+                                  android:layout_marginBottom="@dimen/_12sdp"
+                                  android:text="Pick Up"
+                                  android:textColor="@android:color/black"
+                                  android:textSize="@dimen/_12sdp"
+                                  android:textStyle="bold"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintEnd_toStartOf="@+id/pickUpMarked"
+                                  app:layout_constraintStart_toStartOf="parent"
+                                  app:layout_constraintTop_toTopOf="parent" />
+
+                              <ImageView
+                                  android:id="@+id/pickUpMarked"
+                                  android:layout_width="@dimen/_25sdp"
+                                  android:layout_height="@dimen/_25sdp"
+                                  android:layout_alignParentEnd="true"
+                                  android:layout_centerInParent="true"
+                                  android:layout_marginEnd="@dimen/_8sdp"
+                                  android:padding="@dimen/scale_5dp"
+                                  android:visibility="gone"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintEnd_toEndOf="parent"
+                                  app:layout_constraintTop_toTopOf="parent"
+                                  app:srcCompat="@drawable/ic_check_green" />
+                          </androidx.constraintlayout.widget.ConstraintLayout>
+
+                      </com.google.android.material.card.MaterialCardView>
+
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:visibility="visible">
+
+                      <com.repsly.library.timelineview.TimelineView
+                          android:id="@+id/pickCheckListLine"
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          app:lineColor="@color/color_red"
+                          app:lineOrientation="vertical"
+                          app:lineSize="4dp"
+                          app:markerActive="false"
+                          app:markerActiveColor="@color/color_green"
+                          app:markerActiveStrokeWidth="8dp"
+                          app:markerColor="@color/color_red"
+                          app:markerSize="20dp"
+                          app:markerStrokeWidth="2dp"
+                          app:markerTextColor="@android:color/white"
+                          app:markerTextSize="10sp" />
+
+                      <com.google.android.material.card.MaterialCardView
+                          android:layout_weight="1"
+                          android:id="@+id/PickCheckListClicked"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center_vertical"
+                          android:clickable="true"
+                          android:foreground="?android:attr/selectableItemBackground"
+                          android:visibility="visible"
+                          app:cardBackgroundColor="@color/white"
+                          app:cardElevation="2dp"
+                          app:cardMaxElevation="2dp"
+                          app:cardUseCompatPadding="true"
+                          app:contentPadding="1dp">
+
+                          <androidx.constraintlayout.widget.ConstraintLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center"
+                              android:gravity="center"
+                              android:orientation="vertical">
+
+
+
+
+                              <androidx.appcompat.widget.AppCompatTextView
+                                  android:id="@+id/appCompatTextView"
+                                  android:layout_width="0dp"
+                                  android:layout_height="wrap_content"
+                                  android:layout_centerInParent="true"
+                                  android:layout_gravity="center_vertical"
+                                  android:layout_marginStart="@dimen/_4sdp"
+                                  android:layout_marginTop="@dimen/_12sdp"
+                                  android:layout_marginBottom="@dimen/_12sdp"
+                                  android:text="Pick check list"
+                                  android:textColor="@android:color/black"
+                                  android:textSize="@dimen/_12sdp"
+                                  android:textStyle="bold"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintEnd_toStartOf="@+id/pickCheckListText"
+                                  app:layout_constraintStart_toStartOf="parent"
+                                  app:layout_constraintTop_toTopOf="parent" />
+
+
+                              <androidx.appcompat.widget.AppCompatTextView
+                                  android:layout_marginEnd="@dimen/_10sdp"
+                                  android:id="@+id/pickCheckListText"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  android:layout_marginTop="@dimen/_12sdp"
+                                  android:layout_marginBottom="@dimen/_12sdp"
+                                  android:background="@drawable/text_round_yellow"
+                                  android:paddingStart="@dimen/_4sdp"
+                                  android:paddingEnd="@dimen/_4sdp"
+                                  android:text="0/10"
+                                  android:textColor="@android:color/black"
+                                  android:textSize="@dimen/_8sdp"
+                                  android:visibility="visible"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintEnd_toStartOf="@id/isCheckListCompleted"
+                                  app:layout_constraintTop_toTopOf="parent" />
+
+                              <ImageView
+                                  android:id="@+id/isCheckListCompleted"
+                                  android:layout_width="@dimen/_25sdp"
+                                  android:layout_height="@dimen/_25sdp"
+                                  android:layout_alignParentEnd="true"
+                                  android:layout_centerInParent="true"
+                                  android:layout_marginEnd="@dimen/_8sdp"
+                                  android:padding="@dimen/scale_5dp"
+                                  android:visibility="gone"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintEnd_toEndOf="parent"
+                                  app:layout_constraintTop_toTopOf="parent"
+                                  app:srcCompat="@drawable/ic_check_green" />
+                          </androidx.constraintlayout.widget.ConstraintLayout>
+
+                      </com.google.android.material.card.MaterialCardView>
+
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:visibility="visible">
+
+                      <com.repsly.library.timelineview.TimelineView
+                          android:id="@+id/formTimeLine"
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          app:lineColor="@color/color_red"
+                          app:lineOrientation="vertical"
+                          app:lineSize="4dp"
+                          app:markerActive="false"
+                          app:markerActiveColor="@color/color_green"
+                          app:markerActiveStrokeWidth="8dp"
+                          app:markerColor="@color/color_red"
+                          app:markerSize="20dp"
+                          app:markerStrokeWidth="2dp"
+                          app:markerTextColor="@android:color/white"
+                          app:markerTextSize="10sp" />
+
+                      <com.google.android.material.card.MaterialCardView
+                          android:layout_weight="1"
+                          android:id="@+id/formCardClicked"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center_vertical"
+                          android:clickable="true"
+                          android:foreground="?android:attr/selectableItemBackground"
+                          android:visibility="visible"
+                          app:cardBackgroundColor="@color/white"
+                          app:cardElevation="2dp"
+                          app:cardMaxElevation="2dp"
+                          app:cardUseCompatPadding="true"
+                          app:contentPadding="1dp">
+
+                          <androidx.constraintlayout.widget.ConstraintLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center"
+                              android:gravity="center"
+                              android:orientation="vertical">
+
+
+
+                              <androidx.appcompat.widget.AppCompatTextView
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:layout_centerInParent="true"
+                                  android:layout_gravity="center_vertical"
+                                  android:layout_marginStart="@dimen/_4sdp"
+                                  android:layout_marginTop="@dimen/_12sdp"
+                                  android:layout_marginBottom="@dimen/_12sdp"
+                                  android:text="Missing form"
+                                  android:textColor="@android:color/black"
+                                  android:textSize="@dimen/_12sdp"
+                                  android:textStyle="bold"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintStart_toStartOf="parent"
+                                  app:layout_constraintTop_toTopOf="parent" />
+
+
+                          </androidx.constraintlayout.widget.ConstraintLayout>
+
+                      </com.google.android.material.card.MaterialCardView>
+
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:visibility="visible">
+
+                      <com.repsly.library.timelineview.TimelineView
+                          android:id="@+id/dropCheckListLine"
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          app:lineColor="@color/color_red"
+                          app:lineOrientation="vertical"
+                          app:lineSize="4dp"
+                          app:markerActive="false"
+                          app:markerActiveColor="@color/color_green"
+                          app:markerActiveStrokeWidth="8dp"
+                          app:markerColor="@color/color_red"
+                          app:markerSize="20dp"
+                          app:markerStrokeWidth="2dp"
+                          app:markerTextColor="@android:color/white"
+                          app:markerTextSize="10sp" />
+
+                      <com.google.android.material.card.MaterialCardView
+                          android:layout_weight="1"
+                          android:id="@+id/SignatureClicked"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center_vertical"
+                          android:clickable="true"
+                          android:foreground="?android:attr/selectableItemBackground"
+                          android:visibility="visible"
+                          app:cardBackgroundColor="@color/white"
+                          app:cardElevation="2dp"
+                          app:cardMaxElevation="2dp"
+                          app:cardUseCompatPadding="true"
+                          app:contentPadding="1dp">
+
+                          <androidx.constraintlayout.widget.ConstraintLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center"
+                              android:gravity="center"
+                              android:orientation="vertical">
+
+
+                              <androidx.appcompat.widget.AppCompatTextView
+                                  android:layout_width="0dp"
+                                  android:layout_height="wrap_content"
+                                  android:layout_centerInParent="true"
+                                  android:layout_gravity="center_vertical"
+                                  android:layout_marginTop="@dimen/_12sdp"
+                                  android:layout_marginBottom="@dimen/_12sdp"
+                                  android:text="Handover  Signature"
+                                  android:textColor="@android:color/black"
+                                  android:textSize="@dimen/_12sdp"
+                                  android:textStyle="bold"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintEnd_toStartOf="@+id/signatureMarkedMarked"
+                                  app:layout_constraintStart_toStartOf="parent"
+                                  app:layout_constraintTop_toTopOf="parent" />
+
+
+                              <ImageView
+                                  android:id="@+id/signatureMarkedMarked"
+                                  android:layout_width="@dimen/_25sdp"
+                                  android:layout_height="@dimen/_25sdp"
+                                  android:layout_alignParentEnd="true"
+                                  android:layout_centerInParent="true"
+                                  android:layout_marginEnd="@dimen/_8sdp"
+                                  android:padding="@dimen/scale_5dp"
+                                  android:visibility="gone"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintEnd_toEndOf="parent"
+                                  app:layout_constraintTop_toTopOf="parent"
+                                  app:srcCompat="@drawable/ic_check_green" />
+                          </androidx.constraintlayout.widget.ConstraintLayout>
+
+                      </com.google.android.material.card.MaterialCardView>
+
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:visibility="visible">
+
+                      <com.repsly.library.timelineview.TimelineView
+                          android:id="@+id/dropTimeLine"
+                          android:layout_width="wrap_content"
+                          android:layout_height="match_parent"
+                          app:lineColor="@color/color_red"
+                          app:lineOrientation="vertical"
+                          app:lineSize="4dp"
+                          app:markerActive="false"
+                          app:markerActiveColor="@color/color_green"
+                          app:markerActiveStrokeWidth="8dp"
+                          app:markerColor="@color/color_red"
+                          app:markerSize="20dp"
+                          app:markerStrokeWidth="2dp"
+                          app:markerTextColor="@android:color/white"
+                          app:markerTextSize="10sp" />
+
+                      <com.google.android.material.card.MaterialCardView
+                          android:layout_weight="1"
+                          android:id="@+id/dropClicked"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center_vertical"
+                          android:clickable="true"
+                          android:foreground="?android:attr/selectableItemBackground"
+                          android:visibility="visible"
+                          app:cardBackgroundColor="@color/white"
+                          app:cardElevation="2dp"
+                          app:cardMaxElevation="2dp"
+                          app:cardUseCompatPadding="true"
+                          app:contentPadding="1dp">
+
+                          <androidx.constraintlayout.widget.ConstraintLayout
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:layout_gravity="center"
+                              android:gravity="center"
+                              android:orientation="vertical">
+
+
+                              <androidx.appcompat.widget.AppCompatTextView
+                                  android:layout_width="0dp"
+                                  android:layout_height="wrap_content"
+                                  android:layout_centerInParent="true"
+                                  android:layout_gravity="center_vertical"
+                                  android:layout_marginStart="@dimen/_4sdp"
+                                  android:layout_marginTop="@dimen/_12sdp"
+                                  android:layout_marginBottom="@dimen/_12sdp"
+                                  android:text="Drop and end"
+                                  android:textColor="@android:color/black"
+                                  android:textSize="@dimen/_12sdp"
+                                  android:textStyle="bold"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintEnd_toStartOf="@+id/dropOffMarked"
+                                  app:layout_constraintStart_toStartOf="parent"
+                                  app:layout_constraintTop_toTopOf="parent" />
+
+                              <ImageView
+                                  android:id="@+id/dropOffMarked"
+                                  android:layout_width="@dimen/_25sdp"
+                                  android:layout_height="@dimen/_25sdp"
+                                  android:layout_alignParentEnd="true"
+                                  android:layout_centerInParent="true"
+                                  android:layout_marginEnd="@dimen/_8sdp"
+                                  android:padding="@dimen/scale_5dp"
+                                  android:visibility="gone"
+                                  app:layout_constraintBottom_toBottomOf="parent"
+                                  app:layout_constraintEnd_toEndOf="parent"
+                                  app:layout_constraintTop_toTopOf="parent"
+                                  app:srcCompat="@drawable/ic_check_green" />
+                          </androidx.constraintlayout.widget.ConstraintLayout>
+
+                      </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+                  </LinearLayout>
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:visibility="gone"
+                      android:id="@+id/tripCompleted"
+                      android:gravity="center"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:layout_gravity="center_vertical"
+                      android:layout_marginStart="@dimen/_4sdp"
+                      android:layout_marginTop="@dimen/_12sdp"
+                      android:layout_marginBottom="@dimen/_12sdp"
+                      android:text="Trip completed"
+                      android:textColor="@color/color_green"
+                      android:textSize="@dimen/_12sdp"
+                      android:textStyle="bold"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toStartOf="@+id/dropOffMarked"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toTopOf="parent" />
+                  <androidx.appcompat.widget.AppCompatTextView
+                      android:visibility="gone"
+                      android:id="@+id/GroupTripCompleted"
+                      android:gravity="center"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_centerInParent="true"
+                      android:layout_gravity="center_vertical"
+                      android:layout_marginStart="@dimen/_4sdp"
+                      android:layout_marginTop="@dimen/_12sdp"
+                      android:layout_marginBottom="@dimen/_12sdp"
+                      android:text="Group Trip completed"
+                      android:textColor="@color/color_green"
+                      android:textSize="@dimen/_12sdp"
+                      android:textStyle="bold"
+                      app:layout_constraintBottom_toBottomOf="parent"
+                      app:layout_constraintEnd_toStartOf="@+id/dropOffMarked"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toTopOf="parent" />
+              </LinearLayout>
+
+              <LinearLayout
+                  android:visibility="gone"
+                  android:id="@+id/GroupVisitFalse"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintTop_toBottomOf="@id/userDetails"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content">
+                  <include
+                      android:id="@+id/featured_locked"
+                      layout="@layout/featured_locked"/>
+              </LinearLayout>
+          </androidx.constraintlayout.widget.ConstraintLayout>
+      </androidx.core.widget.NestedScrollView>
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

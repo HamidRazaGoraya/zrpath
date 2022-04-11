@@ -13,7 +13,11 @@ import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.utils.getRandomColor
 
 
-class VisitsClientsAdopter(val mContext: Context, val edcationsList: ArrayList<TodayTripResponse.Data.Down.Client>) :
+class VisitsClientsAdopter(
+    val mContext: Context,
+    val edcationsList: ArrayList<TodayTripResponse.Data.Down.Client>,
+    val parentPosition: Int
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val mInflater: LayoutInflater = LayoutInflater.from(mContext)
     private var mClickListener: VisitsAdopter.ItemClickListener? = null
@@ -49,13 +53,13 @@ class VisitsClientsAdopter(val mContext: Context, val edcationsList: ArrayList<T
               binding.chipsInput.addView(chip)
           }
         binding.missingForms.setOnClickListener {
-            mClickListener?.onMissingClicked(allOffers)
+            mClickListener?.onMissingClicked(allOffers,parentPosition)
         }
         binding.pickUp.setOnClickListener {
-            mClickListener?.onPickUpClicked(allOffers)
+            mClickListener?.onPickUpClicked(allOffers,parentPosition)
         }
         binding.DropOf.setOnClickListener {
-            mClickListener?.onDropOfClicked(allOffers)
+            mClickListener?.onDropOfClicked(allOffers,parentPosition)
         }
        }
 

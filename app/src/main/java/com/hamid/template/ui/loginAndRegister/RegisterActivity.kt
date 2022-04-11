@@ -59,6 +59,7 @@ class RegisterActivity : BaseActivity<ActivityRegistrationBinding, RegisterVM>()
 
     @Override
     override fun setUpView() {
+        sharedPreferenceManager.deleteAll()
         window.setNavigationBarColor(resources.getColor(R.color.white))
         window.statusBarColor=resources.getColor(R.color.white)
         fragmentManager=supportFragmentManager

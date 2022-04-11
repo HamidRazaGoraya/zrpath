@@ -2,8 +2,10 @@ package com.hamid.template.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
 import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
+import com.hamid.template.ui.loginAndRegister.model.Savepassowrd
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -11,6 +13,7 @@ import javax.inject.Singleton
 @Singleton
 class SharedPreferenceManager @Inject constructor(@ApplicationContext context: Context) {
     private val NAME = "demo"
+    private val AppContent = "AppContent"
     private val MODE = Context.MODE_PRIVATE
     private val IS_FIRST_RUN_PREF = Pair("is_first_run", false)
     private val userLogInResponse=Pair("userLogInResponse","")
@@ -27,14 +30,24 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext context: C
     private var tripType=Pair("TripType",Constants.Up)
 
 
+    private val allSavedPassword=Pair("SavedPassword","")
+
+
 
     val prefs = context.getSharedPreferences(NAME, MODE)
+    val AppContentPref=context.getSharedPreferences(AppContent,MODE)
 
     private inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
         val editor = edit()
         operation(editor)
         editor.apply()
     }
+
+    var getSavedPasswords:String
+        get()=AppContentPref.getString(allSavedPassword.first,allSavedPassword.second).checkNull()
+        set(value) = AppContentPref.edit{
+         it.putString(allSavedPassword.first,value)
+        }
 
     var getTripType: String
         get() = prefs.getString(tripType.first, tripType.second).HandleNullToken(tripType.second)
@@ -104,5 +117,43 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext context: C
         }
     fun deleteAll() {
         prefs.edit().clear().apply()
+    }
+
+    fun getEmployID():Int{
+        if (UserLogInResponse!=null){
+            return UserLogInResponse!!.data.employee.employeeID
+        }
+
+        return 0
+    }
+
+    fun savePassword(email: String,password: String){
+        val allPasswords=ArrayList<Savepassowrd.Passwords>()
+        allPasswords.addAll(getSavedPassword())
+        if (!allPasswords.contains(Savepassowrd.Passwords(email = email, password = password))){
+            allPasswords.add(Savepassowrd.Passwords(email = email, password = password))
+        }
+        Log.i("OutPosition2",allPasswords.size.toString())
+        AppContentPref.edit{
+            it.putString(allSavedPassword.first,Gson().toJson(Savepassowrd(true,allPasswords)))
+        }
+    }
+
+    fun getSavedPassword():List<Savepassowrd.Passwords>{
+        val passwords=getSavedPasswords
+        Log.i("OutPosition","0")
+        if (passwords.isEmpty()){
+            Log.i("OutPosition","1")
+            return ArrayList()
+        }
+        Log.i("OutPosition","2")
+        val allPasswords=Gson().fromJson(passwords,Savepassowrd::class.java)
+        if (allPasswords==null){
+            Log.i("OutPosition","3")
+            return ArrayList()
+        }
+        Log.i("OutPosition","4")
+        return allPasswords.listOfPasswords
+
     }
 }

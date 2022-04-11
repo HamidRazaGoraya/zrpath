@@ -39,10 +39,10 @@
       android:layout_height="@dimen/_1sdp"/>
   <com.google.android.material.card.MaterialCardView
       android:id="@+id/materialCardView"
-      android:layout_width="@dimen/_70sdp"
-      android:layout_height="@dimen/_70sdp"
+      android:layout_width="@dimen/_50sdp"
+      android:layout_height="@dimen/_50sdp"
       android:layout_gravity="center"
-      app:cardCornerRadius="@dimen/_70sdp"
+      app:cardCornerRadius="@dimen/_50sdp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toStartOf="@+id/profileImageEnd"
       app:layout_constraintHorizontal_bias="0.5"
@@ -50,8 +50,8 @@
       app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
    <androidx.constraintlayout.widget.ConstraintLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+       android:layout_width="@dimen/_50sdp"
+       android:layout_height="@dimen/_50sdp">
 
     <ImageView
         android:id="@+id/imgProfile"
@@ -189,7 +189,7 @@
   </LinearLayout>
 
   <LinearLayout
-      android:id="@+id/mapsButton"
+      android:id="@+id/todayTrips"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:clickable="true"
@@ -202,6 +202,7 @@
       app:layout_constraintTop_toTopOf="parent">
 
    <ImageView
+       android:visibility="visible"
        android:layout_width="@dimen/_50sdp"
        android:layout_height="@dimen/_50sdp"
        android:background="@drawable/menu_button_back"
@@ -209,10 +210,12 @@
        android:src="@drawable/ic_baseline_location_on_24" />
 
    <TextView
+       android:gravity="center_horizontal"
+       android:visibility="visible"
        style="@style/ManuItem"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Maps" />
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/_50sdp"
+       android:text="Progress Trips " />
   </LinearLayout>
 
   <LinearLayout
@@ -229,6 +232,7 @@
       app:layout_constraintTop_toTopOf="parent">
 
    <ImageView
+       android:visibility="gone"
        android:layout_width="@dimen/_50sdp"
        android:layout_height="@dimen/_50sdp"
        android:background="@drawable/menu_button_back"
@@ -236,6 +240,7 @@
        android:src="@drawable/ic_baseline_settings_24" />
 
    <TextView
+       android:visibility="gone"
        style="@style/ManuItem"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
@@ -256,6 +261,7 @@
       app:layout_constraintTop_toTopOf="parent">
 
    <ImageView
+       android:visibility="gone"
        android:layout_width="@dimen/_50sdp"
        android:layout_height="@dimen/_50sdp"
        android:background="@drawable/menu_button_back"
@@ -263,6 +269,7 @@
        android:src="@drawable/ic_baseline_help_24" />
 
    <TextView
+       android:visibility="gone"
        style="@style/ManuItem"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"

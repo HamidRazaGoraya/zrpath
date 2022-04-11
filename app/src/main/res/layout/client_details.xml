@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.40" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.60" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp"
+            app:layout_constraintEnd_toStartOf="@+id/guidGender"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Client"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/clientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/yellow" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/guidAge"
+            app:layout_constraintStart_toStartOf="@+id/guidGender"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sex"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/Gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guidAge"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/Age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:padding="@dimen/_5sdp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/colorPrimary"
+                android:text="Guardian"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:autoLink="map"
+                android:layout_weight="1"
+                android:id="@+id/parents"
+                android:paddingStart="@dimen/_5sdp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:textAllCaps="false"
+                android:id="@+id/statusName"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:background="@drawable/corner_simple"
+                android:textSize="@dimen/_10sdp"
+                android:padding="0dp"
+                android:text="Confirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/colorPrimary"
+                android:text="Location:"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/location"
+                android:maxLines="2"
+                android:paddingStart="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/colorPrimary"
+                android:text="Phone"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:autoLink="phone"
+                android:textIsSelectable="true"
+                android:contextClickable="true"
+                android:linksClickable="true"
+                android:id="@+id/phone"
+                android:paddingStart="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/chips_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </LinearLayout>
+</LinearLayout>

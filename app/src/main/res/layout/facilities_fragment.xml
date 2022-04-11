@@ -21,12 +21,13 @@
      app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
 
  <androidx.recyclerview.widget.RecyclerView
-     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
      android:id="@+id/AllFacilities"
      android:layout_width="0dp"
      android:layout_height="0dp"
+     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
      app:layout_constraintBottom_toBottomOf="parent"
      app:layout_constraintEnd_toEndOf="parent"
      app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+     app:layout_constraintTop_toBottomOf="@+id/toolbar"
+     tools:listitem="@layout/facilities_recycle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

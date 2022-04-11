@@ -1,9 +1,12 @@
 package com.hamid.template.ui.dashboard
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.navigation.Navigation
 import com.hamid.template.R
@@ -12,6 +15,7 @@ import com.hamid.template.databinding.ActivityMainBinding
 import com.hamid.template.ui.dashboard.fragments.HomeFragment
 import com.hamid.template.ui.facilitiesPatiensts.FacilityActivity
 import com.hamid.template.ui.loginAndRegister.RegisterActivity
+import com.hamid.template.ui.todayTripsList.TodayTripActivity
 import com.hamid.template.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -78,6 +82,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
             viewModel.hideSideMenu()
             viewModel.helpClicked()
         }
+
     }
 
     override fun ShowLoading() {
@@ -162,4 +167,21 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
         Navigation.findNavController(this, R.id.fragmentDashboard).navigate(R.id.action_home_to_facilities)
 
     }
+
+    override fun moveToTodayTrip() {
+        todayTripResponse.launch(TodayTripActivity.getIntent(this))
+    }
+
+    val todayTripResponse = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+    { result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            when(result.data!!.getIntExtra(Constants.actionKey,0)){
+                1->{
+                    viewModel.patientClicked()
+                }
+            }
+        }
+
+    }
+
 }
