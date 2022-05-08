@@ -112,7 +112,6 @@
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:autoLink="map"
                 android:layout_weight="1"
                 android:id="@+id/parents"
                 android:paddingStart="@dimen/_5sdp"
@@ -176,7 +175,8 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:id="@+id/chips_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:chipSpacingVertical="@dimen/_10sdp">
 
 
         </com.google.android.material.chip.ChipGroup>

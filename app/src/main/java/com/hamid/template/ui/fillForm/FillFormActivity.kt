@@ -37,7 +37,6 @@ class FillFormActivity : BaseActivity<ActivityFillFormBinding, FillFormVM>(), Fi
 
     lateinit var client: TodayTripResponse.Data.Down.Client
 
-     var form: ResponseDocumentList.DataItem?=null
      var isfromCheckList: UserCheckListResponse.Data.CheckListItem?=null
      var visitdetails: ResponseTripDetails?=null
 
@@ -54,7 +53,6 @@ class FillFormActivity : BaseActivity<ActivityFillFormBinding, FillFormVM>(), Fi
         viewModel.viewInteractor = this
         client= Gson().fromJson(intent.getStringExtra(Constants.client),TodayTripResponse.Data.Down.Client::class.java)
         responseDocumentUrl= Gson().fromJson(intent.getStringExtra(Constants.data), ResponseDocumentUrl::class.java)
-        form=Gson().fromJson(intent.getStringExtra(Constants.form),ResponseDocumentList.DataItem::class.java)
         if (intent.extras!!.containsKey(Constants.checkList)){
             isfromCheckList=Gson().fromJson(intent.getStringExtra(Constants.checkList),UserCheckListResponse.Data.CheckListItem::class.java)
             visitdetails=Gson().fromJson(intent.getStringExtra(Constants.visitDetails),ResponseTripDetails::class.java)

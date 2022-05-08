@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.fragment.app.activityViewModels
+import com.hamid.template.BuildConfig
 import com.hamid.template.base.BaseFragment
 import com.hamid.template.databinding.LoginFragmentBinding
 import com.hamid.template.ui.loginAndRegister.RegisterVM
@@ -43,6 +44,7 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
     }
 
     private fun setUpListners() {
+        binding.version.text="Version ${BuildConfig.VERSION_NAME}"
         arrayList= ArrayList()
         Thread{
             arrayList.addAll(sharedPreferenceManager.getSavedPassword())

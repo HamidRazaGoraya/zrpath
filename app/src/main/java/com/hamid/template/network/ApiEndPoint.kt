@@ -11,6 +11,7 @@ object ApiEndPoint {
 
     const val LoginAPi= apiStart+"Security/Login"
     const val dashBoard= apiStart+"Security/Dashboard"
+    const val GetDashboard= apiStart+ TransportationGroup+"GetDashboard"
     const val reffrelDetails= apiStart+""
 
     const val EmployeeDetails= apiStart+ Employee+"GetEmployeeId"
@@ -36,4 +37,5 @@ object ApiEndPoint {
     const val GetMissingDocumentList= apiStart+ Document+"GetMissingDocumentList"
     const val checkListCompleted= apiStart+ Referral+"SetChecklistComplete"
     const val UploadDocument= apiStart+ Document+"UploadDocument"
+    const val GetMedicationFormList= apiStart+ Document+"GetMedicationFormList"
 }

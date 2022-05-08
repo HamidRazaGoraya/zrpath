@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':imagepicker', ':scandoclibrary'
 rootProject.name = "androidTemplate"

@@ -9,6 +9,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.navigation.Navigation
+import com.hamid.template.BuildConfig
 import com.hamid.template.R
 import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityMainBinding
@@ -52,6 +53,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
 
     @Override
     override fun initiate() {
+        binding.navigationView.version.text="Version ${BuildConfig.VERSION_NAME}"
         window.setNavigationBarColor(resources.getColor(R.color.white))
         window.statusBarColor=resources.getColor(R.color.primary_two)
         val  sidemenu=binding.navigationView

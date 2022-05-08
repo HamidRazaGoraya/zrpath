@@ -19,17 +19,19 @@ import com.hamid.template.databinding.ActivityTodayTripBinding
 import com.hamid.template.ui.dashboard.models.ResponseDashBoard
 import com.hamid.template.ui.dashboard.models.VisitListModel
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
+import com.hamid.template.ui.mapScreen.ClientMapActivity
 import com.hamid.template.ui.todayTripDetails.TodayTripDetailsActivity
 import com.hamid.template.ui.todayTripsList.adopter.RefferalListAdopter
+import com.hamid.template.ui.todayTripsList.models.RequestDashboardAPI
 import com.hamid.template.ui.todayTripsList.models.RequestReferralList
 import com.hamid.template.ui.todayTripsList.models.ResponseReferralList
-import com.hamid.template.utils.Constants
-import com.hamid.template.utils.Resource
-import com.hamid.template.utils.SharedPreferenceManager
+import com.hamid.template.utils.*
+import com.hamid.template.utils.dialogs.CalenderDatePicker
 import com.hamid.template.utils.dialogs.eventsListners.OnRefferalClicked
-import com.hamid.template.utils.setShowCondition
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class TodayTripActivity : BaseActivity<ActivityTodayTripBinding, TodayTripVM>(), TodayTripContracts {
@@ -59,6 +61,7 @@ class TodayTripActivity : BaseActivity<ActivityTodayTripBinding, TodayTripVM>(),
 
 
     override val viewModel: TodayTripVM by viewModels()
+    lateinit var calendar:Calendar
 
     @Override
     override fun setBinding(layoutInflater: LayoutInflater): ActivityTodayTripBinding {
@@ -71,6 +74,53 @@ class TodayTripActivity : BaseActivity<ActivityTodayTripBinding, TodayTripVM>(),
     override fun setUpView() {
         window.setNavigationBarColor(resources.getColor(R.color.white))
         window.statusBarColor=resources.getColor(R.color.primary_two)
+        intent.extras?.let {
+            Log.i("dataCheck","001")
+            if (it.containsKey(Constants.groupId)){
+                Log.i("dataCheck","002")
+                viewModel.transportationGroupId=it.getInt(Constants.groupId,0)
+                Log.i("dataCheck","003 ${viewModel.transportationGroupId}")
+            }
+        }
+
+        calendar= Calendar.getInstance()
+        binding.SelectedDate.setText(calendar.getDateValueLocal())
+        val items = listOf(Constants.Up, Constants.Down)
+        val adapter = ArrayAdapter(this, R.layout.list_item, items)
+        binding.trips.setAdapter(adapter)
+        binding.trips.setText(sharedPreferenceManager.getTripType,false)
+        binding.trips.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                sharedPreferenceManager.getTripType=binding.trips.text.toString()
+                binding.trips.clearFocus()
+                viewModel.todayTripResponse?.let {
+                    viewModel.handleTrips(it)
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+        })
+        binding.SelectedDate.setOnClickListener {
+            CalenderDatePicker(object : CalenderDatePicker.OnSelected{
+                override fun Selected(calendar: Calendar) {
+                    this@TodayTripActivity.calendar=calendar
+                    binding.SelectedDate.setText(calendar.getDateValueLocal())
+                    viewModel.getDataApi()
+                }
+            },calendar = calendar).show(supportFragmentManager,"Calender")
+        }
+        binding.toolbar.setNavigationOnClickListener {
+            viewModel.onBackClick()
+        }
+
+
+
        // group=Gson().fromJson(intent.getStringExtra(Constants.data),TodayTripResponse.Data.Down::class.java)
         binding.toolbar.setNavigationOnClickListener {
             finish()
@@ -102,42 +152,19 @@ class TodayTripActivity : BaseActivity<ActivityTodayTripBinding, TodayTripVM>(),
     }
 
     override fun getDataApi() {
-        viewModel.getDashboard().observe(this){
+
+        viewModel.getTodayTrips(calendar.getDateValue(),0).observe(this){
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     viewModel.HideLoading()
                     it.data?.let { it1 ->
-                        if (!it1.isSuccess)   {
-                            showSnackBar(it.message)
-                            return@observe
-                        }
-                       it1.data?.let {
-                           val visitListModel=ArrayList<VisitListModel>()
-                           if (!it.todayVisits.isNullOrEmpty()){
-                               visitListModel.add(VisitListModel(true,null,true,"Today's visits"))
-                               for (i in 0 until it.todayVisits.size){
-                                   visitListModel.add(VisitListModel(true,it.todayVisits[i],false,null))
-                               }
-                           }
-                           if (!it.nextDayVisits.isNullOrEmpty()){
-                               visitListModel.add(VisitListModel(false,null,true,"Tomorrow's visits"))
-                               for (i in 0 until it.nextDayVisits.size){
-                                   visitListModel.add(VisitListModel(false,it.nextDayVisits[i],false,null))
-                               }
-                           }
-                           refferalListAdopter.updateItems(visitListModel)
-                           refferalListAdopter.notifyDataSetChanged()
-                           binding.NoDataFound.setShowCondition(visitListModel.isNullOrEmpty())
-                       }
+                        viewModel.todayTripResponse=it1
+                        viewModel.handleTrips(it1)
                     }
                 }
                 Resource.Status.ERROR -> {
                     viewModel.HideLoading()
-                    if (it.data==null){
-                        showSnackBar(Gson().toJson(it.data))
-                    }else{
-                        it.message?.let { it1 -> showSnackBar(it1) }
-                    }
+                    it.message?.let { it1 -> showSnackBar(it1) }
                 }
                 Resource.Status.LOADING -> {
                     viewModel.ShowLoading()
@@ -146,7 +173,28 @@ class TodayTripActivity : BaseActivity<ActivityTodayTripBinding, TodayTripVM>(),
         }
     }
 
+    override fun handleTrips(todayTripResponse: TodayTripResponse) {
+        if (sharedPreferenceManager.getTripType.equals(Constants.Down)){
+            viewModel.loadTripDirection(todayTripResponse.data.downList)
+        }else{
+            viewModel.loadTripDirection(todayTripResponse.data.upList)
+        }
+    }
 
+    override fun loadTripDirection(data: List<TodayTripResponse.Data.Down>) {
+        binding.NoDataFound.setShowCondition(data.isNullOrEmpty())
+        if (data.isNullOrEmpty()){
+          return
+        }
+        val list=ArrayList<VisitListModel>()
+        data.forEach { group->
+            list.add(VisitListModel(null,true,group.transportationGroup))
+            group.clientList.forEach {child->
+                list.add(VisitListModel(child,false,group.transportationGroup))
+            }
+        }
+        refferalListAdopter.updateItems(list)
+    }
     override fun HideLoading() {
         binding.swipe.isRefreshing=false
         hideLoader()
@@ -158,26 +206,51 @@ class TodayTripActivity : BaseActivity<ActivityTodayTripBinding, TodayTripVM>(),
 
     override fun setupAdopter() {
         refferalListAdopter= RefferalListAdopter(object :OnRefferalClicked{
-            override fun onClicked(item: ResponseDashBoard.Data.VisitItem) {
-                viewModel.moveToDetailsActivity(item)
+
+            override fun onClicked(visitListModel: VisitListModel) {
+
+            }
+
+            override fun onPrepareClicked(visitListModel: VisitListModel) {
+
+            }
+
+            override fun onStartTripClicked(visitListModel: VisitListModel) {
+
+            }
+
+            override fun onEndTripClicked(visitListModel: VisitListModel) {
+
+            }
+
+            override fun onGroupTripStart(group: TodayTripResponse.Data.Down.TransportationGroup) {
+                val bundle=Bundle()
+                bundle.putString(Constants.data,Gson().toJson(group))
+                bundle.putBoolean(Constants.startTrip,true)
+                todayTripDetails.launch(ClientMapActivity.getIntent(this@TodayTripActivity).putExtras(bundle))
+            }
+
+            override fun onGroupTripEnd(group: TodayTripResponse.Data.Down.TransportationGroup) {
+                val bundle=Bundle()
+                bundle.putString(Constants.data,Gson().toJson(group))
+                bundle.putBoolean(Constants.startTrip,false)
+                todayTripDetails.launch(ClientMapActivity.getIntent(this@TodayTripActivity).putExtras(bundle))
             }
         })
+
         binding.refferalList.adapter=refferalListAdopter
         viewModel.getDataApi()
     }
 
-    override fun moveToDetailsActivity(item: ResponseDashBoard.Data.VisitItem) {
-        todayTripDetails.launch(TodayTripDetailsActivity.getIntent(this).putExtra(Constants.data,Gson().toJson(item)))
+    override fun moveToDetailsActivity(visitListModel: VisitListModel) {
+        todayTripDetails.launch(TodayTripDetailsActivity.getIntent(this).putExtra(Constants.data,Gson().toJson(visitListModel)))
     }
+
 
     val todayTripDetails = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
     { result: ActivityResult ->
         if (result.resultCode == Activity.RESULT_OK) {
-            when(result.data!!.getIntExtra(Constants.actionKey,0)){
-                1->{
-
-                }
-            }
+            viewModel.getDataApi()
         }
 
     }

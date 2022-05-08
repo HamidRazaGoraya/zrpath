@@ -1,5 +1,6 @@
 package com.hamid.template.network
 
+import com.hamid.template.ui.checkList.models.RequestMedicationFormsList
 import com.hamid.template.ui.checkList.models.RequestSelfCheckList
 import com.hamid.template.ui.facilitiesPatiensts.models.RequestDeleteCheck
 import com.hamid.template.ui.facilitiesPatiensts.models.RequestSaveCheck
@@ -12,8 +13,10 @@ import com.hamid.template.ui.fillForm.model.RequestSavedOpenForm
 import com.hamid.template.ui.mapScreen.models.RequestDocumentUrl
 import com.hamid.template.ui.mapScreen.models.RequestTripClose
 import com.hamid.template.ui.mapScreen.models.RequestTripStart
+import com.hamid.template.ui.mapScreen.models.UserCheckListRequest
 import com.hamid.template.ui.missingForms.model.RequestMissingDocument
 import com.hamid.template.ui.missingForms.model.RequestUserMissingDocument
+import com.hamid.template.ui.todayTripsList.models.RequestDashboardAPI
 import com.hamid.template.ui.todayTripsList.models.RequestReferralList
 import com.hamid.template.utils.performGetOperation
 import java.io.File
@@ -34,8 +37,8 @@ class ApiRepository @Inject constructor(
     fun getTodayTrip(date:String,facilityId:Int) = performGetOperation {
         apiDataSource.getTodayTrip(date,facilityId)
     }
-    fun getUserCheckList(ReferralID:Int,TripDirection:String)= performGetOperation {
-        apiDataSource.getUserCheckList( ReferralID,TripDirection)
+    fun getUserCheckList(data: UserCheckListRequest.Data)= performGetOperation {
+        apiDataSource.getUserCheckList(data)
     }
     fun getDocumentList()= performGetOperation {
         apiDataSource.getDocumentList()
@@ -73,8 +76,8 @@ class ApiRepository @Inject constructor(
     fun GetReferralListForTransportationGroup(data: RequestReferralList.Data)= performGetOperation {
         apiDataSource.GetReferralListForTransportationGroup(data)
     }
-    fun getDashboard()= performGetOperation {
-        apiDataSource.getDashBoard()
+    fun getDashboard(data: RequestDashboardAPI.Data)= performGetOperation {
+        apiDataSource.getDashBoard(data)
     }
     fun OnGoingVisit(ScheduleID:Int,referralID:Int)= performGetOperation {
         apiDataSource.OnGoingVisit(ScheduleID,referralID)
@@ -94,7 +97,13 @@ class ApiRepository @Inject constructor(
     fun saveUserSignature(TransportVisitIDValue:Int,ReferralIDValue:Int,ScheduleIDValue:Int,file: File)= performGetOperation {
             apiDataSource.saveUserSignature(TransportVisitIDValue, ReferralIDValue, ScheduleIDValue, file)
     }
-    fun UploadDocument(ReferralIDValue:Int,KindOfDocument:String,file: File)= performGetOperation {
-        apiDataSource.UploadDocument( ReferralIDValue, KindOfDocument, file)
+    fun UploadDocument(fileName:String,ReferralIDValue:Int,KindOfDocument:String,file: File)= performGetOperation {
+        apiDataSource.UploadDocument( fileName,ReferralIDValue, KindOfDocument, file)
+    }
+    fun GetMedicationFormList(data: RequestMedicationFormsList.Data)= performGetOperation {
+        apiDataSource.GetMedicationFormList(data)
+    }
+    fun getNewDashboard(date:String,facilityId:Int) = performGetOperation {
+        apiDataSource.getNewDashboard(date,facilityId)
     }
 }

@@ -20,6 +20,7 @@ interface TodayTripDetailsContracts : ViewInteractor {
 
     fun activeTimeLine(timelineView: TimelineView,string: String,start: Boolean,end: Boolean)
     fun disableTimeLine(timelineView: TimelineView,string: String,start: Boolean,end: Boolean)
+    fun inProgressTimeLine(timelineView: TimelineView,string: String,start: Boolean,end: Boolean)
 
     fun clickedStartTrip()
     fun clickedPickUpCheckList()
@@ -38,4 +39,6 @@ interface TodayTripDetailsContracts : ViewInteractor {
     fun loadTripCompletedView()
 
     fun fillUserDetails(data:ResponseOnGoingVisit.Data)
+
+    fun handlePrepare()
 }

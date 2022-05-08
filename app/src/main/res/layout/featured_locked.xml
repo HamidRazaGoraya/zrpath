@@ -44,13 +44,31 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <Button
-            android:id="@+id/ActionButton"
-            android:layout_marginBottom="@dimen/_20sdp"
-            style="@style/dialog_button"
-            android:text="Go to Trip list"
+        <LinearLayout
             android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+            <Button
+                android:visibility="visible"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:id="@+id/StartPrepare"
+                style="@style/dialog_button"
+                app:strokeColor="@color/color_green"
+                android:textColor="@color/color_green"
+                android:text="Prepare visit"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:id="@+id/ActionButton"
+                style="@style/dialog_button"
+                android:text="Go to Trip list"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

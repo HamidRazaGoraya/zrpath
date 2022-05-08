@@ -58,7 +58,7 @@ fun String?.CheckForNotNull():String{
 }
 
 fun String?.AddRequired():String{
-    return "${this.CheckForNotNull()} *"
+    return "${this.CheckForNotNull()} "
 }
 
 fun String?.GetImageName():String{

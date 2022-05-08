@@ -3,6 +3,8 @@ package com.hamid.template.ui.todayTripDetails
 import com.hamid.template.base.BaseViewModel
 import com.hamid.template.network.ApiRepository
 import com.hamid.template.ui.dashboard.models.ResponseDashBoard
+import com.hamid.template.ui.dashboard.models.VisitListModel
+import com.hamid.template.ui.facilitiesPatiensts.models.RequestSetTime
 import com.hamid.template.ui.todayTripDetails.models.ResponseOnGoingVisit
 import com.repsly.library.timelineview.TimelineView
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +17,8 @@ constructor(
     private val apiRepository: ApiRepository,
 ) : BaseViewModel<TodayTripDetailsContracts>() {
 
-    lateinit var visitItem: ResponseDashBoard.Data.VisitItem
+    lateinit var visitListModel: VisitListModel
+    var prePareMode=false;
     fun initThings() {
         viewInteractor?.setUpView()
         viewInteractor?.checkGroupStatus()
@@ -39,6 +42,7 @@ constructor(
     fun activeDrop()=viewInteractor?.activeDrop()
     fun disableTimeLine(timelineView: TimelineView,string: String,start: Boolean,end: Boolean)=viewInteractor?.disableTimeLine(timelineView,string, start, end)
     fun activeTimeLine(timelineView: TimelineView,string: String,start: Boolean,end: Boolean)=viewInteractor?.activeTimeLine(timelineView,string,start,end)
+    fun inProgressTimeLine(timelineView: TimelineView,string: String,start: Boolean,end: Boolean)=viewInteractor?.inProgressTimeLine(timelineView,string, start, end)
 
     fun handleActivation(){
         val int=currentActive
@@ -63,15 +67,6 @@ constructor(
             viewInteractor?.loadTripCompletedView()
         }
 
-        visitItem.GroupTripStatus?.let {
-            when(it){
-                "Trip Completed"->{
-                    loadGroupTripCompleted()
-                }
-                else->{
-                }
-            }
-        }
     }
 
 
@@ -86,11 +81,16 @@ constructor(
     fun HideLoading()=viewInteractor?.HideLoading()
     fun ShowLoading()=viewInteractor?.ShowLoading()
 
-
+    fun saveTTime(data: RequestSetTime.Data)=apiRepository.saveTTime(data)
     fun loadGroupNotStartView()=viewInteractor?.loadGroupNotStartView()
     fun loadGroupStartedView()=viewInteractor?.loadGroupStartedView()
-    fun loadTripCompletedView()=viewInteractor?.loadTripCompletedView()
     fun loadGroupTripCompleted()=viewInteractor?.loadGroupTripCompleted()
     fun fillUserDetails(data:ResponseOnGoingVisit.Data)=viewInteractor?.fillUserDetails(data)
     fun saveUserSignature(TransportVisitIDValue:Int,ReferralIDValue:Int,ScheduleIDValue:Int,file: File)=apiRepository.saveUserSignature(TransportVisitIDValue, ReferralIDValue, ScheduleIDValue, file)
+
+    fun handlePrepare(){
+        prePareMode=true
+        viewInteractor?.handlePrepare()
+    }
+
 }

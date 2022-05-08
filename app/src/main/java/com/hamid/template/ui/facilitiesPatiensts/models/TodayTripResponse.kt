@@ -39,13 +39,28 @@ data class TodayTripResponse(
             val transportationGroup: TransportationGroup,
             @SerializedName("TransportationGroupID")
             @Expose
-            val transportationGroupID: Any?, // null
+            val transportationGroupID: Int, // null
             @Expose
             var TripState:Int=0,
             @Expose
             var responseTripDetails: ResponseTripDetails?=null
         ) {
             data class Client(
+                @SerializedName("scheduleID")
+                @Expose
+                val scheduleID:Int,
+                @SerializedName("GroupTripStatus")
+                @Expose
+                val GroupTripStatus:String,
+                @SerializedName("ChildTripStatus")
+                @Expose
+                val ChildTripStatus:String,
+                @SerializedName("IsCheckListCompleted")
+                @Expose
+                val IsCheckListCompleted:Boolean,
+                @SerializedName("PatientSignature")
+                val PatientSignature:String?,
+
                 @SerializedName("ReferralID")
                 @Expose
                 val ReferralID:Int,

@@ -3,6 +3,7 @@ package com.hamid.template.ui.facilitiesPatiensts
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import androidx.navigation.Navigation
@@ -143,6 +144,7 @@ class FacilityActivity : BaseActivity<ActivityFacilityBinding, FacilitiyVM>(), F
     }
 
     override fun moveToTodayTrips(group: TodayTripResponse.Data.Down) {
-        startActivity(TodayTripActivity.getIntent(this).putExtra(Constants.data,Gson().toJson(group)))
+        Log.i("dataCheck","001 ${group.transportationGroupID}")
+        startActivity(TodayTripActivity.getIntent(this).putExtra(Constants.data,Gson().toJson(group)).putExtra(Constants.groupId,group.transportationGroup.transportationGroupID))
     }
 }

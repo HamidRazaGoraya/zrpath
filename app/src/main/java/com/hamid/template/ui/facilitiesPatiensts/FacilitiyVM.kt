@@ -36,7 +36,6 @@ constructor(
     fun showSelectFormDialog(documentList: ResponseDocumentList, client: TodayTripResponse.Data.Down.Client)=viewInteractor?.showSelectFormDialog(documentList,client)
     fun getFormsList(clicked:Boolean,client: TodayTripResponse.Data.Down.Client)=viewInteractor?.getFormsList(clicked,client)
     fun onCheckListClicked()=viewInteractor?.onCheckListClicked()
-    fun getUserCheckList(ReferralID:Int,TripDirection:String)=apiRepository.getUserCheckList(ReferralID,TripDirection)
     fun getDocumentList()=apiRepository.getDocumentList()
     fun getDocumentUrl(data: RequestDocumentUrl.Data)=apiRepository.getDocumentUrl(data)
 

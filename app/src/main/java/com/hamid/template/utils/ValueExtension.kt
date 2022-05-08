@@ -11,6 +11,7 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.google.gson.Gson
+import com.hamid.template.R
 import com.hamid.template.ui.todayTripsList.models.RequestReferralList
 import java.io.File
 import java.lang.reflect.Type
@@ -20,6 +21,7 @@ import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 fun Double.decimalConverter(): String {
     val precision = DecimalFormat("00.00")
@@ -97,6 +99,28 @@ fun Calendar.getDateValueLocal():String{
 fun Chip.getRandomColor() {
     this.setTextColor(Color.parseColor("#ffffff"))
     this.chipBackgroundColor= ColorStateList.valueOf((Math.random() * 16777215).toInt() or (0xFF shl 24))
+}
+fun Chip.getRandomColorChip() {
+    val context=this.context.resources
+    val ids=ArrayList<Int>()
+    ids.add(context.getColor(R.color.random01))
+    ids.add(context.getColor(R.color.random02))
+    ids.add(context.getColor(R.color.random03))
+    ids.add(context.getColor(R.color.random04))
+    ids.add(context.getColor(R.color.random05))
+    ids.add(context.getColor(R.color.random06))
+    ids.add(context.getColor(R.color.random07))
+    ids.add(context.getColor(R.color.random08))
+    ids.add(context.getColor(R.color.random09))
+    ids.add(context.getColor(R.color.random010))
+    ids.add(context.getColor(R.color.random011))
+    ids.add(context.getColor(R.color.random012))
+    ids.add(context.getColor(R.color.random013))
+    ids.add(context.getColor(R.color.random014))
+    ids.add(context.getColor(R.color.random015))
+    ids.add(context.getColor(R.color.random016))
+    this.setTextColor(Color.parseColor("#ffffff"))
+    this.chipBackgroundColor= ColorStateList.valueOf(ids.random())
 }
 
 fun Boolean.isPickUpString():String{

@@ -2,12 +2,14 @@ package com.hamid.template.ui.checkList
 
 import com.hamid.template.base.BaseViewModel
 import com.hamid.template.network.ApiRepository
+import com.hamid.template.ui.checkList.models.RequestMedicationFormsList
 import com.hamid.template.ui.checkList.models.RequestSelfCheckList
 import com.hamid.template.ui.facilitiesPatiensts.models.RequestDeleteCheck
 import com.hamid.template.ui.facilitiesPatiensts.models.RequestSaveCheck
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.ui.mapScreen.models.RequestDocumentUrl
 import com.hamid.template.ui.mapScreen.models.ResponseDocumentList
+import com.hamid.template.ui.mapScreen.models.UserCheckListRequest
 import com.hamid.template.ui.mapScreen.models.UserCheckListResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -28,7 +30,8 @@ constructor(
     fun ShowLoading()=viewInteractor?.ShowLoading()
     fun HideLoading()=viewInteractor?.HideLoading()
     fun checkForCheckList()=  viewInteractor?.checkForCheckList()
-    fun getUserCheckList(ReferralID:Int,TripDirection:String)=apiRepository.getUserCheckList(ReferralID,TripDirection)
+    fun getUserCheckList(data: UserCheckListRequest.Data)=apiRepository.getUserCheckList(data)
+
     fun checkCheckList(data: RequestSaveCheck.Data)=apiRepository.getSaveCheckPoint(data)
     fun unCheckList(data: RequestDeleteCheck.Data)=apiRepository.deleteCheckList(data)
 
@@ -39,4 +42,5 @@ constructor(
     fun getDocumentUrl(data: RequestDocumentUrl.Data)=apiRepository.getDocumentUrl(data)
     fun checkListCompleted(data: RequestSelfCheckList.Data)=apiRepository.checkListCompleted(data)
     fun checkListCompleted()=viewInteractor?.checkListCompleted()
+    fun showMedicationDialog(checK: UserCheckListResponse.Data.CheckListItem)=viewInteractor?.showMedicationDialog(checK)
 }

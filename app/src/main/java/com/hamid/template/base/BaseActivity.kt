@@ -73,11 +73,19 @@ abstract class BaseActivity<B : ViewBinding, VM : ViewModel> : AppCompatActivity
     }
 
     fun showLoader(){
-       loadingDialog.show()
+       try {
+           loadingDialog.show()
+       }catch (e:Exception){
+           e.printStackTrace()
+       }
     }
 
     fun hideLoader(){
-       loadingDialog.dismiss()
+        try {
+            loadingDialog.dismiss()
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
     }
 
     fun netWorkCheck() {

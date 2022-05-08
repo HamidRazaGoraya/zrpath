@@ -16,6 +16,9 @@ data class UserCheckListRequest(
     val token: String // string
 ) {
     data class Data(
+        @SerializedName("TransportVisitID")
+        @Expose
+        val TransportVisitID: Int, // 0
         @SerializedName("EmployeeID")
         @Expose
         val employeeID: Int, // 0

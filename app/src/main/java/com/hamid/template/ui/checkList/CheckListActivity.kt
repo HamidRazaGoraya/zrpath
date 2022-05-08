@@ -1,6 +1,5 @@
 package com.hamid.template.ui.checkList
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,18 +11,16 @@ import com.google.gson.Gson
 import com.hamid.template.R
 import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityCheckListBinding
+import com.hamid.template.ui.medicationFormsList.MedicationFormsActivity
 import com.hamid.template.ui.checkList.adopter.CheckListAdopter
 import com.hamid.template.ui.checkList.models.RequestSelfCheckList
 import com.hamid.template.ui.facilitiesPatiensts.models.RequestDeleteCheck
 import com.hamid.template.ui.facilitiesPatiensts.models.RequestSaveCheck
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.ui.fillForm.FillFormActivity
-import com.hamid.template.ui.mapScreen.models.RequestDocumentUrl
-import com.hamid.template.ui.mapScreen.models.ResponseDocumentList
-import com.hamid.template.ui.mapScreen.models.ResponseTripDetails
-import com.hamid.template.ui.mapScreen.models.UserCheckListResponse
+import com.hamid.template.ui.mapScreen.models.*
 import com.hamid.template.utils.*
-import com.hamid.template.utils.dialogs.AllFormsList
+import com.hamid.template.utils.dialogs.OldOrNewFom
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -118,8 +115,13 @@ class CheckListActivity : BaseActivity<ActivityCheckListBinding, CheckListVM>(),
             }
 
             override fun onFormClicked(checK: UserCheckListResponse.Data.CheckListItem) {
-                viewModel.ShowLoading()
-                viewModel.apiCallForUrl(checK,client)
+                if (checK.detail.contains("Medication")){
+                    viewModel.showMedicationDialog(checK)
+                }else{
+                    viewModel.ShowLoading()
+                    viewModel.apiCallForUrl(checK,client)
+                }
+
             }
         })
        binding.checkRecycle.adapter=checkListAdopter
@@ -165,7 +167,7 @@ class CheckListActivity : BaseActivity<ActivityCheckListBinding, CheckListVM>(),
     }
 
     override fun checkForCheckList() {
-        viewModel.getUserCheckList(client.ReferralID,client.tripDirection).observe(this){
+        viewModel.getUserCheckList(UserCheckListRequest.Data(visitdetails.data!!.transportVisitID,sharedPreferenceManager.getEmployID(),client.ReferralID,client.tripDirection)).observe(this){
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     viewModel.HideLoading()
@@ -234,4 +236,21 @@ class CheckListActivity : BaseActivity<ActivityCheckListBinding, CheckListVM>(),
 
     }
 
+
+    override fun showMedicationDialog(checK: UserCheckListResponse.Data.CheckListItem) {
+        OldOrNewFom(object :OldOrNewFom.Buttons{
+            override fun NewForm() {
+                viewModel.ShowLoading()
+                viewModel.apiCallForUrl(checK,client)
+            }
+
+            override fun OldForm() {
+                val bundle=Bundle()
+                bundle.putString(Constants.client,Gson().toJson(client))
+                bundle.putString(Constants.checkList,Gson().toJson(checK))
+                bundle.putString(Constants.visitDetails,Gson().toJson(visitdetails))
+                activityForResults.launch(MedicationFormsActivity.getIntent(this@CheckListActivity).putExtras(bundle))
+            }
+        },"Create new or edit").show(supportFragmentManager,"OldNew")
+    }
 }

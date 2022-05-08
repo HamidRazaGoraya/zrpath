@@ -37,7 +37,7 @@ data class ResponseUserMissingDocument(
 		val count: Int,
 
 		@field:SerializedName("EBFormID")
-		val eBFormID: String? = null,
+		val eBFormID: String?,
 
 		@field:SerializedName("FormLongName")
 		val formLongName: String? = null,

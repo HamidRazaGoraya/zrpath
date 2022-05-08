@@ -69,20 +69,23 @@
         <entry key="..\:/zipath/app/src/main/res/drawable/share_request_switch.xml" value="0.156" />
         <entry key="..\:/zipath/app/src/main/res/drawable/small_clear_icon.xml" value="0.1965" />
         <entry key="..\:/zipath/app/src/main/res/drawable/text_round_yellow.xml" value="0.135" />
+        <entry key="..\:/zipath/app/src/main/res/layout/activity_came_scan.xml" value="0.18854166666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_check_list.xml" value="0.33" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_facility.xml" value="0.25" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_fill_form.xml" value="0.20416666666666666" />
-        <entry key="..\:/zipath/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
+        <entry key="..\:/zipath/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_maps.xml" value="0.1" />
+        <entry key="..\:/zipath/app/src/main/res/layout/activity_medication_forms.xml" value="0.11574074074074074" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_missing_forms.xml" value="0.33" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_onboarding.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_registration.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_splash.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_today_trip.xml" value="0.25" />
-        <entry key="..\:/zipath/app/src/main/res/layout/activity_today_trip_details.xml" value="0.33" />
+        <entry key="..\:/zipath/app/src/main/res/layout/activity_today_trip_details.xml" value="0.2" />
         <entry key="..\:/zipath/app/src/main/res/layout/add_user_details.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/calender_date_picker.xml" value="0.25" />
-        <entry key="..\:/zipath/app/src/main/res/layout/client_details.xml" value="0.33" />
+        <entry key="..\:/zipath/app/src/main/res/layout/client_details.xml" value="0.6271428571428571" />
+        <entry key="..\:/zipath/app/src/main/res/layout/confirm_dialog.xml" value="0.5" />
         <entry key="..\:/zipath/app/src/main/res/layout/custom_dialog_image_pocker.xml" value="0.1287037037037037" />
         <entry key="..\:/zipath/app/src/main/res/layout/custome_chip.xml" value="2.0" />
         <entry key="..\:/zipath/app/src/main/res/layout/dialog_loading.xml" value="0.1" />
@@ -100,12 +103,13 @@
         <entry key="..\:/zipath/app/src/main/res/layout/fragment_notification.xml" value="0.20416666666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/fragment_patient.xml" value="0.18854166666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/fragment_settings.xml" value="0.20416666666666666" />
-        <entry key="..\:/zipath/app/src/main/res/layout/heading_visits.xml" value="0.25" />
+        <entry key="..\:/zipath/app/src/main/res/layout/heading_visits.xml" value="0.5" />
         <entry key="..\:/zipath/app/src/main/res/layout/list_item.xml" value="0.20416666666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/login_fragment.xml" value="0.25" />
         <entry key="..\:/zipath/app/src/main/res/layout/login_screen.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/map_client_details.xml" value="0.5" />
         <entry key="..\:/zipath/app/src/main/res/layout/navigation_view.xml" value="0.31862745098039214" />
+        <entry key="..\:/zipath/app/src/main/res/layout/old_or_new.xml" value="0.18854166666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/recycle_all_client.xml" value="0.33" />
         <entry key="..\:/zipath/app/src/main/res/layout/recycle_check_box.xml" value="0.33" />
         <entry key="..\:/zipath/app/src/main/res/layout/recycle_visit.xml" value="0.33" />

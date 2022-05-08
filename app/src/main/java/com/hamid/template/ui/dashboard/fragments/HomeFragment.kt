@@ -17,6 +17,7 @@ import com.hamid.template.databinding.RegisterFragmentBinding
 import com.hamid.template.ui.dashboard.MainVM
 import com.hamid.template.ui.loginAndRegister.RegisterVM
 import com.hamid.template.ui.onboarding.OnBoardingVM
+import com.hamid.template.ui.todayTripsList.models.RequestDashboardAPI
 import com.hamid.template.utils.Constants
 import com.hamid.template.utils.Resource
 import com.hamid.template.utils.SharedPreferenceManager
@@ -43,7 +44,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainVM>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnClickEvents()
-        viewModel.getDashboard().observe(viewLifecycleOwner){
+        viewModel.getDashboard(RequestDashboardAPI.Data(0,sharedPreferenceManager.getEmployID())).observe(viewLifecycleOwner){
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     viewModel.HideLoading()

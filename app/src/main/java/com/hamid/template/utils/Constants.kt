@@ -25,4 +25,7 @@ object Constants {
     const val onGoingVisit="onGoingVisit"
     const val startTrip="startTrip"
     const val scheduleID="scheduleID"
+    const val documentURl="documentURl"
+    const val groupId="groupId"
+
 }

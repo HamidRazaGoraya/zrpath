@@ -14,11 +14,15 @@ data class ResponseDocumentUrl(
 	val message: String,
 
 	@field:SerializedName("Data")
-	val data: String,
+	var data: String,
 
 	@field:SerializedName("Code")
-	val code: String
-){
+	val code: String,
+	@field:SerializedName("isInternal")
+	var isInternal: Boolean=true,
+	@field:SerializedName("OrbeonFormID")
+	val orbeonFormID: String
+	){
 	data class ErrorsItem(
 
 		@field:SerializedName("Field")

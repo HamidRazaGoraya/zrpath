@@ -13,9 +13,11 @@ import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityMissingFormsBinding
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.ui.fillForm.FillFormActivity
+import com.hamid.template.ui.fillForm.OpenFormActivity
 import com.hamid.template.ui.fillForm.model.RequestSavedOpenForm
 import com.hamid.template.ui.mapScreen.models.RequestDocumentUrl
 import com.hamid.template.ui.mapScreen.models.ResponseDocumentList
+import com.hamid.template.ui.mapScreen.models.ResponseDocumentUrl
 import com.hamid.template.ui.mapScreen.models.ResponseTripDetails
 import com.hamid.template.ui.missingForms.fragments.MissingFormsFragments
 import com.hamid.template.ui.missingForms.fragments.UploadedFormsFragments
@@ -114,23 +116,19 @@ class MissingFormsActivity : BaseActivity<ActivityMissingFormsBinding, MissingFo
     override fun showSelectFormDialog(documentList: ResponseDocumentList, client: TodayTripResponse.Data.Down.Client) {
         AllFormsList(object : AllFormsList.Buttons{
             override fun CareTypeClicked(careTypeId: ResponseDocumentList.DataItem) {
-                viewModel.apiCallForUrl(careTypeId,client)
+                viewModel.apiCallForUrl(careTypeId.eBFormID,client)
             }
         },documentList.data!!).show(supportFragmentManager,"ChooseForm")
     }
 
-    override fun apiCallForUrl(form: ResponseDocumentList.DataItem, client: TodayTripResponse.Data.Down.Client) {
-        val data= RequestDocumentUrl.Data(true,client.ReferralID,form.eBFormID)
+    override fun apiCallForUrl(eBFormID: String, client: TodayTripResponse.Data.Down.Client) {
+        val data= RequestDocumentUrl.Data(true,client.ReferralID,eBFormID)
         viewModel.getDocumentUrl(data).observe(this){
             when (it.status) {
                 Resource.Status.SUCCESS -> {
                     viewModel.HideLoading()
                     it.data?.let { it1 ->
-                        val bundle=Bundle()
-                        bundle.putString(Constants.data,Gson().toJson(it1))
-                        bundle.putString(Constants.form,Gson().toJson(form))
-                        bundle.putString(Constants.client,Gson().toJson(client))
-                        startActivity(FillFormActivity.getIntent(this).putExtras(bundle))
+                        viewModel.openNewFormActivity(it1,client)
                     }
                 }
                 Resource.Status.ERROR -> {
@@ -146,6 +144,15 @@ class MissingFormsActivity : BaseActivity<ActivityMissingFormsBinding, MissingFo
     }
 
 
+    override fun openNewFormActivity(data: ResponseDocumentUrl, client: TodayTripResponse.Data.Down.Client) {
+        val bundle=Bundle()
+        bundle.putString(Constants.data,Gson().toJson(data))
+        bundle.putString(Constants.client,Gson().toJson(client))
+        startActivity(FillFormActivity.getIntent(this).putExtras(bundle))
+    }
+    override fun openSavedFormActivity(bundle: Bundle) {
+        startActivity(OpenFormActivity.getIntent(this).putExtras(bundle))
+    }
 
     override fun openClicked(item: ResponseMissingDocument.DataItem) {
              viewModel.openSavedForm(RequestSavedOpenForm.Data(item.referralDocumentID,item.referralID)).observe(this){

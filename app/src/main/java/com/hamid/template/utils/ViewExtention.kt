@@ -178,18 +178,18 @@ fun TextView.ShowEmptyDot(){
 fun MaterialCardView.setLocalEnable(boolean: Boolean){
     this.isEnabled=boolean
     if (boolean){
-        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.getColor(R.color.white)))
+        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.resources.getColor(R.color.white)))
     }else{
-        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.getColor(R.color.color_divider)))
+        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.resources.getColor(R.color.color_divider)))
     }
 }
 fun MaterialCardView.setCheckListColor(boolean: Boolean){
     Log.i("here",boolean.toString()+"hamid")
     if (boolean){
         Log.i("here",boolean.toString()+"hamid2")
-        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.getColor(R.color.listBackDark)))
+        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.resources.getColor(R.color.listBackDark)))
     }else{
         Log.i("here",boolean.toString()+"hamid3")
-        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.getColor(R.color.listBackLight)))
+        this.setCardBackgroundColor(ColorStateList.valueOf(this.context.resources.getColor(R.color.listBackLight)))
     }
 }

@@ -1,5 +1,5 @@
 package com.hamid.template.ui.dashboard.models
 
-import com.hamid.template.ui.dashboard.models.ResponseDashBoard.Data.VisitItem
+import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 
-class VisitListModel(val isToday: Boolean,  var visitItem: VisitItem?,var isHeading:Boolean,var heading:String?)
+class VisitListModel(var client: TodayTripResponse.Data.Down.Client?, var isHeading:Boolean, var group:TodayTripResponse.Data.Down.TransportationGroup)

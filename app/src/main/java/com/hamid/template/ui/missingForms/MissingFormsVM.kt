@@ -1,9 +1,8 @@
 package com.hamid.template.ui.missingForms
 
+import android.os.Bundle
 import com.hamid.template.base.BaseViewModel
 import com.hamid.template.network.ApiRepository
-import com.hamid.template.ui.facilitiesPatiensts.models.RequestDeleteCheck
-import com.hamid.template.ui.facilitiesPatiensts.models.RequestSaveCheck
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.ui.fillForm.model.RequestDeleteDocument
 import com.hamid.template.ui.fillForm.model.RequestSavedDocumentList
@@ -27,6 +26,8 @@ constructor(
         viewInteractor?.getFormsList(false,client)
         viewInteractor?.setUpTabLayout()
     }
+    var documentType="internal"
+    var fileName="fileName"
     lateinit var client:TodayTripResponse.Data.Down.Client
     lateinit var visitdetails: ResponseTripDetails
 
@@ -35,7 +36,7 @@ constructor(
     fun ShowLoading()=viewInteractor?.ShowLoading()
     fun HideLoading()=viewInteractor?.HideLoading()
 
-    fun apiCallForUrl(form: ResponseDocumentList.DataItem, client: TodayTripResponse.Data.Down.Client)=viewInteractor?.apiCallForUrl(form,client)
+    fun apiCallForUrl(form: String, client: TodayTripResponse.Data.Down.Client)=viewInteractor?.apiCallForUrl(form,client)
     fun showSelectFormDialog(documentList: ResponseDocumentList, client: TodayTripResponse.Data.Down.Client)=viewInteractor?.showSelectFormDialog(documentList,client)
     fun getFormsList(clicked:Boolean,client: TodayTripResponse.Data.Down.Client)=viewInteractor?.getFormsList(clicked,client)
     fun getDocumentList()=apiRepository.getDocumentList()
@@ -55,5 +56,8 @@ constructor(
     fun saveUserSignature(TransportVisitIDValue:Int,ReferralIDValue:Int,ScheduleIDValue:Int,file: File)=apiRepository.saveUserSignature(TransportVisitIDValue, ReferralIDValue, ScheduleIDValue, file)
 
     fun SetMissingDocument(data: RequestUserMissingDocument.Data)=apiRepository.SetMissingDocument(data)
-    fun UploadDocument(ReferralIDValue:Int,KindOfDocument:String,file: File)=apiRepository.UploadDocument(ReferralIDValue, KindOfDocument, file)
+    fun UploadDocument(fileName:String,ReferralIDValue:Int,KindOfDocument:String,file: File)=apiRepository.UploadDocument(fileName,ReferralIDValue, KindOfDocument, file)
+    fun openNewFormActivity(data:ResponseDocumentUrl, client: TodayTripResponse.Data.Down.Client)=viewInteractor?.openNewFormActivity(data,client)
+    fun openSavedFormActivity(bundle: Bundle)=viewInteractor?.openSavedFormActivity(bundle)
+
 }

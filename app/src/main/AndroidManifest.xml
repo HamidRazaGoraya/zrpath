@@ -13,6 +13,11 @@
     <!-- Include only if your app benefits from precise location access. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".base.BaseApplication"
         android:allowBackup="true"
@@ -70,6 +75,8 @@
         <activity android:name=".ui.todayTripDetails.TodayTripDetailsActivity" />
         <activity android:name=".ui.todayTripsList.TodayTripActivity" />
         <activity android:name=".ui.missingForms.MissingFormsActivity" />
+        <activity android:name=".ui.medicationFormsList.MedicationFormsActivity" />
+        <activity android:name=".ui.fillForm.OpenFormActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

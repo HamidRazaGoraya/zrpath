@@ -10,41 +10,38 @@ import android.view.Window;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-
-import com.hamid.template.databinding.DialogUploadDocumentBinding;
+import com.hamid.template.databinding.CustomDialogImagePockerBinding;
+import com.hamid.template.databinding.OldOrNewBinding;
 
 import org.jetbrains.annotations.NotNull;
 
-public class SelectUploadedDocument extends DialogFragment {
+public class OldOrNewFom extends DialogFragment {
 
-    private DialogUploadDocumentBinding binding;
+    private OldOrNewBinding binding;
     private Buttons buttons;
-    public SelectUploadedDocument(Buttons buttons) {
-        this.buttons=buttons;
+    private String title;
+    public OldOrNewFom(Buttons buttons, String title) {
+       this.buttons=buttons;
+       this.title=title;
     }
 
     @NotNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-        binding=DialogUploadDocumentBinding.inflate(requireActivity().getLayoutInflater());
-        binding.btnUploadDocument.setOnClickListener(new View.OnClickListener() {
+        binding=OldOrNewBinding.inflate(requireActivity().getLayoutInflater());
+        binding.txtDialogIpTitle.setText(title);
+        binding.layDialogCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttons.Upload();
+                buttons.NewForm();
                 dismiss();
             }
         });
-        binding.btnFillNewForm.setOnClickListener(new View.OnClickListener() {
+        binding.layDialogGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttons.AddNew();
-                dismiss();
-            }
-        });
-        binding.deleteDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                buttons.OldForm();
                 dismiss();
             }
         });
@@ -57,9 +54,8 @@ public class SelectUploadedDocument extends DialogFragment {
         return dialog;
     }
     public interface Buttons{
-
-        void Upload();
-        void AddNew();
+        void NewForm();
+        void OldForm();
     }
 
 

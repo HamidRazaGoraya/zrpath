@@ -1,5 +1,6 @@
 package com.hamid.template.network
 
+import com.hamid.template.ui.checkList.models.RequestMedicationFormsList
 import com.hamid.template.ui.checkList.models.RequestSelfCheckList
 import com.hamid.template.ui.checkList.models.ResponseSelfCheckList
 import com.hamid.template.ui.dashboard.models.*
@@ -11,12 +12,14 @@ import com.hamid.template.ui.fillForm.model.RequestSavedOpenForm
 import com.hamid.template.ui.loginAndRegister.logInRequestModel.LogInRequest
 import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
 import com.hamid.template.ui.mapScreen.models.*
+import com.hamid.template.ui.medicationFormsList.model.ResponseMedicationFormsList
 import com.hamid.template.ui.missingForms.model.RequestMissingDocument
 import com.hamid.template.ui.missingForms.model.RequestUserMissingDocument
 import com.hamid.template.ui.missingForms.model.ResponseMissingDocument
 import com.hamid.template.ui.missingForms.model.ResponseUserMissingDocument
 import com.hamid.template.ui.todayTripDetails.models.RequestOnGoingVisit
 import com.hamid.template.ui.todayTripDetails.models.ResponseOnGoingVisit
+import com.hamid.template.ui.todayTripsList.models.RequestDashboardAPI
 import com.hamid.template.ui.todayTripsList.models.RequestReferralList
 import com.hamid.template.ui.todayTripsList.models.ResponseReferralList
 import okhttp3.MultipartBody
@@ -94,7 +97,7 @@ interface ApiServices {
     @POST(ApiEndPoint.openSavedForm)
     suspend fun openSavedForm(
         @Body requestSavedOpenForm: RequestSavedOpenForm
-    ):Response<ErrorMessage>
+    ):Response<ResponseDocumentUrl>
     @POST(ApiEndPoint.deleteDocument)
     suspend fun deleteDocument(
         @Body requestDeleteDocument: RequestDeleteDocument
@@ -108,7 +111,7 @@ interface ApiServices {
 
     @POST(ApiEndPoint.dashBoard)
     suspend fun getDashBoard(
-        @Body requestDashboard: RequestDashboard
+        @Body requestDashboardAPI: RequestDashboardAPI
     ):Response<ResponseDashBoard>
 
     @POST(ApiEndPoint.OnGoingVisit)
@@ -146,6 +149,16 @@ interface ApiServices {
     @POST(ApiEndPoint.UploadDocument)
     suspend fun UploadDocument(
         @PartMap partMap: Map<String, @JvmSuppressWildcards RequestBody>,
-        @Part file: MultipartBody.Part? = null
+        @Part file: MultipartBody.Part
     ): Response<ErrorMessage>
+
+    @POST(ApiEndPoint.GetMedicationFormList)
+    suspend fun GetMedicationFormList(
+        @Body requestMedicationFormsList: RequestMedicationFormsList
+    ):Response<ResponseMedicationFormsList>
+
+    @POST(ApiEndPoint.GetDashboard)
+    suspend fun getNewDashBoard(
+        @Body todayTripRequest: TodayTripRequest
+    ): Response<TodayTripResponse>
 }

@@ -15,4 +15,5 @@ interface CheckListContracts : ViewInteractor {
 
     fun apiCallForUrl(checK: UserCheckListResponse.Data.CheckListItem, client: TodayTripResponse.Data.Down.Client)
     fun checkListCompleted()
+    fun showMedicationDialog(checK: UserCheckListResponse.Data.CheckListItem)
 }

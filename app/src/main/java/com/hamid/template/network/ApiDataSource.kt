@@ -2,7 +2,7 @@ package com.hamid.template.network
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
+import com.hamid.template.ui.checkList.models.RequestMedicationFormsList
 import com.hamid.template.ui.checkList.models.RequestSelfCheckList
 import com.hamid.template.ui.dashboard.models.FacilitiesRequestModel
 import com.hamid.template.ui.dashboard.models.RequestDashboard
@@ -17,6 +17,7 @@ import com.hamid.template.ui.mapScreen.models.*
 import com.hamid.template.ui.missingForms.model.RequestMissingDocument
 import com.hamid.template.ui.missingForms.model.RequestUserMissingDocument
 import com.hamid.template.ui.todayTripDetails.models.RequestOnGoingVisit
+import com.hamid.template.ui.todayTripsList.models.RequestDashboardAPI
 import com.hamid.template.ui.todayTripsList.models.RequestReferralList
 import com.hamid.template.utils.Constants
 import com.hamid.template.utils.SharedPreferenceManager
@@ -62,9 +63,8 @@ class ApiDataSource @Inject constructor(
 
     }
 
-    suspend fun getUserCheckList(ReferralID:Int,TripDirection:String) = getResult {
+    suspend fun getUserCheckList(data:UserCheckListRequest.Data) = getResult {
         sharedPreferenceManager.UserLogInResponse.let {
-            val data=UserCheckListRequest.Data(employeeID = it?.data!!.employee.employeeID,referralID = ReferralID,TripDirection = TripDirection)
             apiServices.getUserCheckList(UserCheckListRequest(data,Constants.Key,sharedPreferenceManager.getToken))
         }
     }
@@ -107,8 +107,8 @@ class ApiDataSource @Inject constructor(
     suspend fun GetReferralListForTransportationGroup(data:RequestReferralList.Data)=getResult {
         apiServices.GetReferralListForTransportationGroup(RequestReferralList(sharedPreferenceManager.getToken,data,Constants.Key))
     }
-    suspend fun getDashBoard()=getResult {
-        apiServices.getDashBoard(RequestDashboard(sharedPreferenceManager.getToken,Constants.Key))
+    suspend fun getDashBoard(data: RequestDashboardAPI.Data)=getResult {
+        apiServices.getDashBoard(RequestDashboardAPI(sharedPreferenceManager.getToken,data,Constants.Key))
     }
     suspend fun OnGoingVisit(ScheduleID:Int,referralID:Int)=getResult {
         val data=RequestOnGoingVisit.Data(ScheduleID,sharedPreferenceManager.getEmployID(),referralID)
@@ -156,25 +156,39 @@ class ApiDataSource @Inject constructor(
         return s.toRequestBody("text/plain".toMediaTypeOrNull())
     }
 
-    suspend fun UploadDocument(ReferralIDValue:Int,DocumentType:String,file: File) = getResult {
+    suspend fun UploadDocument(fileName:String,ReferralIDValue:Int,DocumentType:String,file: File) = getResult {
+
         var body: MultipartBody.Part? = null
         val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
 
-        body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-
+        body = MultipartBody.Part.createFormData("File", file.name, requestFile)
 
         val map: HashMap<String, RequestBody> = HashMap()
         map["Key"] = createPartFromString(Constants.Key)
         map["Token"] = createPartFromString(sharedPreferenceManager.getToken)
         map["ComplianceID"] =  createPartFromString("-1")
+        map["ReferralDocumentID"]=createPartFromString("0")
         map["ReferralID"] = createPartFromString(ReferralIDValue.toString())
-        map["FileName"] = createPartFromString(file.name)
-        map["FileType"] = createPartFromString(file.extension)
+        map["FileName"] = createPartFromString(fileName)
+        map["FileType"] =createPartFromString("."+file.extension)
         map["KindOfDocument"]   =  createPartFromString(DocumentType)
         apiServices.UploadDocument(
             map,
             body
         )
+    }
+
+
+    suspend fun GetMedicationFormList(data:RequestMedicationFormsList.Data)=getResult{
+        apiServices.GetMedicationFormList(RequestMedicationFormsList(sharedPreferenceManager.getToken,data,Constants.Key))
+    }
+
+    suspend fun getNewDashboard(date:String,facilityId: Int) = getResult {
+        sharedPreferenceManager.UserLogInResponse.let {
+            val data=TodayTripRequest.Data(date,it?.data!!.employee.employeeID,facilityId,sharedPreferenceManager.getTripType)
+            apiServices.getNewDashBoard(TodayTripRequest(data,Constants.Key,sharedPreferenceManager.getToken))
+        }
+
     }
 
 }

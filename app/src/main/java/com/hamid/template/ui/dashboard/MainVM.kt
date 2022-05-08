@@ -13,6 +13,7 @@ import com.hamid.template.ui.fillForm.model.RequestDeleteDocument
 import com.hamid.template.ui.fillForm.model.RequestSavedDocumentList
 import com.hamid.template.ui.fillForm.model.RequestSavedOpenForm
 import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
+import com.hamid.template.ui.todayTripsList.models.RequestDashboardAPI
 import com.hamid.template.ui.todayTripsList.models.RequestReferralList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -46,7 +47,7 @@ constructor(private val apiRepository: ApiRepository, ) : BaseViewModel<MainCont
 
     fun moveToTodayTrip()=viewInteractor?.moveToTodayTrip()
 
-    fun getDashboard()=apiRepository.getDashboard()
+    fun getDashboard(data:RequestDashboardAPI.Data)=apiRepository.getDashboard(data)
 
 
 }

@@ -53,17 +53,17 @@ class RefferalListAdopter(val onRefferalClicked: OnRefferalClicked) : RecyclerVi
         if (viewType==0){
             return RefferalListViewHolder(RowTabVisitsBinding.inflate(inflater, parent, false),onRefferalClicked)
         }
-        return HeadingListViewHolder(HeadingVisitsBinding.inflate(inflater, parent, false))
+        return HeadingListViewHolder(HeadingVisitsBinding.inflate(inflater, parent, false),onRefferalClicked)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is RefferalListViewHolder){
-            newList[position].visitItem?.let {
+            newList[position].let {
                 holder.setData(it)
             }
         }
         if (holder is HeadingListViewHolder){
-            newList[position].heading?.let {
+            newList[position].group.let {
                 holder.setData(it)
             }
         }
