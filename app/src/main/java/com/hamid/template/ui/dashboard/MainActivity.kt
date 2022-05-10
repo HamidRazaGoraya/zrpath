@@ -70,7 +70,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
         }
         sidemenu.Patient.setOnClickListener {
             viewModel.hideSideMenu()
-            viewModel.patientClicked()
+            viewModel.moveToTodayTrip()
         }
         sidemenu.map.setOnClickListener {
             viewModel.hideSideMenu()

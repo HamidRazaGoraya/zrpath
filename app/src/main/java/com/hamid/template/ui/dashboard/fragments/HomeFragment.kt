@@ -96,7 +96,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, MainVM>() {
                viewModel.showSideMenu()
         }
         binding.patientButton.setOnClickListener {
-            viewModel.patientClicked()
+            viewModel.moveToTodayTrip()
         }
         binding.todayTrips.setOnClickListener {
             viewModel.moveToTodayTrip()

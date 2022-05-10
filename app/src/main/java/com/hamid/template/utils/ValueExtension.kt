@@ -157,3 +157,13 @@ fun Any.toJsonString():String{
     return Gson().toJson(this)
 }
 
+fun Int?.checkIfIDFound():Boolean{
+    if (this==null){
+        return false
+    }
+    if (this==0){
+        return false
+    }
+    return true
+}
+

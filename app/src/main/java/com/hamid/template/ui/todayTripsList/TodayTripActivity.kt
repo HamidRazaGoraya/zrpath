@@ -21,6 +21,7 @@ import com.hamid.template.ui.dashboard.models.VisitListModel
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.ui.mapScreen.ClientMapActivity
 import com.hamid.template.ui.todayTripDetails.TodayTripDetailsActivity
+import com.hamid.template.ui.todayTripDetails.models.ResponseOnGoingVisit
 import com.hamid.template.ui.todayTripsList.adopter.RefferalListAdopter
 import com.hamid.template.ui.todayTripsList.models.RequestDashboardAPI
 import com.hamid.template.ui.todayTripsList.models.RequestReferralList
@@ -212,15 +213,19 @@ class TodayTripActivity : BaseActivity<ActivityTodayTripBinding, TodayTripVM>(),
             }
 
             override fun onPrepareClicked(visitListModel: VisitListModel) {
-
+             viewModel.moveToDetailsActivity(visitListModel)
             }
 
             override fun onStartTripClicked(visitListModel: VisitListModel) {
-
+                visitListModel.client?.let {
+                    viewModel.getVisitDetails(it,true)
+                }
             }
 
             override fun onEndTripClicked(visitListModel: VisitListModel) {
-
+               visitListModel.client?.let {
+                   viewModel.getVisitDetails(it,false)
+               }
             }
 
             override fun onGroupTripStart(group: TodayTripResponse.Data.Down.TransportationGroup) {
@@ -253,6 +258,30 @@ class TodayTripActivity : BaseActivity<ActivityTodayTripBinding, TodayTripVM>(),
             viewModel.getDataApi()
         }
 
+    }
+
+    override fun getVisitDetails(client: TodayTripResponse.Data.Down.Client, upDown: Boolean) {
+        viewModel.onGoingVisit(client.scheduleID,client.ReferralID,client.transportationGroupID).observe(this@TodayTripActivity){
+            when (it.status) {
+                Resource.Status.SUCCESS -> {
+                    viewModel.HideLoading()
+                    it.data?.let { it1 ->
+                        if (it1.data==null){
+                            showSnackBar("On going visit details not found")
+                            return@observe
+                        }
+                        todayTripDetails.launch(ClientMapActivity.getIntent(this@TodayTripActivity).putExtra(Constants.onGoingVisit,Gson().toJson(it1.data)).putExtra(Constants.isPickUp,upDown))
+                    }
+                }
+                Resource.Status.ERROR -> {
+                    viewModel.HideLoading()
+                    it.message?.let { it1 -> showSnackBar(it1) }
+                }
+                Resource.Status.LOADING -> {
+                    viewModel.ShowLoading()
+                }
+            }
+        }
     }
 
 }

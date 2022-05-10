@@ -10,7 +10,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 fun String.addImageUrl():String{
-    return Constants.IMAGE_URL + this
+    return ConstantsJava().IMAGE_URL + this
 }
 
 fun String.getDateOfConsulatation():String{
@@ -79,4 +79,17 @@ fun String?.toArrayList():ArrayList<String>{
         list.add(element)
     }
     return list
+}
+fun String.localTranslation():String{
+    when(this){
+        "IsPrepared"->{
+            return "Prepared"
+        }
+        "Trip Started"->{
+            return "In progress"
+        }
+        else->{
+            return this
+        }
+    }
 }

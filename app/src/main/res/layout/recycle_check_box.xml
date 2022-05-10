@@ -19,8 +19,9 @@
 
 
         <com.google.android.material.checkbox.MaterialCheckBox
+            android:checked="false"
+            android:buttonTint="@color/colorPrimary"
             android:textSize="@dimen/_15sdp"
-            android:textColor="@color/black"
             android:paddingStart="@dimen/_10sdp"
             android:id="@+id/switch1"
             android:layout_width="0dp"

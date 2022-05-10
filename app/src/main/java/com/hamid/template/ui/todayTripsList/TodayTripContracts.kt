@@ -18,4 +18,5 @@ interface TodayTripContracts : ViewInteractor {
     fun handleTrips(todayTripResponse: TodayTripResponse)
     fun loadTripDirection(data: List<TodayTripResponse.Data.Down>)
     fun moveToDetailsActivity(visitListModel: VisitListModel)
+    fun getVisitDetails(client: TodayTripResponse.Data.Down.Client,upDown:Boolean)
 }

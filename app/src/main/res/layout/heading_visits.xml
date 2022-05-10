@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:layout_marginTop="@dimen/_5sdp"
-    android:backgroundTint="@color/listBackDark"
+    android:backgroundTint="@color/ef_colorAccent"
     android:foreground="?android:attr/selectableItemBackground"
     >
 

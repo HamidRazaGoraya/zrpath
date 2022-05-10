@@ -1,5 +1,6 @@
 package com.hamid.template.utils
 
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.text.*
@@ -20,6 +21,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.textfield.TextInputEditText
 import com.hamid.template.R
+import com.repsly.library.timelineview.TimelineView
 
 fun View.setShowCondition(boolean: Boolean) {
     if (boolean){
@@ -192,4 +194,38 @@ fun MaterialCardView.setCheckListColor(boolean: Boolean){
         Log.i("here",boolean.toString()+"hamid3")
         this.setCardBackgroundColor(ColorStateList.valueOf(this.context.resources.getColor(R.color.listBackLight)))
     }
+}
+
+fun TimelineView.deActivated(string: String, start: Boolean, end: Boolean){
+    this.fillValues(resources.getColor(R.color.color_red),string, start, end)
+}
+fun TimelineView.activated(string: String, start: Boolean, end: Boolean){
+    this.fillValues(resources.getColor(R.color.color_green),string, start, end)
+}
+fun TimelineView.progress(string: String, start: Boolean, end: Boolean){
+    this.fillValues(resources.getColor(R.color.yellow),string, start, end)
+}
+fun TimelineView.fillValues(colorRed: Int,string: String, start: Boolean, end: Boolean){
+    this.markerColor=colorRed
+    if (start){
+        this.startLineColor=colorRed
+    }else{
+        this.startLineColor = resources.getColor(R.color.cardBackground)
+    }
+    if (end){
+        this.endLineColor=colorRed
+    }else{
+        this.endLineColor = resources.getColor(R.color.cardBackground)
+    }
+    this.text=string
+    this.markerActiveColor=colorRed
+    this.isActive=false
+}
+
+fun TextView.checkForStaging(context: Context){
+    if (ConstantsJava().checkForStaging(context)){
+        this.setTextColor(context.resources.getColor(R.color.color_red))
+        return
+    }
+    this.setTextColor(context.resources.getColor(R.color.black))
 }

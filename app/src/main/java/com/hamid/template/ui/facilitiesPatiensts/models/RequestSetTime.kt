@@ -14,7 +14,8 @@ data class RequestSetTime(
 	val key: String
 ){
 	data class Data(
-
+		@field:SerializedName("IsPrepared")
+		val IsPrepared:Boolean,
 
 		@field:SerializedName("Type")
 		val type: Int,

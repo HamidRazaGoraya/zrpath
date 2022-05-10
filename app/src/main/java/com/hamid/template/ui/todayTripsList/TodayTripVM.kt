@@ -35,8 +35,9 @@ constructor(
     fun getDashboard(data: RequestDashboardAPI.Data)=apiRepository.getDashboard(data)
 
     fun GetReferralListForTransportationGroup(data: RequestReferralList.Data)=apiRepository.GetReferralListForTransportationGroup(data)
-
+    fun getVisitDetails(client: TodayTripResponse.Data.Down.Client,upDown:Boolean)=viewInteractor?.getVisitDetails(client, upDown)
     fun handleTrips(todayTripResponse: TodayTripResponse)=viewInteractor?.handleTrips(todayTripResponse)
     fun loadTripDirection(data: List<TodayTripResponse.Data.Down>)=viewInteractor?.loadTripDirection(data)
     fun getTodayTrips(date:String,facilitiesId: Int)=apiRepository.getNewDashboard(date,facilitiesId)
+    fun onGoingVisit(ScheduleID:Int,referralID:Int,transportationGroupID:Int)=apiRepository.OnGoingVisit(ScheduleID,referralID,transportationGroupID)
 }

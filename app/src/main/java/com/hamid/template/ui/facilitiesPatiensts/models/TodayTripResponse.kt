@@ -46,7 +46,7 @@ data class TodayTripResponse(
             var responseTripDetails: ResponseTripDetails?=null
         ) {
             data class Client(
-                @SerializedName("scheduleID")
+                @SerializedName("ScheduleID")
                 @Expose
                 val scheduleID:Int,
                 @SerializedName("GroupTripStatus")

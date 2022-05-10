@@ -12,11 +12,13 @@ import com.hamid.template.base.BaseFragment
 import com.hamid.template.databinding.LoginFragmentBinding
 import com.hamid.template.ui.loginAndRegister.RegisterVM
 import com.hamid.template.ui.loginAndRegister.adopter.LoginAutoCompleteAdapter
+import com.hamid.template.ui.loginAndRegister.customDialogs.EditCurrentAPI
 import com.hamid.template.ui.loginAndRegister.logInRequestModel.LogInRequest
 import com.hamid.template.ui.loginAndRegister.logResponseModel.LogInResponse
 import com.hamid.template.ui.loginAndRegister.model.Savepassowrd
 import com.hamid.template.utils.Resource
 import com.hamid.template.utils.SharedPreferenceManager
+import com.hamid.template.utils.checkForStaging
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -97,6 +99,11 @@ class LoginFragment : BaseFragment<LoginFragmentBinding, RegisterVM>() {
         binding.forgotPassword.setOnClickListener {
             viewModel.moveToForgotPassword()
         }
+        binding.version.setOnLongClickListener {
+            EditCurrentAPI().show(childFragmentManager,"Edit API")
+            return@setOnLongClickListener true
+        }
+        binding.version.checkForStaging(requireContext())
 
     }
 

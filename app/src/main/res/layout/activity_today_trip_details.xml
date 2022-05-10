@@ -160,7 +160,7 @@
                   app:layout_constraintTop_toBottomOf="@+id/userDetails">
 
                   <LinearLayout
-                      android:id="@+id/pickUpHolder"
+                      android:id="@+id/beginPrepareHolder"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="horizontal"
@@ -170,7 +170,7 @@
 
 
                       <com.repsly.library.timelineview.TimelineView
-                          android:id="@+id/pickUpTimeLine"
+                          android:id="@+id/beginPrepareTimeLine"
                           android:layout_width="wrap_content"
                           android:layout_height="match_parent"
                           app:lineColor="@color/color_red"
@@ -187,7 +187,7 @@
 
                       <com.google.android.material.card.MaterialCardView
                           android:layout_weight="1"
-                          android:id="@+id/pickUpClicked"
+                          android:id="@+id/beginPrepareClicked"
                           android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:layout_gravity="center_vertical"
@@ -209,7 +209,7 @@
 
 
                               <androidx.appcompat.widget.AppCompatTextView
-                                  android:id="@+id/startPickUPText"
+                                  android:id="@+id/beginPrepareText"
                                   android:layout_width="0dp"
                                   android:layout_height="wrap_content"
                                   android:layout_centerInParent="true"
@@ -217,7 +217,7 @@
                                   android:layout_marginStart="@dimen/_4sdp"
                                   android:layout_marginTop="@dimen/_12sdp"
                                   android:layout_marginBottom="@dimen/_12sdp"
-                                  android:text="Pick Up"
+                                  android:text="Begin prepare"
                                   android:textColor="@android:color/black"
                                   android:textSize="@dimen/_12sdp"
                                   android:textStyle="bold"
@@ -227,7 +227,7 @@
                                   app:layout_constraintTop_toTopOf="parent" />
 
                               <ImageView
-                                  android:id="@+id/pickUpMarked"
+                                  android:id="@+id/beginPrepareMarked"
                                   android:layout_width="@dimen/_25sdp"
                                   android:layout_height="@dimen/_25sdp"
                                   android:layout_alignParentEnd="true"
@@ -501,91 +501,6 @@
 
                   </LinearLayout>
 
-                  <LinearLayout
-                      android:id="@+id/dropHolder"
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:visibility="visible">
-
-                      <com.repsly.library.timelineview.TimelineView
-                          android:id="@+id/dropTimeLine"
-                          android:layout_width="wrap_content"
-                          android:layout_height="match_parent"
-                          app:lineColor="@color/color_red"
-                          app:lineOrientation="vertical"
-                          app:lineSize="4dp"
-                          app:markerActive="false"
-                          app:markerActiveColor="@color/color_green"
-                          app:markerActiveStrokeWidth="8dp"
-                          app:markerColor="@color/color_red"
-                          app:markerSize="20dp"
-                          app:markerStrokeWidth="2dp"
-                          app:markerTextColor="@android:color/white"
-                          app:markerTextSize="10sp" />
-
-                      <com.google.android.material.card.MaterialCardView
-                          android:layout_weight="1"
-                          android:id="@+id/dropClicked"
-                          android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:layout_gravity="center_vertical"
-                          android:clickable="true"
-                          android:foreground="?android:attr/selectableItemBackground"
-                          android:visibility="visible"
-                          app:cardBackgroundColor="@color/white"
-                          app:cardElevation="2dp"
-                          app:cardMaxElevation="2dp"
-                          app:cardUseCompatPadding="true"
-                          app:contentPadding="1dp">
-
-                          <androidx.constraintlayout.widget.ConstraintLayout
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:layout_gravity="center"
-                              android:gravity="center"
-                              android:orientation="vertical">
-
-
-                              <androidx.appcompat.widget.AppCompatTextView
-                                  android:layout_width="0dp"
-                                  android:layout_height="wrap_content"
-                                  android:layout_centerInParent="true"
-                                  android:layout_gravity="center_vertical"
-                                  android:layout_marginStart="@dimen/_4sdp"
-                                  android:layout_marginTop="@dimen/_12sdp"
-                                  android:layout_marginBottom="@dimen/_12sdp"
-                                  android:text="Drop and end"
-                                  android:textColor="@android:color/black"
-                                  android:textSize="@dimen/_12sdp"
-                                  android:textStyle="bold"
-                                  app:layout_constraintBottom_toBottomOf="parent"
-                                  app:layout_constraintEnd_toStartOf="@+id/dropOffMarked"
-                                  app:layout_constraintStart_toStartOf="parent"
-                                  app:layout_constraintTop_toTopOf="parent" />
-
-                              <ImageView
-                                  android:id="@+id/dropOffMarked"
-                                  android:layout_width="@dimen/_25sdp"
-                                  android:layout_height="@dimen/_25sdp"
-                                  android:layout_alignParentEnd="true"
-                                  android:layout_centerInParent="true"
-                                  android:layout_marginEnd="@dimen/_8sdp"
-                                  android:padding="@dimen/scale_5dp"
-                                  android:visibility="gone"
-                                  app:layout_constraintBottom_toBottomOf="parent"
-                                  app:layout_constraintEnd_toEndOf="parent"
-                                  app:layout_constraintTop_toTopOf="parent"
-                                  app:srcCompat="@drawable/ic_check_green" />
-                          </androidx.constraintlayout.widget.ConstraintLayout>
-
-                      </com.google.android.material.card.MaterialCardView>
-
-
-
-
-
-                  </LinearLayout>
                   <androidx.appcompat.widget.AppCompatTextView
                       android:visibility="gone"
                       android:id="@+id/tripCompleted"

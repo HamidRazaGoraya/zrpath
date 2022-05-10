@@ -60,7 +60,7 @@ data class ResponseOnGoingVisit(
 
 
 			@field:SerializedName("TransportVisitID")
-			val transportVisitID: Int,
+			val transportVisitID: Int?,
 
 			@field:SerializedName("TransportationGroupID")
 			val transportationGroupID: Int,
@@ -88,9 +88,9 @@ data class ResponseOnGoingVisit(
 			val dropOffTime: String?,
 
 			@field:SerializedName("IsSigned")
-		    val Signed: Boolean
-
-
+		    val Signed: Boolean,
+			@field:SerializedName("PatientSignature")
+			val PatientSignature:String?
 		)
 	}
 }

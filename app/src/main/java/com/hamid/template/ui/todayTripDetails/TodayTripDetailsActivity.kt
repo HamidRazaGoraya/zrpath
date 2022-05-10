@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -16,12 +17,8 @@ import com.hamid.template.R
 import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityTodayTripDetailsBinding
 import com.hamid.template.ui.checkList.CheckListActivity
-import com.hamid.template.ui.dashboard.models.AllFacilitiesModel
-import com.hamid.template.ui.dashboard.models.ResponseDashBoard
 import com.hamid.template.ui.dashboard.models.VisitListModel
-import com.hamid.template.ui.facilitiesPatiensts.FacilityActivity
 import com.hamid.template.ui.facilitiesPatiensts.models.RequestSetTime
-import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.ui.mapScreen.ClientMapActivity
 import com.hamid.template.ui.mapScreen.models.ResponseTripDetails
 import com.hamid.template.ui.missingForms.MissingFormsActivity
@@ -83,8 +80,9 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
         binding.toolbar.setNavigationOnClickListener {
             finish()
         }
-        binding.pickUpClicked.setOnClickListener {
-            viewModel.clickedStartTrip()
+        binding.beginPrepareClicked.setOnClickListener {
+            Log.i("Begin","000")
+            viewModel.clickedBeginPrepare()
         }
         binding.PickCheckListClicked.setOnClickListener {
             viewModel.clickedPickUpCheckList()
@@ -95,13 +93,13 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
         binding.SignatureClicked.setOnClickListener {
             viewModel.clickedDropOfSignature()
         }
-        binding.dropClicked.setOnClickListener {
-            viewModel.clickedDrop()
-        }
+
         binding.swipe.setOnRefreshListener {
             binding.swipe.isRefreshing=true
-            viewModel.checkGroupStatus()
+            viewModel.loadVisitDetails()
         }
+        viewModel.loadVisitDetails()
+        viewModel.allDeactivate()
      }
 
 
@@ -125,31 +123,28 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
 
     override fun onResume() {
         super.onResume()
-        viewModel.checkGroupStatus()
     }
 
-    override fun allDeactive() {
-        viewModel.disableTimeLine(binding.pickUpTimeLine,"1", start = false, end = true)
+    override fun allDeactivate() {
+        viewModel.disableTimeLine(binding.beginPrepareTimeLine,"1", start = false, end = true)
         viewModel.disableTimeLine(binding.pickCheckListLine,"2", start = true, end = true)
         viewModel.disableTimeLine(binding.formTimeLine,"3", start = true, end = true)
-        viewModel.disableTimeLine(binding.dropCheckListLine,"4", start = true, end = !viewModel.prePareMode)
-        viewModel.disableTimeLine(binding.dropTimeLine,"5", start = true, end = false)
-        binding.pickUpClicked.setLocalEnable(false)
+        viewModel.disableTimeLine(binding.dropCheckListLine,"4", start = true, end = false)
+        binding.beginPrepareClicked.setLocalEnable(false)
         binding.PickCheckListClicked.setLocalEnable(false)
         binding.formCardClicked.setLocalEnable(false)
         binding.SignatureClicked.setLocalEnable(false)
-        binding.dropClicked.setLocalEnable(false)
     }
 
-    override fun activePickUp() {
-        binding.pickUpClicked.setLocalEnable(true)
-        viewModel.inProgressTimeLine(binding.pickUpTimeLine,"1", start = false, end = true)
+    override fun activeBeginPrepare() {
+        binding.beginPrepareClicked.setLocalEnable(true)
+        viewModel.inProgressTimeLine(binding.beginPrepareTimeLine,"1", start = false, end = true)
     }
 
     override fun activeCheckListPick() {
-        binding.pickUpClicked.isEnabled=false
+        binding.beginPrepareClicked.isEnabled=false
         binding.PickCheckListClicked.setLocalEnable(true)
-        viewModel.activeTimeLine(binding.pickUpTimeLine,"1", start = false, end = true)
+        viewModel.activeTimeLine(binding.beginPrepareTimeLine,"1", start = false, end = true)
         viewModel.inProgressTimeLine(binding.pickCheckListLine,"2", start = true, end = true)
     }
 
@@ -166,18 +161,14 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
     override fun activeSignature() {
         binding.SignatureClicked.setLocalEnable(true)
         viewModel.activeTimeLine(binding.formTimeLine,"3", start = true, end = true)
-        viewModel.inProgressTimeLine(binding.dropCheckListLine,"4", start = true, end = !viewModel.prePareMode)
+        viewModel.inProgressTimeLine(binding.dropCheckListLine,"4", start = true, end = false)
     }
 
-    override fun activeDrop() {
-        binding.dropClicked.setLocalEnable(true)
-        viewModel.data?.onGoingVisitDetail?.let {
-            if (it.Signed){
-                viewModel.activeTimeLine(binding.dropCheckListLine,"4", start = true, end = !viewModel.prePareMode)
-            }
-        }
-        viewModel.inProgressTimeLine(binding.dropTimeLine,"5", start = true, end = false)
+    override fun loadAllPointsCompleted() {
+        viewModel.activeTimeLine(binding.dropCheckListLine,"4", start = true, end = false)
     }
+
+
 
     override fun activeTimeLine(timelineView: TimelineView, string: String, start: Boolean, end: Boolean) {
         val colorGreen=resources.getColor(R.color.color_green)
@@ -235,8 +226,34 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
 
 
 
-    override fun clickedStartTrip() {
-        activityForResults.launch(ClientMapActivity.getIntent(this).putExtra(Constants.onGoingVisit,Gson().toJson(viewModel.data)).putExtra(Constants.isPickUp,true))
+    override fun clickedBeginPrepare() {
+        Log.i("Begin","001")
+        viewModel.visitListModel.client?.let {
+            viewModel.saveTTime(RequestSetTime.Data(true,1,null,0,it.transportationGroupID,null,null,null,it.scheduleID,sharedPreferenceManager.getEmployID())).observe(this){
+                when (it.status) {
+                    Resource.Status.SUCCESS -> {
+                        viewModel.HideLoading()
+                        it.data?.let { it1 ->
+                            if (it1.message.equals("Trip Start Successfully")){
+                                showSnackBar("Trip prepare started")
+                            }
+
+                            if (it1.isSuccess){
+                                viewModel.loadVisitDetails()
+                            }
+                        }
+                    }
+                    Resource.Status.ERROR -> {
+                        viewModel.HideLoading()
+                        it.message?.let { it1 -> showSnackBar(it1) }
+                    }
+                    Resource.Status.LOADING -> {
+                        viewModel.ShowLoading()
+                    }
+                }
+            }
+        }
+
     }
 
     override fun clickedPickUpCheckList() {
@@ -246,7 +263,7 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
            viewModel.visitListModel.client?.let {
                bundle.putString(Constants.client,Gson().toJson(it))
            }
-           bundle.putString(Constants.visitDetails,Gson().toJson(ResponseTripDetails(true,123,"",ResponseTripDetails.Data(false,"","","",12.2,23.5,"",123,13,false,123.5,it.onGoingVisitDetail!!.transportVisitID,it.onGoingVisitDetail.transportationGroupID,"",0.25),"200")))
+           bundle.putString(Constants.visitDetails,Gson().toJson(ResponseTripDetails(true,123,"",ResponseTripDetails.Data(false,"","","",12.2,23.5,"",123,13,false,123.5,it.onGoingVisitDetail!!.transportVisitID!!,it.onGoingVisitDetail.transportationGroupID,"",0.25),"200")))
            activityForResults.launch(CheckListActivity.getIntent(this).putExtras(bundle).putExtra(Constants.scheduleID,viewModel.data!!.onGoingVisitDetail!!.scheduleID))
        }
     }
@@ -255,14 +272,14 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
         viewModel.data?.let {
             DropSignHere(object :DropSignHere.OnSelected{
                 override fun SignatureAdded(bitmap: Bitmap) {
-                     viewModel.saveUserSignature(it.onGoingVisitDetail!!.transportVisitID,it.referralDetail!!.referralID,it.onGoingVisitDetail.scheduleID,FileEncoder.convertImageToFile(bitmap,this@TodayTripDetailsActivity)).observe(this@TodayTripDetailsActivity){
+                     viewModel.saveUserSignature(it.onGoingVisitDetail!!.transportVisitID!!,it.referralDetail!!.referralID,it.onGoingVisitDetail.scheduleID,FileEncoder.convertImageToFile(bitmap,this@TodayTripDetailsActivity)).observe(this@TodayTripDetailsActivity){
                          when (it.status) {
                              Resource.Status.SUCCESS -> {
                                  viewModel.HideLoading()
-                                 viewModel.checkGroupStatus()
+                                 viewModel.loadVisitDetails()
                              }
                              Resource.Status.ERROR -> {
-                                 viewModel.checkGroupStatus()
+                                 viewModel.loadVisitDetails()
                                  viewModel.HideLoading()
                                  it.message?.let { it1 -> showSnackBar(it1) }
                              }
@@ -275,12 +292,8 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
                 override fun SignatureNotAdded() {
                     showSnackBar(getString(R.string.please_sign_to_submit))
                 }
-            }).show(supportFragmentManager,"Sign here")
+            },viewModel.data).show(supportFragmentManager,"Sign here")
         }
-    }
-
-    override fun clickedDrop() {
-        activityForResults.launch(ClientMapActivity.getIntent(this).putExtra(Constants.onGoingVisit,Gson().toJson(viewModel.data)).putExtra(Constants.isPickUp,false))
     }
 
     override fun clickedMissingForm() {
@@ -289,7 +302,7 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
             viewModel.visitListModel.client?.let {
                 bundle.putString(Constants.client,Gson().toJson(it))
             }
-            bundle.putString(Constants.visitDetails,Gson().toJson(ResponseTripDetails(true,123,"",ResponseTripDetails.Data(false,"","","",12.2,23.5,"",123,13,false,123.5,it.onGoingVisitDetail!!.transportVisitID,it.onGoingVisitDetail.transportationGroupID,"",0.25),"200")))
+            bundle.putString(Constants.visitDetails,Gson().toJson(ResponseTripDetails(true,123,"",ResponseTripDetails.Data(false,"","","",12.2,23.5,"",123,13,false,123.5,it.onGoingVisitDetail!!.transportVisitID!!,it.onGoingVisitDetail.transportationGroupID,"",0.25),"200")))
             activityForResults.launch(MissingFormsActivity.getIntent(this).putExtras(bundle))
         }
     }
@@ -299,7 +312,7 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
     val activityForResults = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
     { result: ActivityResult ->
         binding.swipe.isRefreshing=true
-        viewModel.checkGroupStatus()
+        viewModel.loadVisitDetails()
         if (result.resultCode == Activity.RESULT_OK) {
 
         }
@@ -315,7 +328,7 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
 
     override fun loadVisitDetails() {
         viewModel.visitListModel.client?.let {
-            viewModel.OnGoingVisit(it.scheduleID,it.ReferralID).observe(this){
+            viewModel.OnGoingVisit(it.scheduleID,it.ReferralID,it.transportationGroupID).observe(this){
                 when (it.status) {
                     Resource.Status.SUCCESS -> {
                         viewModel.HideLoading()
@@ -331,32 +344,32 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
                                 viewModel.data=it1.data
                             }
                             viewModel.data=it1.data
-                            it1.data.onGoingVisitDetail?.let { data->
+                            if (it1.data.onGoingVisitDetail==null){
                                 viewModel.currentActive=1
-                                binding.pickUpMarked.setShowCondition(!data.pickUpTime.isNullOrEmpty())
-                                binding.signatureMarkedMarked.setShowCondition(data.Signed)
-                                binding.dropOffMarked.setShowCondition(!data.dropOffTime.isNullOrEmpty())
-                                binding.isCheckListCompleted.setShowCondition(data.isCheckListCompleted)
-                                if (viewModel.prePareMode){
-                                    viewModel.handlePrepare()
+                                viewModel.handleActivation()
+                            }
+
+                            it1.data.onGoingVisitDetail?.let { data->
+
+                                val checkIfPrepareStarted=data.transportVisitID.checkIfIDFound()
+
+                                if (!checkIfPrepareStarted){
                                     viewModel.currentActive=1
+                                    viewModel.handleActivation()
+                                    return@observe
                                 }
-
-                                data.pickUpTime?.let {
-                                    viewModel.currentActive=2
-                                }
-
-
+                                viewModel.currentActive=2
                                 if (data.isCheckListCompleted){
                                     viewModel.currentActive=4
                                 }
                                 if (data.Signed){
                                     viewModel.currentActive=5
                                 }
+
+                                binding.pickCheckListText.text="${data.AddedUpCheckListCount}/${data.upCheckListCount}"
                                 data.dropOffTime?.let {
                                     viewModel.currentActive=6
                                 }
-                                binding.pickCheckListText.text="${data.AddedUpCheckListCount}/${data.upCheckListCount}"
                             }
                             viewModel.handleActivation()
                             it1.data.let {
@@ -386,51 +399,13 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
         binding.swipe.isRefreshing=false
     }
 
-
-    override fun checkGroupStatus() {
-        viewModel.loadVisitDetails()
-        binding.tripCompleted.makeGone()
-        viewModel.handlePrepare()
-    }
-
-    override fun loadGroupNotStartView() {
-        binding.GroupVisitFalse.makeVisible()
-        binding.GroupVisitTrue.makeGone()
-        binding.featuredLocked.ActionButton.setOnClickListener {
-            showSnackBar("Locked")
-            /*val bundle=Bundle()
-            val allFacilitiesModel=AllFacilitiesModel.Data(viewModel.visitItem.FacilityID,"")
-            bundle.putString(Constants.data,allFacilitiesModel.toJsonString())
-            activityForResults.launch(FacilityActivity.getIntent(this).putExtras(bundle))*/
-        }
-        binding.featuredLocked.StartPrepare.setOnClickListener {
-              viewModel.handlePrepare()
-              viewModel.checkGroupStatus()
-        }
-    }
-
-    override fun loadGroupStartedView() {
-        binding.GroupVisitFalse.makeGone()
-        binding.GroupVisitTrue.makeVisible()
-    }
-
-    override fun loadGroupTripCompleted() {
-        binding.pickUpClicked.isEnabled=false
-        binding.PickCheckListClicked.isEnabled=false
-        binding.formCardClicked.isEnabled=false
-        binding.SignatureClicked.isEnabled=false
-        binding.dropClicked.isEnabled=false
-        binding.GroupTripCompleted.makeVisible()
-
-    }
     override fun loadTripCompletedView() {
-        binding.pickUpClicked.isEnabled=false
+        binding.beginPrepareClicked.isEnabled=false
         binding.PickCheckListClicked.isEnabled=false
         binding.formCardClicked.isEnabled=false
         binding.SignatureClicked.isEnabled=false
-        binding.dropClicked.isEnabled=false
         binding.tripCompleted.makeVisible()
-        viewModel.activeTimeLine(binding.dropTimeLine,"5", start = true, end = false)
+        viewModel.activeTimeLine(binding.dropCheckListLine,"4", start = true, end = false)
     }
 
     override fun fillUserDetails(data: ResponseOnGoingVisit.Data) {
@@ -475,36 +450,5 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
     }
 
 
-    override fun handlePrepare() {
-        binding.dropHolder.makeGone()
-        binding.GroupVisitTrue.makeVisible()
-        binding.GroupVisitFalse.makeGone()
-        binding.startPickUPText.text="Start Check list"
-        binding.pickUpClicked.setOnClickListener {
-            viewModel.data?.onGoingVisitDetail?.let { data->
-                viewModel.saveTTime(RequestSetTime.Data(1,null,data.transportVisitID,data.transportationGroupID,null,null,null,data.scheduleID,sharedPreferenceManager.getEmployID())).observe(this){
-                    when (it.status) {
-                        Resource.Status.SUCCESS -> {
-                            viewModel.HideLoading()
-                            it.data?.let { it1 ->
-                                showSnackBar(it1.message)
-                                if (it1.isSuccess){
-                                     viewModel.currentActive=2
-                                     viewModel.handleActivation()
-                                }
-                            }
-                        }
-                        Resource.Status.ERROR -> {
-                            viewModel.HideLoading()
-                            it.message?.let { it1 -> showSnackBar(it1) }
-                        }
-                        Resource.Status.LOADING -> {
-                            viewModel.ShowLoading()
-                        }
-                    }
-                }
 
-            }
-        }
-    }
 }

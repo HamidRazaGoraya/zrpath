@@ -5,7 +5,6 @@ import android.os.Build
 import com.hamid.template.ui.checkList.models.RequestMedicationFormsList
 import com.hamid.template.ui.checkList.models.RequestSelfCheckList
 import com.hamid.template.ui.dashboard.models.FacilitiesRequestModel
-import com.hamid.template.ui.dashboard.models.RequestDashboard
 import com.hamid.template.ui.dashboard.models.RequestEmployDetails
 import com.hamid.template.ui.facilitiesPatiensts.models.*
 import com.hamid.template.ui.fillForm.model.RequestDeleteDocument
@@ -110,8 +109,8 @@ class ApiDataSource @Inject constructor(
     suspend fun getDashBoard(data: RequestDashboardAPI.Data)=getResult {
         apiServices.getDashBoard(RequestDashboardAPI(sharedPreferenceManager.getToken,data,Constants.Key))
     }
-    suspend fun OnGoingVisit(ScheduleID:Int,referralID:Int)=getResult {
-        val data=RequestOnGoingVisit.Data(ScheduleID,sharedPreferenceManager.getEmployID(),referralID)
+    suspend fun OnGoingVisit(ScheduleID:Int, referralID:Int, transportationGroupID:Int)=getResult {
+        val data=RequestOnGoingVisit.Data(ScheduleID,sharedPreferenceManager.getEmployID(),referralID,transportationGroupID)
         apiServices.OnGoingVisit(RequestOnGoingVisit(sharedPreferenceManager.getToken,data,Constants.Key))
     }
     suspend fun TripStart(data:RequestTripStart.Data)=getResult {

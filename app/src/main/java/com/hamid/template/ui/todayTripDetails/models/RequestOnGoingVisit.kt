@@ -21,7 +21,9 @@ data class RequestOnGoingVisit(
 		@field:SerializedName("EmployeeID")
 		val employeeID: Int,
 		@field:SerializedName("ReferralID")
-		val ReferralID:Int
+		val ReferralID:Int,
+		@field:SerializedName("TransportationGroupID")
+		val TransportationGroupID:Int
 	)
 }
 

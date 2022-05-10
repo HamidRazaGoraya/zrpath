@@ -8,12 +8,14 @@ import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.common.api.ResolvableApiException
@@ -138,12 +140,13 @@ class ClientMapActivity : BaseActivity<ActivityMapsBinding, MapVM>(), MapContrac
 
     val locationPermissionRequest = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
 
-        if (permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION,false) || permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION,false)){
+        if ((ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED)){
             viewModel.checkForLocationService()
             return@registerForActivityResult
         }
+
         viewModel.permissionMissing()
-        }
+    }
 
     override fun checkForLocationService() {
 
@@ -322,12 +325,12 @@ class ClientMapActivity : BaseActivity<ActivityMapsBinding, MapVM>(), MapContrac
 
 
     override fun childPickUp() {
-        binding.startTrip.text="Pick Up"
+        binding.startTrip.text="Start trip"
         binding.startTrip.isEnabled=true
         viewModel.onGoingVisit?.onGoingVisitDetail?.let {data->
             binding.startTrip.setOnClickListener {
 
-                viewModel.saveTTime(RequestSetTime.Data(1,viewModel.userLocation!!.longitude,data.transportVisitID,data.transportationGroupID,viewModel.userLocation!!.latitude,null,null,data.scheduleID,sharedPreferenceManager.getEmployID())).observe(this){
+                viewModel.saveTTime(RequestSetTime.Data(true,1,viewModel.userLocation!!.longitude,data.transportVisitID!!,data.transportationGroupID,viewModel.userLocation!!.latitude,null,null,data.scheduleID,sharedPreferenceManager.getEmployID())).observe(this){
                     when (it.status) {
                         Resource.Status.SUCCESS -> {
                             viewModel.HideLoading()
@@ -353,11 +356,11 @@ class ClientMapActivity : BaseActivity<ActivityMapsBinding, MapVM>(), MapContrac
     }
 
     override fun childDrop() {
-        binding.startTrip.text="Drop Off"
+        binding.startTrip.text="End trip"
         binding.startTrip.isEnabled=true
         viewModel.onGoingVisit?.onGoingVisitDetail?.let{data->
             binding.startTrip.setOnClickListener {
-                viewModel.saveTTime(RequestSetTime.Data(2,null,data.transportVisitID,data.transportationGroupID,null,viewModel.userLocation!!.longitude,viewModel.userLocation!!.longitude,data.scheduleID,sharedPreferenceManager.getEmployID())).observe(this){
+                viewModel.saveTTime(RequestSetTime.Data(true,2,null,data.transportVisitID!!,data.transportationGroupID,null,viewModel.userLocation!!.longitude,viewModel.userLocation!!.longitude,data.scheduleID,sharedPreferenceManager.getEmployID())).observe(this){
                     when (it.status) {
                         Resource.Status.SUCCESS -> {
                             viewModel.HideLoading()

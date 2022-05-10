@@ -81,13 +81,14 @@
         <entry key="..\:/zipath/app/src/main/res/layout/activity_registration.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_splash.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/activity_today_trip.xml" value="0.25" />
-        <entry key="..\:/zipath/app/src/main/res/layout/activity_today_trip_details.xml" value="0.2" />
+        <entry key="..\:/zipath/app/src/main/res/layout/activity_today_trip_details.xml" value="0.3770833333333333" />
         <entry key="..\:/zipath/app/src/main/res/layout/add_user_details.xml" value="0.19947916666666668" />
         <entry key="..\:/zipath/app/src/main/res/layout/calender_date_picker.xml" value="0.25" />
         <entry key="..\:/zipath/app/src/main/res/layout/client_details.xml" value="0.6271428571428571" />
         <entry key="..\:/zipath/app/src/main/res/layout/confirm_dialog.xml" value="0.5" />
         <entry key="..\:/zipath/app/src/main/res/layout/custom_dialog_image_pocker.xml" value="0.1287037037037037" />
         <entry key="..\:/zipath/app/src/main/res/layout/custome_chip.xml" value="2.0" />
+        <entry key="..\:/zipath/app/src/main/res/layout/dialog_change_api.xml" value="0.33" />
         <entry key="..\:/zipath/app/src/main/res/layout/dialog_loading.xml" value="0.1" />
         <entry key="..\:/zipath/app/src/main/res/layout/dialog_map_forms.xml" value="0.33" />
         <entry key="..\:/zipath/app/src/main/res/layout/dialog_upload_document.xml" value="0.33" />
@@ -104,6 +105,7 @@
         <entry key="..\:/zipath/app/src/main/res/layout/fragment_patient.xml" value="0.18854166666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/fragment_settings.xml" value="0.20416666666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/heading_visits.xml" value="0.5" />
+        <entry key="..\:/zipath/app/src/main/res/layout/horizantal_progress.xml" value="0.1685185185185185" />
         <entry key="..\:/zipath/app/src/main/res/layout/list_item.xml" value="0.20416666666666666" />
         <entry key="..\:/zipath/app/src/main/res/layout/login_fragment.xml" value="0.25" />
         <entry key="..\:/zipath/app/src/main/res/layout/login_screen.xml" value="0.19947916666666668" />

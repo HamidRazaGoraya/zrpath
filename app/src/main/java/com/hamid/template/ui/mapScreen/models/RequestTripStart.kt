@@ -14,7 +14,6 @@ data class RequestTripStart(
 	val key: String
 ){
 	data class Data(
-
 		@field:SerializedName("TransportationGroupID")
 		val transportationGroupID: Int,
 

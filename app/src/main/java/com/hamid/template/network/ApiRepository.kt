@@ -79,8 +79,8 @@ class ApiRepository @Inject constructor(
     fun getDashboard(data: RequestDashboardAPI.Data)= performGetOperation {
         apiDataSource.getDashBoard(data)
     }
-    fun OnGoingVisit(ScheduleID:Int,referralID:Int)= performGetOperation {
-        apiDataSource.OnGoingVisit(ScheduleID,referralID)
+    fun OnGoingVisit(ScheduleID:Int,referralID:Int,transportationGroupID:Int)= performGetOperation {
+        apiDataSource.OnGoingVisit(ScheduleID,referralID,transportationGroupID)
     }
     fun TripStart(data: RequestTripStart.Data)= performGetOperation {
         apiDataSource.TripStart(data)

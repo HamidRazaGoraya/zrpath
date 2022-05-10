@@ -5,11 +5,11 @@ import com.hamid.template.BuildConfig
 import com.hamid.template.network.ApiDataSource
 import com.hamid.template.network.ApiRepository
 import com.hamid.template.network.ApiServices
-import com.hamid.template.utils.Constants.BASE_URL
 import com.hamid.template.utils.NullOnEmptyConverterFactory
 import com.hamid.template.utils.SharedPreferenceManager
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.hamid.template.utils.ConstantsJava
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,10 +30,10 @@ import kotlin.jvm.Throws
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Singleton
     @Provides
-    fun provideRetrofit(gson: Gson): Retrofit {
+    fun provideRetrofit(gson: Gson,@ApplicationContext context: Context): Retrofit {
+
         val cookieManager = CookieManager()
         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL)
         val httpClientBuilder = OkHttpClient.Builder()
@@ -57,7 +57,7 @@ object AppModule {
             .build()
 
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(ConstantsJava().getBaseURl(context))
             .client(client)
             .addConverterFactory(NullOnEmptyConverterFactory())
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -86,8 +86,7 @@ object AppModule {
     fun provideGson(): Gson = GsonBuilder().create()
 
     @Provides
-    fun provideApiService(retrofit: Retrofit): ApiServices =
-        retrofit.create(ApiServices::class.java)
+    fun provideApiService(retrofit: Retrofit): ApiServices = retrofit.create(ApiServices::class.java)
 
     @Singleton
     @Provides
@@ -95,7 +94,6 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideRepository(apiDataSource: ApiDataSource) =
-        ApiRepository(apiDataSource)
+    fun provideRepository(apiDataSource: ApiDataSource) = ApiRepository(apiDataSource)
 
 }

@@ -11,34 +11,25 @@ interface TodayTripDetailsContracts : ViewInteractor {
     fun setUpView()
     fun HideLoading()
     fun ShowLoading()
-    fun allDeactive()
-    fun activePickUp()
+    fun allDeactivate()
+    fun activeBeginPrepare()
     fun activeCheckListPick()
     fun activeMissingForm()
     fun activeSignature()
-    fun activeDrop()
 
     fun activeTimeLine(timelineView: TimelineView,string: String,start: Boolean,end: Boolean)
     fun disableTimeLine(timelineView: TimelineView,string: String,start: Boolean,end: Boolean)
     fun inProgressTimeLine(timelineView: TimelineView,string: String,start: Boolean,end: Boolean)
 
-    fun clickedStartTrip()
+    fun clickedBeginPrepare()
     fun clickedPickUpCheckList()
     fun clickedMissingForm()
     fun clickedDropOfSignature()
-    fun clickedDrop()
     fun finishTrip()
 
     fun loadVisitDetails()
-
-
-    fun checkGroupStatus()
-    fun loadGroupNotStartView()
-    fun loadGroupStartedView()
-    fun loadGroupTripCompleted()
-    fun loadTripCompletedView()
-
     fun fillUserDetails(data:ResponseOnGoingVisit.Data)
 
-    fun handlePrepare()
+    fun loadTripCompletedView()
+    fun loadAllPointsCompleted()
 }
