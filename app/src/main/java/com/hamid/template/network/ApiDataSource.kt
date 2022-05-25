@@ -151,6 +151,32 @@ class ApiDataSource @Inject constructor(
             body
         )
     }
+
+    suspend fun saveChildSignature(TransportVisitIDValue:Int,ReferralIDValue:Int,ScheduleIDValue:Int,file: File) = getResult {
+        var body: MultipartBody.Part? = null
+        val requestFile = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+        body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+
+        val Key: RequestBody = createPartFromString(Constants.Key)
+        val Token: RequestBody = createPartFromString(sharedPreferenceManager.getToken)
+        val ScheduleID: RequestBody = createPartFromString(ScheduleIDValue.toString())
+        val ReferralID: RequestBody = createPartFromString(ReferralIDValue.toString())
+        val TransportVisitID: RequestBody = createPartFromString(TransportVisitIDValue.toString())
+
+        val map: HashMap<String, RequestBody> = HashMap()
+        map["Key"] = Key
+        map["Token"] = Token
+        map["ScheduleID"] = ScheduleID
+        map["ReferralID"] = ReferralID
+        map["TransportVisitID"] = TransportVisitID
+
+
+        apiServices.saveChildSignature(
+            map,
+            body
+        )
+    }
     private fun createPartFromString(s: String): RequestBody {
         return s.toRequestBody("text/plain".toMediaTypeOrNull())
     }

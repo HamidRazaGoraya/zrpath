@@ -97,6 +97,9 @@ class ApiRepository @Inject constructor(
     fun saveUserSignature(TransportVisitIDValue:Int,ReferralIDValue:Int,ScheduleIDValue:Int,file: File)= performGetOperation {
             apiDataSource.saveUserSignature(TransportVisitIDValue, ReferralIDValue, ScheduleIDValue, file)
     }
+    fun saveChildSignature(TransportVisitIDValue:Int,ReferralIDValue:Int,ScheduleIDValue:Int,file: File)= performGetOperation {
+        apiDataSource.saveChildSignature(TransportVisitIDValue, ReferralIDValue, ScheduleIDValue, file)
+    }
     fun UploadDocument(fileName:String,ReferralIDValue:Int,KindOfDocument:String,file: File)= performGetOperation {
         apiDataSource.UploadDocument( fileName,ReferralIDValue, KindOfDocument, file)
     }

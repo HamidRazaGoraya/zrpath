@@ -3,6 +3,7 @@ package com.hamid.template.ui.todayTripsList
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -16,16 +17,13 @@ import com.google.gson.Gson
 import com.hamid.template.R
 import com.hamid.template.base.BaseActivity
 import com.hamid.template.databinding.ActivityTodayTripBinding
-import com.hamid.template.ui.dashboard.models.ResponseDashBoard
 import com.hamid.template.ui.dashboard.models.VisitListModel
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
 import com.hamid.template.ui.mapScreen.ClientMapActivity
 import com.hamid.template.ui.todayTripDetails.TodayTripDetailsActivity
+import com.hamid.template.ui.todayTripDetails.dialogs.DropSignHere
 import com.hamid.template.ui.todayTripDetails.models.ResponseOnGoingVisit
 import com.hamid.template.ui.todayTripsList.adopter.RefferalListAdopter
-import com.hamid.template.ui.todayTripsList.models.RequestDashboardAPI
-import com.hamid.template.ui.todayTripsList.models.RequestReferralList
-import com.hamid.template.ui.todayTripsList.models.ResponseReferralList
 import com.hamid.template.utils.*
 import com.hamid.template.utils.dialogs.CalenderDatePicker
 import com.hamid.template.utils.dialogs.eventsListners.OnRefferalClicked
@@ -241,12 +239,70 @@ class TodayTripActivity : BaseActivity<ActivityTodayTripBinding, TodayTripVM>(),
                 bundle.putBoolean(Constants.startTrip,false)
                 todayTripDetails.launch(ClientMapActivity.getIntent(this@TodayTripActivity).putExtras(bundle))
             }
+
+            override fun onDropOfSignatureClicked(visitListModel: VisitListModel) {
+                viewModel.onDropOfSignatureClicked(visitListModel)
+            }
         })
 
         binding.refferalList.adapter=refferalListAdopter
         viewModel.getDataApi()
     }
 
+    override fun onDropOfSignatureClicked(visitListModel: VisitListModel) {
+        visitListModel.client?.let { client ->
+            viewModel.onGoingVisit(client.scheduleID,client.ReferralID,client.transportationGroupID).observe(this@TodayTripActivity){
+                when (it.status) {
+                    Resource.Status.SUCCESS -> {
+                        viewModel.HideLoading()
+                        it.data?.let { it1 ->
+                            if (it1.data==null){
+                                showSnackBar("On going visit details not found")
+                                return@observe
+                            }
+                            viewModel.showSignatureDialog(it1.data,client.ChildSignature)
+                        }
+                    }
+                    Resource.Status.ERROR -> {
+                        viewModel.HideLoading()
+                        it.message?.let { it1 -> showSnackBar(it1) }
+                    }
+                    Resource.Status.LOADING -> {
+                        viewModel.ShowLoading()
+                    }
+                }
+            }
+        }
+    }
+
+    override fun showSignatureDialog(data: ResponseOnGoingVisit.Data?, oldSignature: String?) {
+        data?.let {
+            DropSignHere(object :DropSignHere.OnSelected{
+                override fun SignatureAdded(bitmap: Bitmap) {
+                    viewModel.saveChildSignature(it.onGoingVisitDetail!!.transportVisitID!!,it.referralDetail!!.referralID,it.onGoingVisitDetail.scheduleID,FileEncoder.convertImageToFile(bitmap,this@TodayTripActivity)).observe(this@TodayTripActivity){
+                        when (it.status) {
+                            Resource.Status.SUCCESS -> {
+                                viewModel.HideLoading()
+                                viewModel.getDataApi()
+                            }
+                            Resource.Status.ERROR -> {
+                                viewModel.getDataApi()
+                                viewModel.HideLoading()
+                                it.message?.let { it1 -> showSnackBar(it1) }
+                            }
+                            Resource.Status.LOADING -> {
+                                viewModel.ShowLoading()
+                            }
+                        }
+                    }
+                }
+                override fun SignatureNotAdded() {
+                    showSnackBar(getString(R.string.please_sign_to_submit))
+                }
+            },oldSignature).show(supportFragmentManager,"Sign here")
+
+        }
+    }
     override fun moveToDetailsActivity(visitListModel: VisitListModel) {
         todayTripDetails.launch(TodayTripDetailsActivity.getIntent(this).putExtra(Constants.data,Gson().toJson(visitListModel)))
     }

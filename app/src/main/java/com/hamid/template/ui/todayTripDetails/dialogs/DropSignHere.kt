@@ -14,7 +14,7 @@ import com.hamid.template.ui.todayTripDetails.models.ResponseOnGoingVisit
 import com.hamid.template.utils.JAVAUtilities
 import java.util.*
 
-class DropSignHere(private val onSelected: OnSelected,val data: ResponseOnGoingVisit.Data?) :
+class DropSignHere(private val onSelected: OnSelected,val signature: String?) :
     DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireActivity())
@@ -36,7 +36,7 @@ class DropSignHere(private val onSelected: OnSelected,val data: ResponseOnGoingV
         binding.closeWindow.setOnClickListener { dismiss() }
         binding.Cancel.setOnClickListener { dismiss() }
 
-        data?.onGoingVisitDetail?.PatientSignature?.let {
+        signature?.let {
                      try {
                          binding.signatureViewEdit.clearCanvas()
                          JAVAUtilities.convertBase64ToBitmap(it)?.let {

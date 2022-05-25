@@ -60,7 +60,8 @@ data class TodayTripResponse(
                 val IsCheckListCompleted:Boolean,
                 @SerializedName("PatientSignature")
                 val PatientSignature:String?,
-
+                @SerializedName("ChildSignature")
+                val ChildSignature:String?,
                 @SerializedName("ReferralID")
                 @Expose
                 val ReferralID:Int,

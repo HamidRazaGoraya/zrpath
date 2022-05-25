@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.DocumentsContract
 import android.view.LayoutInflater
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -19,6 +20,7 @@ import com.hamid.template.ui.loginAndRegister.RegisterActivity
 import com.hamid.template.ui.todayTripsList.TodayTripActivity
 import com.hamid.template.utils.*
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 import javax.inject.Inject
 
 
@@ -136,7 +138,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
 
     override fun helpClicked() {
         viewModel.hideSideMenu()
-        Navigation.findNavController(this, R.id.fragmentDashboard).navigate(R.id.action_home_to_help)
+       // Navigation.findNavController(this, R.id.fragmentDashboard).navigate(R.id.action_home_to_help)
+
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "application/pdf"
+        }
+        getFile.launch(intent)
     }
 
     override fun onBackPressed() {
@@ -185,5 +193,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainVM>(), MainContracts 
         }
 
     }
+    val getFile = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+    { result: ActivityResult ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            result.data?.data?.run {
+             FileManager.getPath(this@MainActivity,this)?.run {
+                 File(this).run {
+                     showSnackBar(name)
+                 }
+             }
+            }
+        }
 
+    }
 }

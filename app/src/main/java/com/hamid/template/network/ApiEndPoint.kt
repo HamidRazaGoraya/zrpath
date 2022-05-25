@@ -34,6 +34,7 @@ object ApiEndPoint {
     const val deleteDocument= apiStart+ Document+"DeleteDocument"
     const val GetReferralListForTransportationGroup= apiStart+ TransportationGroup+"GetReferralListForTransportationGroup"
     const val UserSaveSignature= apiStart+ TransportationGroup+"SaveReferralSignature"
+    const val ChildSaveSignature= apiStart+ TransportationGroup+"SaveChildSignature"
     const val GetMissingDocumentList= apiStart+ Document+"GetMissingDocumentList"
     const val checkListCompleted= apiStart+ Referral+"SetChecklistComplete"
     const val UploadDocument= apiStart+ Document+"UploadDocument"

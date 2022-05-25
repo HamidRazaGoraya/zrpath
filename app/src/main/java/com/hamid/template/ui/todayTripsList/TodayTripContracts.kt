@@ -4,6 +4,7 @@ import com.hamid.template.base.ViewInteractor
 import com.hamid.template.ui.dashboard.models.ResponseDashBoard
 import com.hamid.template.ui.dashboard.models.VisitListModel
 import com.hamid.template.ui.facilitiesPatiensts.models.TodayTripResponse
+import com.hamid.template.ui.todayTripDetails.models.ResponseOnGoingVisit
 import com.hamid.template.ui.todayTripsList.models.ResponseReferralList
 
 
@@ -19,4 +20,6 @@ interface TodayTripContracts : ViewInteractor {
     fun loadTripDirection(data: List<TodayTripResponse.Data.Down>)
     fun moveToDetailsActivity(visitListModel: VisitListModel)
     fun getVisitDetails(client: TodayTripResponse.Data.Down.Client,upDown:Boolean)
+    fun onDropOfSignatureClicked(visitListModel: VisitListModel)
+    fun showSignatureDialog(data: ResponseOnGoingVisit.Data?,oldSignature: String?)
 }

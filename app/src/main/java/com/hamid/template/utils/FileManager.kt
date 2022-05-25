@@ -107,6 +107,9 @@ object FileManager {
                     "audio" -> {
                         contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
                     }
+                    else->{
+                        return getDataColumn(context, uri, null, null)
+                    }
                 }
                 selection = "_id=?"
                 selectionArgs = arrayOf(split[1])

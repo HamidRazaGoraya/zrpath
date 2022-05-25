@@ -55,6 +55,16 @@ class RefferalListViewHolder(var binding: RowTabVisitsBinding,var onRefferalClic
                    }
                }
                "Trip Started"->{
+
+                   if (client.ChildSignature.isNullOrBlank()){
+                       binding.startStop.makeVisible()
+                       binding.startStop.text="Child Signature"
+                       binding.startStop.setOnClickListener {
+                           onRefferalClicked.onDropOfSignatureClicked(visitListModel)
+                       }
+                       return
+                   }
+
                    binding.startStop.makeVisible()
                    binding.startStop.text="End trip"
                    binding.startStop.setOnClickListener {

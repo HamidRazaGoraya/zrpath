@@ -17,4 +17,5 @@ interface OnRefferalClicked{
     fun onEndTripClicked(visitListModel: VisitListModel)
     fun onGroupTripStart(group: TodayTripResponse.Data.Down.TransportationGroup)
     fun onGroupTripEnd(group: TodayTripResponse.Data.Down.TransportationGroup)
+    fun onDropOfSignatureClicked(visitListModel: VisitListModel)
 }

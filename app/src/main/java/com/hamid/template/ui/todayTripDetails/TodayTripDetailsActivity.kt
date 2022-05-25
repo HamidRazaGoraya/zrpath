@@ -292,7 +292,7 @@ class TodayTripDetailsActivity : BaseActivity<ActivityTodayTripDetailsBinding, T
                 override fun SignatureNotAdded() {
                     showSnackBar(getString(R.string.please_sign_to_submit))
                 }
-            },viewModel.data).show(supportFragmentManager,"Sign here")
+            },it.onGoingVisitDetail!!.PatientSignature).show(supportFragmentManager,"Sign here")
         }
     }
 

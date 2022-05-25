@@ -136,6 +136,13 @@ interface ApiServices {
         @Part file: MultipartBody.Part? = null
     ): Response<ErrorMessage>
 
+    @Multipart
+    @POST(ApiEndPoint.ChildSaveSignature)
+    suspend fun saveChildSignature(
+        @PartMap partMap: Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part file: MultipartBody.Part? = null
+    ): Response<ErrorMessage>
+
     @POST(ApiEndPoint.GetMissingDocumentList)
     suspend fun GetMissingDocumentList(
         @Body requestMissingDocument: RequestMissingDocument
