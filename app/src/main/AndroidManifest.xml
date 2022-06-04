@@ -5,14 +5,9 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <!-- Always include this permission -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- Always include this permission -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -59,19 +54,24 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ui.dashboard.MainActivity"
-            android:screenOrientation="portrait"
-            />
-        <activity android:name=".ui.loginAndRegister.RegisterActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.onboarding.OnBoardingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.facilitiesPatiensts.FacilityActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.checkList.CheckListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.fillForm.FillFormActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.dashboard.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.loginAndRegister.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.onboarding.OnBoardingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.facilitiesPatiensts.FacilityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.checkList.CheckListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.fillForm.FillFormActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.todayTripDetails.TodayTripDetailsActivity" />
         <activity android:name=".ui.todayTripsList.TodayTripActivity" />
         <activity android:name=".ui.missingForms.MissingFormsActivity" />

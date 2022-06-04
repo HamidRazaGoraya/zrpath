@@ -6,7 +6,7 @@ import android.widget.TextView
 import com.hamid.template.R
 
 class ConstantsJava() {
-    val BASE_URL = "https://mobile-dev.zrpath.com/"
+    val BASE_URL = "https://mobile.zrpath.com/"
     val IMAGE_URL = "https://mobile-dev.zrpath.com/"
     private val AppContent = "AppContent"
     private val MODE = Context.MODE_PRIVATE

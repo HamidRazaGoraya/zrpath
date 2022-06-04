@@ -532,4 +532,5 @@
     <string name="err_upload_images">Please upload images.</string>
     <string name="str_cs_dialog_camera">Take a photo</string>
     <string name="str_cs_dialog_gallery">Pick from gallery</string>
+    <string name="title_activity_compose_test">ComposeTest</string>
 </resources>

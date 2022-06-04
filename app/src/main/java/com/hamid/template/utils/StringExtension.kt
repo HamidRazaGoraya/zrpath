@@ -9,9 +9,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-fun String.addImageUrl():String{
-    return ConstantsJava().IMAGE_URL + this
-}
+
 
 fun String.getDateOfConsulatation():String{
     val date: Date? = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).parse(this)
